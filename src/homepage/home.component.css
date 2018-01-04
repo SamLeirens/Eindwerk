@@ -20,7 +20,7 @@ body {
 }
 
 /*
-headeer top
+header top
 */
 .topbar{
     background-color: #212529;
@@ -166,8 +166,10 @@ li {
     background: linear-gradient(45deg, #54d400 48%, #1b1e21 48%);
 }
 
-#formProjectAanmaken
+#foto
 {
     position: relative;
+    content:url("../image/ruben.gif");
     top:100px;
+    left:100px;
 }

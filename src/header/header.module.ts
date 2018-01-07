@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HeaderComponent} from "./header.component";
 import {AppRoutingModule} from "../app/app-routing.module";
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -13,7 +14,8 @@ import {AppRoutingModule} from "../app/app-routing.module";
     ],
     imports: [
         BrowserModule,
-        AppRoutingModule
+        AppRoutingModule,
+        FormsModule
     ],
     exports:[
         HeaderComponent

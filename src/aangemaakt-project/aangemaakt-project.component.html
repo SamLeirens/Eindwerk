@@ -7,22 +7,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
 <HeaderComponent></HeaderComponent>
-<!-- Form -->
-<div class="container" id="formProjectAanmaken">
-    <div class="col-md-5">
-        <div class="form-area">
-            <form role="form">
-                <br style="clear:both">
-                <h3 style="margin-bottom: 25px; text-align: center;">Maak nieuw project aan</h3>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="voornaam" name="name" placeholder="naam van het project" required #projectNaam>
-                   <input type="number" name="aantal" min="1" #aantalGroepen placeholder="aantal groepen">
-
-                </div>
-
-                <button type="button" id="submit" name="submit" class="btn btn-primary pull-right" (click)="maakProject(projectNaam,aantalGroepen)">aanmaken</button>
-            </form>
-        </div>
-    </div>
+<br><br><br>
+<div>
+Hier zijn {{aantalGroepen}} groepen voor u
 </div>
-
+<div *ngFor="let i of groepenArray">
+    {{i._naam}}{{i.studentenLijst}}
+</div>
+<div *ngFor="let d of myData">
+    {{d.voornaam}} {{d.achternaam}} - {{d.rol}}
+</div>

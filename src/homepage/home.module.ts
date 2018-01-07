@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import {HomeComponent} from "./home.component";
 import {HeaderModule} from "../header/header.module";
 import {HeaderComponent} from "../header/header.component";
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -14,7 +15,8 @@ import {HeaderComponent} from "../header/header.component";
     ],
     imports: [
         BrowserModule,
-        HeaderModule
+        HeaderModule,
+        FormsModule
     ],
     providers: [],
     bootstrap: [HomeComponent]

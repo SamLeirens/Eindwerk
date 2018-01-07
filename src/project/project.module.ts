@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
 import { ProjectComponent } from './project.component';
 import {HeaderModule} from "../header/header.module";
+import {ProjectService} from "./project.service";
 
 
 @NgModule({
@@ -14,7 +14,9 @@ import {HeaderModule} from "../header/header.module";
         BrowserModule,
         HeaderModule
     ],
-    providers: [],
+    providers: [ProjectService],
     bootstrap: [ProjectComponent]
 })
-export class ProjectModule { }
+export class ProjectModule {
+
+}

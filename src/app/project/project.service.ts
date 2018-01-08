@@ -21,22 +21,24 @@ export class ProjectService {
 
     private postURL = 'http://localhost:8080/project';  // URL to web api
     private getURL = 'http://localhost:8080/projects';  // URL to web api
+    p:Project;
 
-    add(naam:String,aantal:Number) {
-        console.log(this.http.get(this.getURL,httpOptions).toString());
+    add(naam:String,aantal:number) {
 
         //TODO:project hardcoded met docentID 1 aangemaakt moet via ingelogde docent
 
         this.http.post(this.postURL,{"naam":naam,"docent":{"id":1}}).subscribe(
             res => {
-                console.log(res);
+                this.p = <Project>res;
+                this.p.aantalGroepen = aantal;
+
+                this.router.navigate(['/aangemaaktProject',aantal,this.p]);
+
             },
             err => {
                 console.log("Error occured");
             });
 
-        //number meegeven naar nieuwe pagina
-        this.router.navigate(['/aangemaaktProject',aantal]);
 
         return this.http.get(this.getURL,httpOptions);
     }

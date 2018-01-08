@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Student} from "../models/Student";
 import {HttpHeaders} from "@angular/common/http";
+import {Groep} from "../models/Groep";
 
 
 
@@ -19,6 +20,9 @@ export class LeerlingService {
 
   private postURL = 'http://localhost:8080/student';  // URL to web api
   private getURL = 'http://localhost:8080/students';  // URL to web api
+
+
+
 
 
 

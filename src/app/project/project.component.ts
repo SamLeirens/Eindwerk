@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Project} from '../models/Project'
-import {ProjectService} from '../project/project.service'
+import {ProjectService} from './project.service'
 
 @Component({
     selector: 'project',
-    templateUrl: './project.component.html',
-    styleUrls: ['./project.component.css'],
+    templateUrl: 'project.component.html',
+    styleUrls: ['project.component.css'],
     providers:[ProjectService]
 })
 export class ProjectComponent implements OnInit{
@@ -21,8 +21,7 @@ export class ProjectComponent implements OnInit{
 
         this._projectService.add(projectNaam.value,aantalGroepen.value).subscribe(
             data => {
-                this.docs = data[0]
-
+                this.docs = <Project>data[0];
             }
 
         );

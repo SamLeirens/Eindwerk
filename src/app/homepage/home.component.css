@@ -169,7 +169,7 @@ li {
 #foto
 {
     position: relative;
-    content:url("../image/ruben.gif");
+    content:url("../../image/ruben.gif");
     top:100px;
     left:100px;
 }

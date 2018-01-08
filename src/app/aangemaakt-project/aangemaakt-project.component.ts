@@ -4,20 +4,25 @@ import {LeerlingService} from "./leerling.service";
 import {Observable} from "rxjs";
 import {Groep} from "../models/Groep";
 import {Student} from "../models/Student";
+import {GroepService} from "../groep/groep.service";
 
 @Component({
   selector: 'aangemaakt-project',
   templateUrl: 'aangemaakt-project.component.html',
   styleUrls: ['aangemaakt-project.component.css'],
-    providers: [LeerlingService],
+    providers: [LeerlingService,GroepService],
 })
 export class AangemaaktProjectComponent implements OnInit{
 
-
-  aantalGroepen:number;
-  myData: any = [];
+    studentIdLijst: any = [];
+    aantalGroepen:number;
+    myData: any = [];
     groepenArray:Groep[] = [];
-  constructor(private route: ActivatedRoute,private _leerlingService: LeerlingService) { }
+    projId: number;
+    sub:any;
+    projNaam:string;
+
+  constructor(private route: ActivatedRoute,private _leerlingService: LeerlingService,private _groepService: GroepService) { }
 
   updateStudent(student:Student){
 
@@ -31,17 +36,28 @@ export class AangemaaktProjectComponent implements OnInit{
 
   }
 
+    createGroep(groep:Groep)
+    {
+        this._groepService.addGroep(groep).subscribe(
+            data => {
+                console.log(data)
+
+            }
+
+        );
+
+    }
+
   ngOnInit() {
-     this.aantalGroepen = +this.route.snapshot.paramMap.get('id');
+      this.sub = +this.route.params.subscribe(params => {this.aantalGroepen =+params['aantalGroepen'];});
+      this.projId = +this.route.snapshot.paramMap.get('id');
+      this.projNaam = this.route.snapshot.paramMap.get('naam');
 
 
       for(let x = 1;x<=this.aantalGroepen;x++) {
 
-          let studentIdLijst: any = [];
           //gevraagd aantal groepen maken
-         let groep = new Groep(x,"groep "+x);
-         let doneCheck1 = false;
-          let doneCheck2 = false;
+         let groep = new Groep(x,"groep "+x+" "+this.projNaam,this.projId);
 
          //alle leerlingen ophalen
           this
@@ -51,7 +67,6 @@ export class AangemaaktProjectComponent implements OnInit{
               (data =>
                   {
                       this.myData = data;
-                      //console.log(this.myData);
                       this.maakGroep(groep);
                   }
              );
@@ -59,6 +74,7 @@ export class AangemaaktProjectComponent implements OnInit{
 
 
           this.groepenArray.push(groep);
+
       }
 
 
@@ -66,32 +82,36 @@ export class AangemaaktProjectComponent implements OnInit{
 
     maakGroep(groep:Groep) {
 
-        console.log("in functie gegaan");
+
         let doneCheck1 = false;
         let doneCheck2 = false;
-        let studentIdLijst: any = [];
 
         for (let i = 0; i < this.myData.length; i++) {
+
             let student = <Student> this.myData[i];
 
-            if (student.rol == "architect" && !student.inGroep && !doneCheck1) {
+            if (student.rol == "architect" && !student.inGroep && !doneCheck1 && !this.studentIdLijst.includes(i)) {
+
                 doneCheck1 = true;
-                studentIdLijst += i;
+                this.studentIdLijst += i;
                 student.inGroep = true;
-                student.groep = groep.id;
-                console.log("groep id verandert");
-                //groep id geven aan student
+                student.groep = groep.naam;
+                groep.students.push(student);
                 this.updateStudent(student)
-            } else if (student.rol == "xx" && !student.inGroep && !doneCheck2) {
+
+            } else if (student.rol == "database manager" && !student.inGroep && !doneCheck2 && !this.studentIdLijst.includes(i)) {
+
                 doneCheck2 = true;
-                studentIdLijst += i;
+                this.studentIdLijst += i;
                 student.inGroep = true;
-                student.groep = groep.id;
-                //groep id geven aan student
+                student.groep = groep.naam;
+                groep.students.push(student);
                 this.updateStudent(student)
             }
 
         }
+
+        this.createGroep(groep);
     }
 
 

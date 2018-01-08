@@ -7,13 +7,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
 <HeaderComponent></HeaderComponent>
-<br><br><br>
-<div>
-Hier zijn {{aantalGroepen}} groepen voor u
-</div>
-<div *ngFor="let i of groepenArray">
-    {{i._naam}}{{i.studentenLijst}}
-</div>
-<div *ngFor="let d of myData">
-    {{d.voornaam}} {{d.achternaam}} - {{d.rol}}
+
+<br><br><br><br><br><br><br>
+<div class="container">
+    <h3>
+        {{groepNaam}}
+    </h3>
+
+<img src="" id="foto" height="100px" width="200px">
+
 </div>

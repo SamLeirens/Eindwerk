@@ -6,5 +6,5 @@ export class Student {
     jaar: string;
     rol: string;
     inGroep: boolean;
-    groep: number;
+    groep: string;
 }

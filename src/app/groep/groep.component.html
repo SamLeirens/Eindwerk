@@ -1,11 +1,6 @@
 
 <!-- https://bootsnipp.com/snippets/Q04ZX -->
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-
 <HeaderComponent></HeaderComponent>
 
 <br><br><br><br><br><br><br>
@@ -13,7 +8,96 @@
     <h3>
         {{groepNaam}}
     </h3>
+    <table>
+        <th>voornaam</th>
+        <th>achternaam</th>
+        <th>rol</th>
+
+        <ng-container *ngFor="let d of myData2">
+
+        <tr>
+            <td>{{d.voornaam}}</td>
+            <td>{{d.achternaam}}</td>
+            <td>{{d.rol}}</td>
+        </tr>
+    </ng-container>
+        </table>
+
+
+
+    <br><br><br>
+
+<form>
 
 <img src="" id="foto" height="100px" width="200px">
+    <input type="text">
+    <button>Link uploaden</button>
+</form>
+    <br><br><br>
+    <form>
+
+        <input type="text">
+        <button>Link uploaden</button>
+    </form>
+    <br><br><br>
+
+    <!-- AGENDA -->
+
+    <div class="container">
+
+        <div><h2>Agenda</h2>
+            <input type='button' id='button' value='Agenda Item toevoegen' (click)="show()">
+            
+            <div id='content' style="display: none;">
+                <agendaItemToevoegen></agendaItemToevoegen>
+            </div>
+        </div>
+        <div class="agenda">
+            <div class="table-responsive">
+                <table class="table table-condensed table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Event</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Single event in a single day -->
+                        <ng-container *ngFor="let item of myAgendaItems">
+
+                                <tr>
+                                    <td class="agenda-date" class="active" rowspan="1">
+                                        {{item.datum}}
+                                    </td>
+                                    <td class="agenda-time">
+                                        {{item.tijd}}
+                                    </td>
+                                    <td class="agenda-events">
+                                        <div class="agenda-event">
+                                            {{item.onderwerp}}
+                                        </div>
+                                    </td>
+                                    <td class="agenda-events">
+                                        <div class="agenda-event">
+                                            <form>
+                                                <input type="hidden" value="{{item.id}}" #itemId>
+                                                <button type="submit" (click)="deleteAgendaItem(itemId.value)">Delete</button>
+
+                                            </form>
+
+                                        </div>
+                                    </td>
+                                </tr>
+
+                     </ng-container>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
 
 </div>

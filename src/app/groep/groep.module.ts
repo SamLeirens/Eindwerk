@@ -4,6 +4,9 @@ import {HeaderModule} from "../header/header.module";
 import {FormsModule} from "@angular/forms";
 import {GroepComponent} from "./groep.component";
 import {GroepService} from "./groep.service";
+import {MatDialogModule} from "@angular/material";
+import {AgendaItemToevoegenComponent } from './agenda-item-toevoegen/agenda-item-toevoegen.component'
+import {AgendaItemModuleModule} from "./agenda-item-toevoegen/agenda-item-module.module";
 
 
 
@@ -11,12 +14,16 @@ import {GroepService} from "./groep.service";
 
 @NgModule({
     declarations: [
-        GroepComponent
+        GroepComponent,
+        AgendaItemToevoegenComponent,
+
     ],
     imports: [
         BrowserModule,
         HeaderModule,
-        FormsModule
+        FormsModule,
+        AgendaItemModuleModule,
+        MatDialogModule
     ],
 
     exports:[
@@ -25,4 +32,4 @@ import {GroepService} from "./groep.service";
     providers: [GroepService],
     bootstrap: [GroepComponent]
 })
-export class HomeModule { }
+export class GroepModule { }

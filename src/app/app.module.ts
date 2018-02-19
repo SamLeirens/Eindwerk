@@ -10,10 +10,19 @@ import {HeaderModule} from "./header/header.module";
 import { DocentComponent } from './docent/docent.component';
 import {DocentService} from "./docent/docent.service";
 import { HttpClientModule } from '@angular/common/http';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { AangemaaktProjectComponent } from './aangemaakt-project/aangemaakt-project.component';
 import { GroepComponent } from './groep/groep.component';
-import {AgendaItemToevoegenComponent} from "./groep/agenda-item-toevoegen/agenda-item-toevoegen.component";
+import {AuthGuard} from "./security/auth.guard";
+import { LoginComponent } from './login/login.component';
+import {ShowHidePasswordModule} from "ngx-show-hide-password";
+import {AngularFontAwesomeModule} from "angular-font-awesome";
+import {LoginService} from "./security/login.service";
+import {LoggedInGuard} from "./security/loggedIn.guard";
+import {MatDialogModule, MatDatepickerModule, MatNativeDateModule, MatFormFieldModule} from "@angular/material";
+import { DialogComponent } from './login/dialog/dialog.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+
 
 @NgModule({
   declarations: [
@@ -22,7 +31,8 @@ import {AgendaItemToevoegenComponent} from "./groep/agenda-item-toevoegen/agenda
     DocentComponent,
     AangemaaktProjectComponent,
     GroepComponent,
-      AgendaItemToevoegenComponent
+      LoginComponent,
+      DialogComponent
 
 
   ],
@@ -32,9 +42,18 @@ import {AgendaItemToevoegenComponent} from "./groep/agenda-item-toevoegen/agenda
     HomeModule,
     HeaderModule,
     HttpClientModule,
-      FormsModule
+      FormsModule,
+    ShowHidePasswordModule.forRoot(),
+    AngularFontAwesomeModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+      ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+      MatFormFieldModule
   ],
-  providers: [DocentService],
-  bootstrap: [AppComponent]
+  providers: [DocentService,AuthGuard,LoginService,LoggedInGuard],
+  bootstrap: [AppComponent],
+  entryComponents: [DialogComponent]
 })
 export class AppModule { }

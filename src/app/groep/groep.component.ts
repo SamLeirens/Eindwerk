@@ -3,6 +3,9 @@ import {ActivatedRoute} from "@angular/router";
 import {GroepService} from "./groep.service";
 import {Groep} from "../models/Groep";
 import {AgendaItem} from "../models/AgendaItem";
+import {DialogComponent} from "../login/dialog/dialog.component";
+import {MatDialog, MatDialogRef} from "@angular/material";
+import {filter} from "rxjs/operators";
 
 
 @Component({
@@ -13,8 +16,43 @@ import {AgendaItem} from "../models/AgendaItem";
 })
 export class GroepComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,private _groepservice: GroepService) { }
+    groepNaam: string;
+    sub:any ;
+    myData2: any = [];
+    myAgendaItems:AgendaItem[];
+    fileNameDialogRef: MatDialogRef<DialogComponent>;
+    newAgendaItem: AgendaItem;
 
+
+    constructor(private route: ActivatedRoute,private _groepservice: GroepService,public dialog: MatDialog) { }
+
+
+    openDialog()
+    {
+        this.fileNameDialogRef = this.dialog.open(DialogComponent);
+
+        this.fileNameDialogRef
+            .afterClosed()
+            .subscribe(event => this.addAgenda(event[0],event[1],event[2]));
+
+    }
+
+
+    addAgenda(date,time,event)
+    {
+        this.newAgendaItem = new AgendaItem(date,time,event,this.groepNaam);
+
+        this._groepservice.addAgendaItem(this.newAgendaItem).subscribe(
+            data => {
+                console.log(data)
+            }
+
+        );
+        if(this.newAgendaItem.tijd != null)
+        {
+            this.myAgendaItems.push(this.newAgendaItem);
+        }
+    }
 
   show()
   {
@@ -33,18 +71,8 @@ export class GroepComponent implements OnInit {
     }
 
 
-    groepNaam: string;
-  sub:any ;
-  groepenArray:Groep[] = [];
-    myData2: any = [];
-    myAgendaItems:AgendaItem[];
-    vandaag = this.getDate();
-    dd: any;
-
-
     deleteAgendaItem(id:number)
         {
-            console.log(id);
             this.removeAgenda(id);
             this._groepservice.deleteAgendaItem(id)
                 .subscribe();
@@ -52,10 +80,7 @@ export class GroepComponent implements OnInit {
         }
 
     removeAgenda(id:number) {
-        console.log("lengte"+ this.myAgendaItems.length);
         for (let i = 0 ; i < this.myAgendaItems.length; i++) {
-
-            console.log("binne");
             if (this.myAgendaItems[i].id == id) {
                 this.myAgendaItems.splice(i, 1);
                 break;

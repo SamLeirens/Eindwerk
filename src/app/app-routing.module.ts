@@ -7,11 +7,15 @@ import {HomeComponent} from "./homepage/home.component";
 import {DocentComponent} from "./docent/docent.component";
 import {AangemaaktProjectComponent} from "./aangemaakt-project/aangemaakt-project.component";
 import {GroepComponent} from "./groep/groep.component";
+import {AuthGuard} from "./security/auth.guard";
+import {LoginComponent} from "./login/login.component";
+import {LoggedInGuard} from "./security/loggedIn.guard";
 
 const appRoutes: Routes = [
     {path: 'project', component: ProjectComponent},
     {path: 'index', component: HomeComponent},
-    {path: 'docent', component: DocentComponent},
+    {path: 'login', component: LoginComponent,canActivate:[LoggedInGuard]},
+    {path: 'docent', component: DocentComponent, canActivate:[AuthGuard]},
     {path: 'aangemaaktProject/:aantal;:projId', component: AangemaaktProjectComponent},
     {path: 'groep/:naam', component: GroepComponent},
     {path: '**', redirectTo: 'index'},

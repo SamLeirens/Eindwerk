@@ -46,11 +46,7 @@
     <div class="container">
 
         <div><h2>Agenda</h2>
-            <input type='button' id='button' value='Agenda Item toevoegen' (click)="show()">
-            
-            <div id='content' style="display: none;">
-                <agendaItemToevoegen></agendaItemToevoegen>
-            </div>
+            <button mat-button (click)="openDialog()">Agenda item toevoegen</button>
         </div>
         <div class="agenda">
             <div class="table-responsive">

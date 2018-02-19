@@ -55,19 +55,6 @@ export class GroepService {
     }
 
 
-/*    addAgendaItem(Agenda agenda) {
-
-        this.http.post(this.postURL,JSON.stringify(agenda),httpOptions).subscribe(
-            res => {
-                console.log("groep geupdate");
-            },
-            err => {
-                console.log("Error occured");
-            });
-
-        return this.http.get(this.getAgendaByGroepURL,httpOptions);
-
-    }*/
 
 
     addGroep(groep:Groep) {

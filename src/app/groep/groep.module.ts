@@ -5,8 +5,6 @@ import {FormsModule} from "@angular/forms";
 import {GroepComponent} from "./groep.component";
 import {GroepService} from "./groep.service";
 import {MatDialogModule} from "@angular/material";
-import {AgendaItemToevoegenComponent } from './agenda-item-toevoegen/agenda-item-toevoegen.component'
-import {AgendaItemModuleModule} from "./agenda-item-toevoegen/agenda-item-module.module";
 
 
 
@@ -15,14 +13,13 @@ import {AgendaItemModuleModule} from "./agenda-item-toevoegen/agenda-item-module
 @NgModule({
     declarations: [
         GroepComponent,
-        AgendaItemToevoegenComponent,
+
 
     ],
     imports: [
         BrowserModule,
         HeaderModule,
         FormsModule,
-        AgendaItemModuleModule,
         MatDialogModule
     ],
 

@@ -11,16 +11,8 @@ import {DialogComponent} from "./dialog/dialog.component";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService: LoginService,public dialog: MatDialog) { }
+  constructor(private loginService: LoginService) { }
 
-    openDialog()
-    {
-      this.dialog.open(DialogComponent, {
-        data: {
-          animal: 'panda'
-        }
-      });
-    }
 
   ngOnInit() {
   }

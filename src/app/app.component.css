@@ -171,3 +171,12 @@ li {
     position: relative;
     top:100px;
 }
+
+.ui-growl {
+    position:fixed;
+    top: 40%;
+    left: 37%;
+    width: 360px;
+    height: 110px;
+    z-index:9999;
+}

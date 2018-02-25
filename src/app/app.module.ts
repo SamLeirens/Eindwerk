@@ -22,7 +22,8 @@ import {LoggedInGuard} from "./security/loggedIn.guard";
 import {MatDialogModule, MatDatepickerModule, MatNativeDateModule, MatFormFieldModule} from "@angular/material";
 import { DialogComponent } from './login/dialog/dialog.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-
+import {GrowlModule} from 'primeng/growl';
+import {MessageService} from "./common/service/MessageService";
 
 @NgModule({
   declarations: [
@@ -50,9 +51,10 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
       ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-      MatFormFieldModule
+      MatFormFieldModule,
+    GrowlModule
   ],
-  providers: [DocentService,AuthGuard,LoginService,LoggedInGuard],
+  providers: [DocentService,AuthGuard,LoginService,LoggedInGuard,MessageService],
   bootstrap: [AppComponent],
   entryComponents: [DialogComponent]
 })

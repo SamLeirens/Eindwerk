@@ -2,11 +2,16 @@ import { Injectable } from '@angular/core';
 import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import {LoginService} from "./login.service";
+import {MessageService} from "../common/service/MessageService";
+import {Message} from "../common/service/Message";
+
+
+
 
 @Injectable()
 export class LoggedInGuard implements CanActivate {
 
-    constructor(private router: Router, private loginService: LoginService){}
+    constructor(private router: Router, private loginService: LoginService,private messageService:MessageService){}
 
     canActivate(
         next: ActivatedRouteSnapshot,
@@ -17,12 +22,15 @@ export class LoggedInGuard implements CanActivate {
 
         if(LoginService.loggedIn === true)
         {
-            console.log("already logged in")
+
+            this.messageService.add({
+                severity: 'error', summary:'Already logged in'
+                }
+            );
             return false;
         }
         else
         {
-            console.log("not logged in")
             return true;
         }
 

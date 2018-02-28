@@ -19,7 +19,6 @@ export class DetailGroepenComponent implements OnInit,AfterViewInit {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {this.groepId = params['id']});
-    console.log(this.groepId)
 
   }
 

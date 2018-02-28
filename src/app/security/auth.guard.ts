@@ -13,9 +13,6 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | boolean
   {
-
-
-
     if(LoginService.loggedIn === true)
     {
       return true;
@@ -23,8 +20,7 @@ export class AuthGuard implements CanActivate {
     else
     {
       this.messageService.add({
-            severity: 'error', summary:'Not logged in yet'
-          }
+            severity: 'error', summary:'Not logged in yet'}
       );
       this.router.navigate(['/login']);
     }

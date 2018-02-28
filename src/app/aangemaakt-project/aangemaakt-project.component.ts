@@ -57,7 +57,7 @@ export class AangemaaktProjectComponent implements OnInit{
       for(let x = 1;x<=this.aantalGroepen;x++) {
 
           //gevraagd aantal groepen maken
-         let groep = new Groep(x,"groep "+x+" "+this.projNaam,this.projId);
+         let groep = new Groep(x,this.projNaam+" groep "+x+" ",this.projId);
 
          //alle leerlingen ophalen
           this

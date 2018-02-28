@@ -12,11 +12,13 @@ export class AppComponent implements OnInit {
 
   msgs: Message[] = [];
 
+  data: any;
 
   constructor(private messageService : MessageService) {
   }
 
   ngOnInit(): void {
+
 
     this.messageService.alerts.subscribe((alert)=> this.msgs.push({severity:alert.severity, summary:alert.summary, detail:alert.detail}));
   }

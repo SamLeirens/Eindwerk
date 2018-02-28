@@ -1,18 +1,17 @@
-import {Component, OnInit, TemplateRef, ElementRef, ViewChild} from '@angular/core';
+import {Component, OnInit, TemplateRef, ElementRef, ViewChild, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {GroepService} from "./groep.service";
-import {Groep} from "../models/Groep";
+
 import {AgendaItem} from "../models/AgendaItem";
 import {DialogComponent} from "../login/dialog/dialog.component";
 import {MatDialog, MatDialogRef} from "@angular/material";
-import {filter} from "rxjs/operators";
-
 
 @Component({
   selector: 'app-groep',
   templateUrl: './groep.component.html',
   styleUrls: ['./groep.component.css'],
-  providers: [GroepService]
+  providers: [GroepService],
+  encapsulation:ViewEncapsulation.None
 })
 export class GroepComponent implements OnInit {
 
@@ -29,7 +28,10 @@ export class GroepComponent implements OnInit {
 
     openDialog()
     {
-        this.fileNameDialogRef = this.dialog.open(DialogComponent);
+        this.fileNameDialogRef = this.dialog.open(DialogComponent, {
+            height: '400px',
+            width: '600px',
+        });
 
         this.fileNameDialogRef
             .afterClosed()
@@ -88,6 +90,8 @@ export class GroepComponent implements OnInit {
         }
     }
     ngOnInit() {
+
+
 
 
         this.sub = this.route.params.subscribe(params => {this.groepNaam = params['naam']; });

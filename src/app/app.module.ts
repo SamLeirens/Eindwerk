@@ -24,6 +24,11 @@ import { DialogComponent } from './login/dialog/dialog.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {GrowlModule} from 'primeng/growl';
 import {MessageService} from "./common/service/MessageService";
+import {ChartModule} from "primeng/components/chart/chart";
+import {DataTableModule, TabMenuModule, TabViewModule} from "primeng/primeng";
+import {TableModule} from "primeng/table";
+import {CalendarModule} from "primeng/components/calendar/calendar";
+import { DetailGroepenComponent } from './detail-groepen/detail-groepen.component';
 
 @NgModule({
   declarations: [
@@ -32,8 +37,9 @@ import {MessageService} from "./common/service/MessageService";
     DocentComponent,
     AangemaaktProjectComponent,
     GroepComponent,
-      LoginComponent,
-      DialogComponent
+    LoginComponent,
+    DialogComponent,
+    DetailGroepenComponent
 
 
   ],
@@ -43,16 +49,21 @@ import {MessageService} from "./common/service/MessageService";
     HomeModule,
     HeaderModule,
     HttpClientModule,
-      FormsModule,
+    FormsModule,
     ShowHidePasswordModule.forRoot(),
     AngularFontAwesomeModule,
     MatDialogModule,
     BrowserAnimationsModule,
-      ReactiveFormsModule,
+    ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-      MatFormFieldModule,
-    GrowlModule
+    MatFormFieldModule,
+    GrowlModule,
+    ChartModule,
+    DataTableModule,
+    TableModule,
+    TabViewModule,
+    CalendarModule
   ],
   providers: [DocentService,AuthGuard,LoginService,LoggedInGuard,MessageService],
   bootstrap: [AppComponent],

@@ -1,0 +1,23 @@
+
+<div class="container content">
+  <h3>
+    {{groepNaam}}
+  </h3>
+</div>
+
+<p-tabView orientation="left">
+  <p-tabPanel header="Overzicht groep">
+        <h2>Verloop punten van de groep</h2>
+        <canvas id="myChart">{{ chart }}</canvas>
+  </p-tabPanel>
+  <p-tabPanel header="Overzicht leden">
+        <h2>Verloop punten van de studenten</h2>
+        <canvas id="studentenChart">{{ chartStudents }}</canvas>
+  </p-tabPanel>
+  <p-tabPanel header="Header 3">
+    Content 3
+  </p-tabPanel>
+</p-tabView>
+
+
+

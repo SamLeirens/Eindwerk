@@ -1,98 +1,105 @@
 
 <!-- https://bootsnipp.com/snippets/Q04ZX -->
 
-<HeaderComponent></HeaderComponent>
 
-<br><br><br><br><br><br><br>
-<div class="container">
+
+<div class="container content">
     <h3>
         {{groepNaam}}
     </h3>
-    <table>
-        <th>voornaam</th>
-        <th>achternaam</th>
-        <th>rol</th>
-
-        <ng-container *ngFor="let d of myData2">
-
-        <tr>
-            <td>{{d.voornaam}}</td>
-            <td>{{d.achternaam}}</td>
-            <td>{{d.rol}}</td>
-        </tr>
-    </ng-container>
-        </table>
 
 
 
-    <br><br><br>
+  <p-tabView>
+    <p-tabPanel header="Agenda" rightIcon="fa-calendar">
+                <!-- AGENDA -->
 
-<form>
 
-<img src="" id="foto" height="100px" width="200px">
-    <input type="text">
-    <button>Link uploaden</button>
-</form>
-    <br><br><br>
-    <form>
 
-        <input type="text">
-        <button>Link uploaden</button>
-    </form>
-    <br><br><br>
-
-    <!-- AGENDA -->
-
-    <div class="container">
-
-        <div><h2>Agenda</h2>
-            <button mat-button (click)="openDialog()">Agenda item toevoegen</button>
-        </div>
-        <div class="agenda">
-            <div class="table-responsive">
-                <table class="table table-condensed table-bordered">
-                    <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Event</th>
-                        <th>Delete</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <!-- Single event in a single day -->
+                  <div><h2>Agenda</h2>
+                    <button mat-button (click)="openDialog()">Agenda item toevoegen</button>
+                  </div>
+                  <div class="agenda">
+                    <div class="table-responsive">
+                      <table class="table table-condensed table-bordered">
+                        <thead>
+                        <tr>
+                          <th>Date</th>
+                          <th>Time</th>
+                          <th>Event</th>
+                          <th>Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- Single event in a single day -->
                         <ng-container *ngFor="let item of myAgendaItems">
 
-                                <tr>
-                                    <td class="agenda-date" class="active" rowspan="1">
-                                        {{item.datum}}
-                                    </td>
-                                    <td class="agenda-time">
-                                        {{item.tijd}}
-                                    </td>
-                                    <td class="agenda-events">
-                                        <div class="agenda-event">
-                                            {{item.onderwerp}}
-                                        </div>
-                                    </td>
-                                    <td class="agenda-events">
-                                        <div class="agenda-event">
-                                            <form>
-                                                <input type="hidden" value="{{item.id}}" #itemId>
-                                                <button type="submit" (click)="deleteAgendaItem(itemId.value)">Delete</button>
+                          <tr>
+                            <td class="agenda-date" class="active" rowspan="1">
+                              {{item.datum}}
+                            </td>
+                            <td class="agenda-time">
+                              {{item.tijd}}
+                            </td>
+                            <td class="agenda-events">
+                              <div class="agenda-event">
+                                {{item.onderwerp}}
+                              </div>
+                            </td>
+                            <td class="agenda-events">
+                              <div class="agenda-event">
+                                <form>
+                                  <input type="hidden" value="{{item.id}}" #itemId>
+                                  <button type="submit" (click)="deleteAgendaItem(itemId.value)">Delete</button>
 
-                                            </form>
+                                </form>
 
-                                        </div>
-                                    </td>
-                                </tr>
+                              </div>
+                            </td>
+                          </tr>
 
-                     </ng-container>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+                        </ng-container>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+
+    </p-tabPanel>
+    <p-tabPanel header="Timesheets" rightIcon="fa-blind">
+      Content 2
+    </p-tabPanel>
+    <p-tabPanel header="Github">
+                  <form>
+                    <img src="" id="foto" height="100px" width="200px">
+                    <input type="text">
+                    <button>Link uploaden</button>
+                  </form>
+
+
+    </p-tabPanel>
+    <p-tabPanel header="Overzicht">
+                  <table>
+                    <th>voornaam</th>
+                    <th>achternaam</th>
+                    <th>rol</th>
+
+                    <ng-container *ngFor="let d of myData2">
+
+                      <tr>
+                        <td>{{d.voornaam}}</td>
+                        <td>{{d.achternaam}}</td>
+                        <td>{{d.rol}}</td>
+                      </tr>
+                    </ng-container>
+                  </table>
+
+    </p-tabPanel>
+    <p-tabPanel header="Bestanden">
+
+    </p-tabPanel>
+  </p-tabView>
+
 
 
 

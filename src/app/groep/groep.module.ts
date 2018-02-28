@@ -5,14 +5,17 @@ import {FormsModule} from "@angular/forms";
 import {GroepComponent} from "./groep.component";
 import {GroepService} from "./groep.service";
 import {MatDialogModule} from "@angular/material";
-
+import {TabMenuModule} from "primeng/components/tabmenu/tabmenu";
+import {SharedModule} from "primeng/components/common/shared";
+import {MenuModule} from "primeng/components/menu/menu";
+import {TabViewModule, TabPanel} from "primeng/components/tabview/tabview";
 
 
 
 
 @NgModule({
     declarations: [
-        GroepComponent,
+        GroepComponent
 
 
     ],

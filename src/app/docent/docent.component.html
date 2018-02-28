@@ -6,7 +6,43 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
-<HeaderComponent></HeaderComponent>
+<br><br><br><br><br>
+
+<!--tabel voor groepen-->
+<p-table [columns]="cols" selectionMode="single" [value]="groepen"  [paginator]="true" [rows]="10" [(selection)]="selectedGroep" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)" vin="name">
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th style="width: 2.25em">
+        <i class="fa fa-file"></i>
+      </th>
+      <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+        {{col.header}}
+        <p-sortIcon [field]="col.field"></p-sortIcon>
+      </th>
+    </tr>
+  </ng-template>
+<!--  <ng-template pTemplate="body" let-rowData let-columns="columns">
+
+    <tr>
+      <td>
+        <p-tableRadioButton [value]="rowData"></p-tableRadioButton>
+      </td>
+      <td *ngFor="let col of columns">
+        {{rowData[col.field]}}
+      </td>
+    </tr>
+  </ng-template>-->
+
+  <ng-template pTemplate="body" let-groep>
+    <tr>
+      <td><p-tableRadioButton [value]="rowData"></p-tableRadioButton></td>
+      <td>{{groep.id}}</td>
+      <td>{{groep.naam}}</td>
+      <td>{{groep.projectEntity.naam}}</td>
+    </tr>
+  </ng-template>
+</p-table>
+
 <!-- Form -->
 <div class="container" id="formProjectAanmaken">
   <div class="col-md-5">

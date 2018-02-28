@@ -7,4 +7,6 @@ export class Student {
     rol: string;
     inGroep: boolean;
     groep: string;
+
+    constructor(voornaam:string){this.voornaam = voornaam};
 }

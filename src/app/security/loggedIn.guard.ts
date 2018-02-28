@@ -17,15 +17,10 @@ export class LoggedInGuard implements CanActivate {
         next: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Observable<boolean> | boolean
     {
-
-
-
         if(LoginService.loggedIn === true)
         {
-
             this.messageService.add({
-                severity: 'error', summary:'Already logged in'
-                }
+                severity: 'error', summary:'Already logged in'}
             );
             return false;
         }

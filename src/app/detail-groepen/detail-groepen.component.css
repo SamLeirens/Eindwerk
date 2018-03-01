@@ -3,3 +3,6 @@
 .ui-tabview-left > .ui-tabview-nav {
   border: 0px;
 }
+.ui-tabview.ui-tabview-top > .ui-tabview-nav {
+  border:0px;
+}

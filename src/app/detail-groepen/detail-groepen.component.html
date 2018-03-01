@@ -12,10 +12,40 @@
   </p-tabPanel>
   <p-tabPanel header="Overzicht leden">
         <h2>Verloop punten van de studenten</h2>
-        <canvas id="studentenChart">{{ chartStudents }}</canvas>
+        <div *ngIf="studChart">
+          <canvas id="canvas">{{studChart}}</canvas>
+        </div>
   </p-tabPanel>
-  <p-tabPanel header="Header 3">
-    Content 3
+  <p-tabPanel header="Punten geven">
+    <p-tabView>
+      <div *ngIf="leden">
+      <div *ngFor="let lid of leden">
+      <p-tabPanel header="{{lid.voornaam}}  {{lid.achternaam}}">
+        <div class="container" id="formPuntenGeven">
+          <div class="col-md-10">
+            <div class="form-area">
+              <form role="form">
+                <br style="clear:both">
+                <h3 style="margin-bottom: 25px; text-align: center;">Nieuwe resultaten ingeven voor {{lid.voornaam}} {{lid.achternaam}}</h3>
+                <div class="form-group">
+                  <input type="hidden" value="{{lid.id}}" #studentId>
+                  <select name="sprint" class="form-control col-md-5 " required #sprint>
+                    <option value="sprint1">Sprint 1</option>
+                    <option value="sprint2">Sprint 2</option>
+                    <option value="sprint3">Sprint 3</option>
+                  </select>
+                  <!--<input type="text" class="form-control" id="punt" name="name" placeholder="punt" required #punt>-->
+                  <p-spinner name="punt" [(ngModel)]="val" [min]="0" [max]="20" [step]="0.5" #punt></p-spinner>
+                </div>
+                <button type="button" id="submit" name="submit" class="btn btn-primary pull-right" (click)="puntenIngeven(studentId,sprint,punt)">Toevoegen</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+      </div>
+      </div>
+    </p-tabView>
   </p-tabPanel>
 </p-tabView>
 

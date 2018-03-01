@@ -63,7 +63,7 @@ constructor(private router: Router,private _docentService: DocentService, privat
 }
     onRowSelect(event) {
         this.messageService.add({severity:'info', summary:' details van ' + event.data.naam});
-      this.router.navigate(['/detailGroepen',event.data.id]);
+      this.router.navigate(['/detailGroepen',event.data.naam]);
     }
 
     onRowUnselect(event) {

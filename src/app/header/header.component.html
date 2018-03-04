@@ -20,23 +20,23 @@
                         <a class="nav-link" routerLink="/index">Home
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="loggedInAsDocent()">
                         <a class="nav-link"  routerLink="/project">Project
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="loggedInAsDocent()">
                         <a class="nav-link" routerLink="/docent">Docenten</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="/chat">Chat</a>
+                    <li class="nav-item" *ngIf="loggedIn() && loggedInAsDocent() ===false">
+                        <a class="nav-link" (click)="getStudentGroep()" routerLink="">Groep</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="/index">x</a>
+                    <li class="nav-item" *ngIf="loggedIn() && loggedInAsDocent() ===false">
+                        <a class="nav-link" routerLink="/profiel">Profiel</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="/index">x</a>
+                    <li class="nav-item" *ngIf="loggedIn()">
+                        <a class="nav-link" (click)="logout()" routerLink="/login">Logout</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="loggedIn() == false">
                         <a class="nav-link" routerLink="/login">Login</a>
                     </li>
                 </ul>
@@ -44,4 +44,5 @@
         </div>
     </nav>
 </div>
+
 

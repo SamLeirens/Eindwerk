@@ -20,6 +20,7 @@ export class LeerlingService {
 
   private postURL = 'http://localhost:8080/student';  // URL to web api
   private getURL = 'http://localhost:8080/students';  // URL to web api
+    private getStudent = 'http://localhost:8080/student/';  // URL to web api
 
 
 
@@ -49,4 +50,10 @@ getLeerlingen() {
       .http
       .get(this.getURL);
 }
+
+getLeerlingenById(id:number){
+        return this
+            .http
+            .get(this.getStudent+id);
+    }
 }

@@ -11,10 +11,12 @@ import {AuthGuard} from "./security/auth.guard";
 import {LoginComponent} from "./login/login.component";
 import {LoggedInGuard} from "./security/loggedIn.guard";
 import {DetailGroepenComponent} from "./detail-groepen/detail-groepen.component";
+import {ProfielComponent} from "./profiel/profiel.component";
 
 const appRoutes: Routes = [
     {path: 'project', component: ProjectComponent},
     {path: 'index', component: HomeComponent},
+    {path: 'profiel', component: ProfielComponent},
     {path: 'login', component: LoginComponent,canActivate:[LoggedInGuard]},
     {path: 'docent', component: DocentComponent,/*TODO:terug aanzetten canActivate:[AuthGuard]*/},
     {path: 'aangemaaktProject/:aantal;:projId', component: AangemaaktProjectComponent},

@@ -12,7 +12,7 @@ import {MessageService} from "../common/service/MessageService";
   templateUrl: './detail-groepen.component.html',
   styleUrls: ['./detail-groepen.component.css'],
   providers:[DetailGroepenService],
-  encapsulation:ViewEncapsulation.None
+    encapsulation:ViewEncapsulation.None
 })
 export class DetailGroepenComponent implements OnInit,AfterViewInit {
 

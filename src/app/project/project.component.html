@@ -11,10 +11,8 @@
                 <h3 style="margin-bottom: 25px; text-align: center;">Maak nieuw project aan</h3>
                 <div class="form-group">
                     <input type="text" class="form-control" id="voornaam" name="name" placeholder="naam van het project" required #projectNaam>
-                   <input type="number" name="aantal" min="1" #aantalGroepen placeholder="aantal groepen">
-
+                   <input type="number" class="form-control" name="aantal" min="1" #aantalGroepen placeholder="aantal groepen">
                 </div>
-
                 <button type="button" id="submit" name="submit" class="btn btn-primary pull-right" (click)="maakProject(projectNaam,aantalGroepen)">aanmaken</button>
             </form>
         </div>

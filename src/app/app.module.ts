@@ -17,7 +17,6 @@ import {AuthGuard} from "./security/auth.guard";
 import { LoginComponent } from './login/login.component';
 import {ShowHidePasswordModule} from "ngx-show-hide-password";
 import {AngularFontAwesomeModule} from "angular-font-awesome";
-import {LoginService} from "./security/login.service";
 import {LoggedInGuard} from "./security/loggedIn.guard";
 import {MatDialogModule, MatDatepickerModule, MatNativeDateModule, MatFormFieldModule} from "@angular/material";
 import { DialogComponent } from './login/dialog/dialog.component';
@@ -29,6 +28,8 @@ import {DataTableModule, SpinnerModule, TabMenuModule, TabViewModule} from "prim
 import {TableModule} from "primeng/table";
 import {CalendarModule} from "primeng/components/calendar/calendar";
 import { DetailGroepenComponent } from './detail-groepen/detail-groepen.component';
+import {LoginServiceApi} from "./login/loginApi.service";
+import { ProfielComponent } from './profiel/profiel.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { DetailGroepenComponent } from './detail-groepen/detail-groepen.componen
     GroepComponent,
     LoginComponent,
     DialogComponent,
-    DetailGroepenComponent
+    DetailGroepenComponent,
+    ProfielComponent
 
 
   ],
@@ -66,7 +68,7 @@ import { DetailGroepenComponent } from './detail-groepen/detail-groepen.componen
     CalendarModule,
     SpinnerModule
   ],
-  providers: [DocentService,AuthGuard,LoginService,LoggedInGuard,MessageService],
+  providers: [DocentService,AuthGuard,LoginServiceApi,LoggedInGuard,MessageService],
   bootstrap: [AppComponent],
   entryComponents: [DialogComponent]
 })

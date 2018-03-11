@@ -6,11 +6,6 @@ import { Message } from './message';
 
 @Injectable()
 export class MessageService {
-
-/*
-    private messageSource = new Subject<Message|Message[]>();
-*/
-
     alerts: Subject<Message> = new Subject();
 
     add(message: Message) {

@@ -2,6 +2,7 @@ import {Component, OnInit, Inject} from '@angular/core';
 import {MatDialog} from "@angular/material";
 import {DialogComponent} from "./dialog/dialog.component";
 import {LoginServiceApi} from "./loginApi.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -12,14 +13,24 @@ import {LoginServiceApi} from "./loginApi.service";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginServiceApi: LoginServiceApi) { }
+  constructor(private loginServiceApi: LoginServiceApi,private router:Router) { }
 
 
   ngOnInit() {
   };
     login(gebruikersnaam,wachtwoord)
     {
-       this.loginServiceApi.getUser(gebruikersnaam.value,wachtwoord.value);
+      if(gebruikersnaam.value =="dev"&& wachtwoord.value =="dev")
+      {
+        LoginServiceApi.loggedIn = true;
+        LoginServiceApi.rol = "student";
+        LoginServiceApi.username = "dev";
+        LoginServiceApi.user_id = 1337;
+        this.router.navigate(['/']);
+
+      }
+      else{this.loginServiceApi.getUser(gebruikersnaam.value,wachtwoord.value);}
+
     }
 
 

@@ -1,0 +1,17 @@
+<br>
+<p-steps [model]="items" [activeIndex]="activeIndex" styleClass="ui-steps"></p-steps>
+<br>
+<groep-werk-questions (onChange)="vraag1Changed($event)" [hidden]="activeIndex !==0"></groep-werk-questions>
+<vraag-2 (onChange)="vraag2Changed($event)" [hidden]="activeIndex !==1"></vraag-2>
+<vraag-3 (onChange)="vraag3Changed($event)" [hidden]="activeIndex !==2"></vraag-3>
+<vraag-4 (onChange)="vraag4Changed($event)" [hidden]="activeIndex !==3"></vraag-4>
+<vraag-5 (onChange)="vraag5Changed($event)" [hidden]="activeIndex !==4"></vraag-5>
+<vraag-6 (onChange)="vraag6Changed($event)" [hidden]="activeIndex !==5"></vraag-6>
+<vraag-7 (onChange)="vraag7Changed($event)" [hidden]="activeIndex !==6"></vraag-7>
+
+
+<div class="btn-toolbar">
+    <button ngif="activeIndex > 0" type="button" class="btn btn-primary" (click)="previous()">Terug</button>
+    &nbsp;
+    <button type="button" class="btn btn-primary" (click)="next()">Volgende</button>
+</div>

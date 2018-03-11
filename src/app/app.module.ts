@@ -30,6 +30,15 @@ import {CalendarModule} from "primeng/components/calendar/calendar";
 import { DetailGroepenComponent } from './detail-groepen/detail-groepen.component';
 import {LoginServiceApi} from "./login/loginApi.service";
 import { ProfielComponent } from './profiel/profiel.component';
+import { GroepWerkQuestionsComponent } from './profiel/vraag-1/groep-werk-questions.component';
+import { QuizComponent } from './profiel/quiz/quiz.component';
+import {StepsModule} from "primeng/components/steps/steps";
+import { Vraag2Component } from './profiel/vraag-2/vraag-2.component';
+import { Vraag3Component } from './profiel/vraag-3/vraag-3.component';
+import { Vraag4Component } from './profiel/vraag-4/vraag-4.component';
+import { Vraag5Component } from './profiel/vraag-5/vraag-5.component';
+import { Vraag6Component } from './profiel/vraag-6/vraag-6.component';
+import { Vraag7Component } from './profiel/vraag-7/vraag-7.component';
 
 @NgModule({
   declarations: [
@@ -41,8 +50,15 @@ import { ProfielComponent } from './profiel/profiel.component';
     LoginComponent,
     DialogComponent,
     DetailGroepenComponent,
-    ProfielComponent
-
+    ProfielComponent,
+    QuizComponent,
+    GroepWerkQuestionsComponent,
+    Vraag2Component,
+    Vraag3Component,
+    Vraag4Component,
+    Vraag5Component,
+    Vraag6Component,
+    Vraag7Component
 
   ],
   imports: [
@@ -66,7 +82,8 @@ import { ProfielComponent } from './profiel/profiel.component';
     TableModule,
     TabViewModule,
     CalendarModule,
-    SpinnerModule
+    SpinnerModule,
+    StepsModule
   ],
   providers: [DocentService,AuthGuard,LoginServiceApi,LoggedInGuard,MessageService],
   bootstrap: [AppComponent],

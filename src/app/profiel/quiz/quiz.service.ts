@@ -37,17 +37,7 @@ export class QuizService {
       team_worker = Number(vraag1.A8)+ Number(vraag2.A13)+ Number(vraag4.A28)+ Number(vraag5.A38)+ Number(vraag6.A42)+ Number(vraag7.A56);
       complete_finisher = Number(vraag1.A2)+ Number(vraag2.A12)+ Number(vraag3.A21)+ Number(vraag5.A36)+ Number(vraag6.A48)+ Number(vraag7.A52);
 
-      console.log(shaper);
-      console.log(coordinator);
-      console.log(plant);
-      console.log(resource_investigator);
-      console.log(monitor_evaluator);
-      console.log(implementer);
-      console.log(team_worker);
-      console.log(complete_finisher);
 
-      let winner = Math.max(shaper,coordinator,plant,resource_investigator,monitor_evaluator,implementer,team_worker,complete_finisher);
-      console.log(winner);
       return {
         shaper,
         coordinator,

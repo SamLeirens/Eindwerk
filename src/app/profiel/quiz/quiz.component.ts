@@ -15,7 +15,7 @@ import {Results} from "../../models/Results";
 })
 export class QuizComponent implements OnInit {
   items: MenuItem[];
-  activeIndex: number = 0;
+  activeIndex: number = 6;
 
   vraag1Valid: boolean = false;
   vraag1Data:any;
@@ -41,6 +41,10 @@ export class QuizComponent implements OnInit {
   roleChart=[];
   roles=[];
   scores=[];
+
+  chosenRole:any;
+  roleInProject:any;
+
   constructor(private messageService:MessageService, private quizService:QuizService) { }
 
   ngOnInit() {
@@ -197,6 +201,48 @@ export class QuizComponent implements OnInit {
 
     this.scores=[results.complete_finisher,results.coordinator,results.implementer,results.monitor_evaluator,results.plant,results.resource_investigator,results.shaper,results.team_worker];
     this.roles = ["complete finisher","coordinator","implementer","monitor evaluator","plant","resource investigator","shaper","team worker"];
+
+    let winner = Math.max(results.complete_finisher,results.coordinator,results.implementer,results.monitor_evaluator,results.plant,results.resource_investigator,results.shaper,results.team_worker);
+
+ if(winner == results.complete_finisher )
+ {
+   this.chosenRole = "complete finisher"
+ }
+ else if
+ (winner == results.coordinator )
+    {
+      this.chosenRole = "coordinator"
+    }
+ else if
+ (winner == results.implementer )
+ {
+   this.chosenRole = "implementer"
+ }
+ else if
+ (winner == results.monitor_evaluator )
+ {
+   this.chosenRole = "monitor evaluator"
+ }
+ else if
+ (winner == results.plant )
+ {
+   this.chosenRole = "plant"
+ }
+ else if
+ (winner == results.resource_investigator )
+ {
+   this.chosenRole = "resource investigator"
+ }
+ else if
+ (winner == results.shaper )
+ {
+   this.chosenRole = "shaper"
+ }
+ else if
+ (winner == results.team_worker )
+ {
+   this.chosenRole = "team worker"
+ }
 
     this.roleChart = new Chart('canvas',
         {

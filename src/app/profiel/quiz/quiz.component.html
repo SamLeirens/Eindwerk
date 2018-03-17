@@ -11,10 +11,14 @@
 
 <div *ngIf="roleChart" [hidden]="activeIndex !==7">
     <canvas id="canvas">{{roleChart}}</canvas>
+
+    Uit deze test blijkt dat u een  {{chosenRole}} bent. De rol die hier het beste bij past is {{roleInProject}} .
 </div>
 
 <div class="btn-toolbar" [hidden]="activeIndex ==7">
     <button ngif="activeIndex > 0" type="button" class="btn btn-primary" (click)="previous()">Terug</button>
     &nbsp;
-    <button type="button" class="btn btn-primary" (click)="next()">Volgende</button>
+    <button type="button" [ngClass]="{'btn btn-primary': activeIndex !== 6,'btn btn-danger':activeIndex === 6}" (click)="next()">
+        {{activeIndex === 6 ? 'Indienen' : 'Volgende'}}
+    </button>
 </div>

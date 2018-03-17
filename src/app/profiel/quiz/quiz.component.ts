@@ -1,18 +1,21 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {MenuItem} from "primeng/components/common/menuitem";
 import {MessageService} from "../../common/service/MessageService";
+import {QuizService} from "./quiz.service";
+import * as Chart from 'chart.js'
+import {Results} from "../../models/Results";
 
 @Component({
   selector: 'quiz',
   templateUrl: './quiz.component.html',
   styleUrls: ['./quiz.component.css'],
+  providers:[QuizService],
   encapsulation:ViewEncapsulation.None
 
 })
 export class QuizComponent implements OnInit {
   items: MenuItem[];
-  activeIndex: number = 6;
-
+  activeIndex: number = 0;
 
   vraag1Valid: boolean = false;
   vraag1Data:any;
@@ -34,7 +37,11 @@ export class QuizComponent implements OnInit {
 
   vraag7Valid: boolean = false;
   vraag7Data:any;
-  constructor(private messageService:MessageService) { }
+
+  roleChart=[];
+  roles=[];
+  scores=[];
+  constructor(private messageService:MessageService, private quizService:QuizService) { }
 
   ngOnInit() {
     this.items = [{
@@ -59,52 +66,38 @@ export class QuizComponent implements OnInit {
   {
     this.vraag1Valid = event.valid;
     this.vraag1Data = event.data;
-    console.log(this.vraag1Valid);
-    console.log(this.vraag1Data);
   }
 
   vraag2Changed(event:any)
   {
     this.vraag2Valid = event.valid;
     this.vraag2Data = event.data;
-    console.log(this.vraag2Valid);
-    console.log(this.vraag2Data);
   }
 
   vraag3Changed(event:any)
   {
     this.vraag3Valid = event.valid;
     this.vraag3Data = event.data;
-    console.log(this.vraag3Valid);
-    console.log(this.vraag3Data);
   }
   vraag4Changed(event:any)
   {
     this.vraag4Valid = event.valid;
     this.vraag4Data = event.data;
-    console.log(this.vraag4Valid);
-    console.log(this.vraag4Data);
   }
   vraag5Changed(event:any)
   {
     this.vraag5Valid = event.valid;
     this.vraag5Data = event.data;
-    console.log(this.vraag5Valid);
-    console.log(this.vraag5Data);
   }
   vraag6Changed(event:any)
   {
     this.vraag6Valid = event.valid;
     this.vraag6Data = event.data;
-    console.log(this.vraag6Valid);
-    console.log(this.vraag6Data);
   }
   vraag7Changed(event:any)
   {
     this.vraag7Valid = event.valid;
     this.vraag7Data = event.data;
-    console.log(this.vraag7Valid);
-    console.log(this.vraag7Data);
   }
   next(){
     if(this.activeIndex ===0)
@@ -175,9 +168,11 @@ export class QuizComponent implements OnInit {
     }
     else if(this.activeIndex ===6)
     {
-      if(this.vraag6Valid)
+      if(this.vraag7Valid)
       {
         this.activeIndex ++;
+        let results = this.quizService.calculateRoleFromQuiz(this.vraag1Data,this.vraag2Data,this.vraag3Data,this.vraag4Data,this.vraag5Data,this.vraag6Data,this.vraag7Data);
+       this.generateChart(results);
       }
       else
       {
@@ -195,5 +190,40 @@ export class QuizComponent implements OnInit {
     this.messageService.add({
       severity: 'error', summary: 'Niet alles is ingevuld'
     })
+  }
+
+  generateChart(results:any)
+  {
+
+    this.scores=[results.complete_finisher,results.coordinator,results.implementer,results.monitor_evaluator,results.plant,results.resource_investigator,results.shaper,results.team_worker];
+    this.roles = ["complete finisher","coordinator","implementer","monitor evaluator","plant","resource investigator","shaper","team worker"];
+
+    this.roleChart = new Chart('canvas',
+        {
+          type: 'pie',
+          data:
+              {
+                labels:this.roles,
+                datasets: [{
+                  label: "Behaalde score",
+                  backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#81F781","#8A0886","#5E610B"],
+                  data: this.scores
+                }]
+              },
+          options:
+              {
+                rotation: -Math.PI,
+                cutoutPercentage: 30,
+                circumference: Math.PI,
+                legend: {
+                  position: 'left'
+                },
+                animation: {
+                  animateRotate: false,
+                  animateScale: true
+                }
+              }
+        }
+    )
   }
 }

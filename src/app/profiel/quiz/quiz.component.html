@@ -1,5 +1,5 @@
 <br>
-<p-steps [model]="items" [activeIndex]="activeIndex" styleClass="ui-steps"></p-steps>
+<p-steps [model]="items" [activeIndex]="activeIndex" styleClass="ui-steps" [hidden]="activeIndex ==7"></p-steps>
 <br>
 <groep-werk-questions (onChange)="vraag1Changed($event)" [hidden]="activeIndex !==0"></groep-werk-questions>
 <vraag-2 (onChange)="vraag2Changed($event)" [hidden]="activeIndex !==1"></vraag-2>
@@ -9,8 +9,11 @@
 <vraag-6 (onChange)="vraag6Changed($event)" [hidden]="activeIndex !==5"></vraag-6>
 <vraag-7 (onChange)="vraag7Changed($event)" [hidden]="activeIndex !==6"></vraag-7>
 
+<div *ngIf="roleChart" [hidden]="activeIndex !==7">
+    <canvas id="canvas">{{roleChart}}</canvas>
+</div>
 
-<div class="btn-toolbar">
+<div class="btn-toolbar" [hidden]="activeIndex ==7">
     <button ngif="activeIndex > 0" type="button" class="btn btn-primary" (click)="previous()">Terug</button>
     &nbsp;
     <button type="button" class="btn btn-primary" (click)="next()">Volgende</button>

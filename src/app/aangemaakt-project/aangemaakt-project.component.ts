@@ -29,7 +29,6 @@ export class AangemaaktProjectComponent implements OnInit{
       this._leerlingService.updateInGroep(student).subscribe(
           data => {
               console.log(data)
-
           }
 
       );

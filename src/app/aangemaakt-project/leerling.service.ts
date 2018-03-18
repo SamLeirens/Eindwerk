@@ -21,16 +21,20 @@ export class LeerlingService {
   private postURL = 'http://localhost:8080/student';  // URL to web api
   private getURL = 'http://localhost:8080/students';  // URL to web api
     private getStudent = 'http://localhost:8080/student/';  // URL to web api
+    private updateRolUrl = 'http://localhost:8080/student/rol/';  // URL to web api
 
 
-
-
-
-
+updateRol(student:Student) {
+        this.http.post(this.updateRolUrl,JSON.stringify(student),httpOptions).subscribe(
+            res => {
+                console.log("student geupdate");
+            },
+            err => {
+                console.log("Error occured");
+            });
+    }
 
 updateInGroep(student:Student) {
-
-
          this.http.post(this.postURL,JSON.stringify(student),httpOptions).subscribe(
             res => {
                 console.log("student geupdate");
@@ -38,9 +42,7 @@ updateInGroep(student:Student) {
             err => {
                 console.log("Error occured");
             });
-
     return this.http.get(this.getURL,httpOptions);
-
     }
 
 getLeerlingen() {

@@ -11,8 +11,34 @@
 
 <div *ngIf="roleChart" [hidden]="activeIndex !==7">
     <canvas id="canvas">{{roleChart}}</canvas>
+    <div class="row">
+    Uit deze test blijkt dat u een  {{chosenRole}} bent. De rol die hier het beste bij past is {{roleInProject}}.
+    </div>
+    <div class="row">
+    Je kan echter een andere rol kiezen als je denkt dat dit beter bij je past. Maak hieronder je keuze:
+    </div>
+    <div class="funkyradio">
+        <form [formGroup]="rolForm">
+            <div class="funkyradio-primary">
+                <input formControlName="rol" type="radio" id="radio1" value="developer">
+                <label for="radio1" class="radio">developer</label>
+            </div>
 
-    Uit deze test blijkt dat u een  {{chosenRole}} bent. De rol die hier het beste bij past is {{roleInProject}} .
+            <div class="funkyradio-primary">
+                <input formControlName="rol" type="radio" id="radio2" value="database manager">
+                <label for="radio2" class="radio">database manager</label>
+            </div>
+            <div class="funkyradio-primary">
+                <input formControlName="rol" type="radio" id="radio3" value="test manager">
+                <label for="radio3" class="radio">test manager</label>
+            </div>
+            <div class="funkyradio-primary">
+                <input formControlName="rol" type="radio" id="radio4" value="architect">
+                <label for="radio4" class="radio">architect</label>
+            </div>
+            <button type="button" class="btn btn-primary" (click)="sendRole()">Kiezen</button>
+        </form>
+    </div>
 </div>
 
 <div class="btn-toolbar" [hidden]="activeIndex ==7">

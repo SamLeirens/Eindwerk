@@ -51,7 +51,6 @@ export class LoginServiceApi {
                     LoginServiceApi.rol = this.loggedInUser.rol;
                     LoginServiceApi.username = this.loggedInUser.username;
                     LoginServiceApi.user_id = this.loggedInUser.userId;
-                    console.log(LoginServiceApi.user_id);
                     this.messageService.add({
                         severity: 'success', summary: 'Logged in'
                     }

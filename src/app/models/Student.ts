@@ -1,3 +1,4 @@
+import {isNullOrUndefined} from "util";
 export class Student {
     id:number;
     voornaam: string;
@@ -8,5 +9,16 @@ export class Student {
     inGroep: boolean;
     groep: string;
 
-    constructor(voornaam:string){this.voornaam = voornaam};
+    constructor(x?:string,id?:number)
+    {
+        if(isNullOrUndefined(id))
+        {
+            this.voornaam = x
+        }
+        else {
+            this.rol = x;
+            this.id = id;
+        }
+
+    };
 }

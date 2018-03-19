@@ -28,7 +28,7 @@ export class GroepService {
 
     addAgendaItem(agendaItem: AgendaItem)
     {
-        console.log(agendaItem);
+
         this.http.post(this.agenda,agendaItem,httpOptions).subscribe(
         res => {
             console.log("agenda geupdate");
@@ -48,7 +48,6 @@ export class GroepService {
     }
 
     deleteAgendaItem(id:number) {
-        console.log(this.deleteAgenda+id);
         return this
             .http
             .get(this.deleteAgenda+id);

@@ -28,6 +28,7 @@ export class LoginServiceApi {
     public static rol: string;
     public static username: string;
     public static user_id: number;
+    public static loginId: number;
 
     loggedInUser:Login;
     constructor(private http:HttpClient,private router:Router,private messageService:MessageService) {
@@ -35,43 +36,53 @@ export class LoginServiceApi {
     }
 
     private postURL = 'http://localhost:8080/login/';  // URL to web api
-
+  private postRolURL = 'http://localhost:8080/loginRole/';  // URL to web api
 
 
     getUser(username:String,password:String) {
-       return this.http.post(this.postURL,{
-            username:username,
-            password:password}).subscribe(
-            res => {
-                this.loggedInUser = res as Login;
-                if(res != null)
-                {
-                    console.log(this.loggedInUser);
-                    LoginServiceApi.loggedIn = true;
-                    LoginServiceApi.rol = this.loggedInUser.rol;
-                    LoginServiceApi.username = this.loggedInUser.username;
-                    LoginServiceApi.user_id = this.loggedInUser.userId;
-                    this.messageService.add({
-                        severity: 'success', summary: 'Logged in'
-                    }
-                );
-                this.router.navigate(['/']);
-                }
-                else
-                {
-                    this.messageService.add({
-                            severity: 'error', summary: 'gebruikersnaam of wachtwoord is fout'
-                        }
-                    );
-                }
-            },
-            err => {
-                this.messageService.add({
-                        severity: 'error', summary: 'gebruikersnaam of wachtwoord is fout'
-                    }
-                );
-            });
+      return this.http.post(this.postURL, {
+        username: username,
+        password: password
+      }).subscribe(
+        res => {
+          this.loggedInUser = res as Login;
+          if (res != null) {
+            LoginServiceApi.loginId = this.loggedInUser.id;
+            LoginServiceApi.loggedIn = true;
+            LoginServiceApi.rol = this.loggedInUser.rol;
+            LoginServiceApi.username = this.loggedInUser.username;
+            LoginServiceApi.user_id = this.loggedInUser.userId;
+            this.messageService.add({
+                severity: 'success', summary: 'Logged in'
+              }
+            );
+            this.router.navigate(['/']);
+          }
+          else {
+            this.messageService.add({
+                severity: 'error', summary: 'gebruikersnaam of wachtwoord is fout'
+              }
+            );
+          }
+        },
+        err => {
+          this.messageService.add({
+              severity: 'error', summary: 'gebruikersnaam of wachtwoord is fout'
+            }
+          );
+        });
+    }
+      changeRole(id:Number) {
+        return this.http.post(this.postRolURL,{
+          id:id}).subscribe(
+          res => {
 
+             console.log(res);
+
+          },
+          err => {
+            console.log(err);
+          });
     }
 
 

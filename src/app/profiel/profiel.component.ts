@@ -2,6 +2,7 @@ import { Component, OnInit ,ViewEncapsulation} from '@angular/core';
 import {GroepWerkQuestionsComponent} from "./vraag-1/groep-werk-questions.component";
 import {QuizComponent} from "./quiz/quiz.component";
 import {MenuItem} from "primeng/api";
+import {LoginServiceApi} from "../login/loginApi.service";
 
 @Component({
   selector: 'profiel',
@@ -17,4 +18,6 @@ export class ProfielComponent implements OnInit {
 
   }
 
+  loggedInAsNewStudent()
+  { return LoginServiceApi.rol === 'nieuweStudent';}
 }

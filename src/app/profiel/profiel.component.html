@@ -8,7 +8,7 @@
   <p-tabPanel header="Wachtwoord aanpassen">
     Wachtwoord aanpassen
   </p-tabPanel>
-  <p-tabPanel header="Quiz">
+  <p-tabPanel header="Quiz" *ngIf="loggedInAsNewStudent()">
     <quiz></quiz>
   </p-tabPanel>
 </p-tabView>

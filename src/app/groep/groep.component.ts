@@ -46,7 +46,7 @@ export class GroepComponent implements OnInit {
 
         this._groepservice.addAgendaItem(this.newAgendaItem).subscribe(
             data => {
-                console.log(data)
+
             }
 
         );

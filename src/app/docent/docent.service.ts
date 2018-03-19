@@ -28,8 +28,6 @@ export class DocentService {
     private getURL = 'http://localhost:8080/docents';  // URL to web api
 
     getDocent(voornaam:String,achternaam:String) {
-        console.log(this.http.get(this.getURL,httpOptions).toString());
-        console.log("in getdocent");
         this.http.post(this.postURL,{
             voornaam:voornaam,
             achternaam:achternaam}).subscribe(

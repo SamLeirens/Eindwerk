@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit{
                }
            });
 
-        }
+        }else{this.messageService.add({severity: 'error', summary: 'nog niet in een groep'})}
 
     }
 

@@ -36,7 +36,6 @@ export class DetailGroepenService {
 
   addPunten(studentId:number,sprint:String,punt:number)
   {
-    console.log(punt);
     return this.http.get(this.getURL+studentId+"/"+sprint+"/"+punt)
   }
 

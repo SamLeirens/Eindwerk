@@ -18,7 +18,7 @@ import {Validators, FormBuilder, FormGroup} from "@angular/forms";
 })
 export class QuizComponent implements OnInit {
   items: MenuItem[];
-  activeIndex: number = 7;
+  activeIndex: number = 0;
 
   vraag1Valid: boolean = false;
   vraag1Data:any;
@@ -48,7 +48,7 @@ export class QuizComponent implements OnInit {
   chosenRole:any;
   roleInProject:any;
     rolForm: FormGroup;
-  constructor(private messageService:MessageService, private quizService:QuizService,private leerlingService:LeerlingService,private formBuilder:FormBuilder) { }
+  constructor(private messageService:MessageService, private quizService:QuizService,private leerlingService:LeerlingService,private formBuilder:FormBuilder,private loginService:LoginServiceApi) { }
 
   ngOnInit() {
     this.items = [{
@@ -161,10 +161,13 @@ export class QuizComponent implements OnInit {
 
   sendRole()
   {
-      let user_id:number = LoginServiceApi.user_id;
+    //team rol geven aan Student en student rol geven aan de login ipv nieuweStudent
+    let user_id:number = LoginServiceApi.user_id;
     let student = new Student(this.rolForm.value.rol,user_id);
-    console.log(student);
+    let loginId = LoginServiceApi.loginId;
+    this.loginService.changeRole(loginId);
     this.leerlingService.updateRol(student);
+
   };
 
 

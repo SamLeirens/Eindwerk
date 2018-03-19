@@ -27,8 +27,8 @@ export class AangemaaktProjectComponent implements OnInit{
   updateStudent(student:Student){
 
       this._leerlingService.updateInGroep(student).subscribe(
-          data => {
-              console.log(data)
+          () => {
+
           }
 
       );
@@ -39,7 +39,7 @@ export class AangemaaktProjectComponent implements OnInit{
     {
         this._groepService.addGroep(groep).subscribe(
             data => {
-                console.log(data)
+
 
             }
 

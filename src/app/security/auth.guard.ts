@@ -3,11 +3,12 @@ import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '
 import { Observable } from 'rxjs/Observable';
 import {MessageService} from "../common/service/MessageService";
 import {LoginServiceApi} from "../login/loginApi.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(private router: Router, private loginServiceApi: LoginServiceApi,private messageService: MessageService){}
+  constructor(private router: Router, private loginServiceApi: LoginServiceApi,private messageService: MessageService,private translate:TranslateService){}
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -20,7 +21,7 @@ export class AuthGuard implements CanActivate {
     else
     {
       this.messageService.add({
-            severity: 'error', summary:'Not logged in yet'}
+            severity: 'error', summary:this.translate.instant('SECURITY.NOTLOGGEDIN')}
       );
       this.router.navigate(['/login']);
     }

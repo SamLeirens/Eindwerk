@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import {MessageService} from "../common/service/MessageService";
 import {Message} from "../common/service/Message";
 import {LoginServiceApi} from "../login/loginApi.service";
+import {TranslateService} from "@ngx-translate/core";
 
 
 
@@ -11,7 +12,7 @@ import {LoginServiceApi} from "../login/loginApi.service";
 @Injectable()
 export class LoggedInGuard implements CanActivate {
 
-    constructor(private router: Router, private loginServiceApi: LoginServiceApi,private messageService:MessageService){}
+    constructor(private router: Router, private loginServiceApi: LoginServiceApi,private messageService:MessageService,private translate:TranslateService){}
 
     canActivate(
         next: ActivatedRouteSnapshot,
@@ -20,7 +21,7 @@ export class LoggedInGuard implements CanActivate {
         if(LoginServiceApi.loggedIn === true)
         {
             this.messageService.add({
-                severity: 'error', summary:'Already logged in'}
+                severity: 'error', summary:this.translate.instant('SECURITY.ALREADYLOGGEDIN')}
             );
             return false;
         }

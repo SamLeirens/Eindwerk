@@ -7,15 +7,14 @@
     <div class="form-area">
       <form role="form">
         <br style="clear:both">
-        <h3 style="margin-bottom: 25px; text-align: center;">Aanmelden</h3>
+        <h3 style="margin-bottom: 25px; text-align: center;">{{'HEADER.LOGIN' | translate}}</h3>
         <div class="form-group">
-          <input type="text" class="form-control" id="gebruikersnaam" name="name" placeholder="gebruikersnaam" required #gebruikersnaam>
+          <input type="text" class="form-control" id="gebruikersnaam" name="name" placeholder="{{'LOGIN.USERNAME' | translate}}" required #gebruikersnaam>
           <show-hide-password   icon="fontawesome">
-            <input type="password"  id="wachtwoord"  placeholder="wachtwoord" #wachtwoord>
+            <input type="password"  id="wachtwoord"  placeholder="{{'LOGIN.PASSWORD' | translate}}" #wachtwoord>
           </show-hide-password>
         </div>
-
-        <button type="button" id="submit" name="submit" class="btn btn-primary pull-right" (click)="login(gebruikersnaam,wachtwoord)">Aanmelden</button>
+        <button type="button" id="submit" name="submit" class="btn btn-primary pull-right" (click)="login(gebruikersnaam,wachtwoord)">{{'HEADER.LOGIN' | translate}}</button>
       </form>
     </div>
   </div>

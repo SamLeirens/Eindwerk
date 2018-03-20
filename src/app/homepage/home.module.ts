@@ -5,6 +5,7 @@ import {HeaderModule} from "../header/header.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {GroepWerkQuestionsComponent} from "../profiel/vraag-1/groep-werk-questions.component";
 import {QuizComponent} from "../profiel/quiz/quiz.component";
+import {TranslateModule} from "@ngx-translate/core";
 
 
 

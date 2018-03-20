@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {GrowlModule} from 'primeng/growl';
 import {Message} from "./common/service/Message";
 import {MessageService} from "./common/service/MessageService";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,10 @@ export class AppComponent implements OnInit {
 
   data: any;
 
-  constructor(private messageService : MessageService) {
+  constructor(private messageService : MessageService,private translateService:TranslateService)
+  {
+    this.translateService.setDefaultLang('nl');
+    this.translateService.addLangs(['en']);
   }
 
   ngOnInit(): void

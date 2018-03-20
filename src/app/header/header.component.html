@@ -10,14 +10,14 @@
 <div class="navbar-default" id="header">
     <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
         <div class="container">
-            <a class="navbar-brand" routerLink="/index" style="text-transform: uppercase;color:white"> Eindwerk Sam</a>
+            <a class="navbar-brand" routerLink="/index" style="text-transform: uppercase;color:white"> {{'APP_TITLE' | translate}}</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item ">
-                        <a class="nav-link" routerLink="/index">Home
+                        <a class="nav-link" routerLink="/index">{{'HEADER.HOME' | translate}}
                         </a>
                     </li>
                     <li class="nav-item" *ngIf="loggedInAsDocent()">
@@ -25,23 +25,28 @@
                         </a>
                     </li>
                     <li class="nav-item" *ngIf="loggedInAsDocent()">
-                        <a class="nav-link" routerLink="/docent">Docenten</a>
+                        <a class="nav-link" routerLink="/docent">{{'HEADER.TEACHER' | translate}}</a>
                     </li>
                     <li class="nav-item" *ngIf="loggedIn() && loggedInAsDocent() ===false">
-                        <a class="nav-link" (click)="getStudentGroep()" routerLink="">Groep</a>
+                        <a class="nav-link" (click)="getStudentGroep()" routerLink="">{{'HEADER.GROUP' | translate}}</a>
                     </li>
                     <li class="nav-item" *ngIf="loggedIn() && loggedInAsDocent() ===false">
                         <a class="nav-link" routerLink="/profiel">Profiel</a>
                     </li>
                     <li class="nav-item" *ngIf="loggedIn()">
-                        <a class="nav-link" (click)="logout()" routerLink="/login">Logout</a>
+                        <a class="nav-link" (click)="logout()" routerLink="/login">{{'HEADER.LOGOUT' | translate}}</a>
                     </li>
                     <li class="nav-item" *ngIf="loggedIn() == false">
-                        <a class="nav-link" routerLink="/login">Login</a>
+                        <a class="nav-link" routerLink="/login">{{'HEADER.LOGIN' | translate}}</a>
                     </li>
                 </ul>
             </div>
         </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="navbar-link" [class.active-language]="lang === translate.currentLang" *ngFor="let lang of translate.getLangs();">
+          <a (click)="changeLanguage($event, lang)" href="#">{{lang}}</a> &nbsp;
+        </li>
+      </ul>
     </nav>
 </div>
 

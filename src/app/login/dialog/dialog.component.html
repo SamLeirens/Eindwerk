@@ -2,19 +2,19 @@
   <h1 mat-dialog-title>Agenda item toevoegen</h1>
   <mat-dialog-content>
 
-      <p>Datum</p>
+      <p>{{'DIALOG.DATE' | translate}}</p>
       <input formControlName="date" matInput [matDatepicker]="myDatepicker" placeholder="12/06/1996">
       <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
       <mat-datepicker #myDatepicker></mat-datepicker>
-      <p>Tijd</p>
+      <p>{{'DIALOG.TIME' | translate}}</p>
       <input matInput formControlName="time" placeholder="14:00">
-      <p>Event</p>
-      <input matInput formControlName="event" placeholder="vergadering">
+      <p>{{'DIALOG.EVENT' | translate}}</p>
+      <input matInput formControlName="event" placeholder="{{'DIALOG.MEETING' | translate}}">
 
 
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-button type="submit">Toevoegen</button>
-    <button mat-button type="button" mat-dialog-close>annuleren</button>
+    <button mat-button type="submit">{{'ADD' | translate}}</button>
+    <button mat-button type="button" mat-dialog-close>{{'CANCEL' | translate}}</button>
   </mat-dialog-actions>
 </form>

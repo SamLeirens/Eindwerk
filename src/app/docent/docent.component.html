@@ -34,21 +34,3 @@
   </ng-template>
 </p-table>
 </div>
-<!-- Form -->
-<div class="container" id="formProjectAanmaken">
-  <div class="col-md-5">
-    <div class="form-area">
-      <form role="form">
-        <br style="clear:both">
-        <h3 style="margin-bottom: 25px; text-align: center;">Maak nieuw docent aan</h3>
-        <div class="form-group">
-          <input type="text" class="form-control" id="voornaam" name="name" placeholder="voornaam" required #voornaam>
-          <input type="text" class="form-control" id="achternaam" name="name" placeholder="achternaam" required #achternaam>
-        </div>
-
-        <button type="button" id="submit" name="submit" class="btn btn-primary pull-right" (click)="getDocents(voornaam,achternaam)">aanmaken</button>
-      </form>
-    </div>
-  </div>
-</div>
-

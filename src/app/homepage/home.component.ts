@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Output, ViewEncapsulation} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
     selector: 'home',
@@ -11,8 +11,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 export class HomeComponent {
 
 
-  constructor() {
-  };
+  constructor(private translateService:TranslateService) {};
 
 
 }

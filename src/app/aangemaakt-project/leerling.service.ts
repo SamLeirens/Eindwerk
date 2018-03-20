@@ -35,25 +35,26 @@ updateRol(student:Student) {
     }
 
 updateInGroep(student:Student) {
-         this.http.post(this.postURL,JSON.stringify(student),httpOptions).subscribe(
-            res => {
-                console.log("student geupdate");
-            },
-            err => {
-                console.log("Error occured");
-            });
-    return this.http.get(this.getURL,httpOptions);
+this.http.post(this.postURL,JSON.stringify(student),httpOptions).subscribe
+    (
+    res => {
+        console.log("student geupdate");
+    },
+    err => {
+        console.log("Error occured");
+    });
+  return this.http.get(this.getURL,httpOptions);
     }
 
-getLeerlingen() {
+getLeerlingen()
+    {
+     return this
+          .http
+          .get(this.getURL);
+    }
 
-
- return this
-      .http
-      .get(this.getURL);
-}
-
-getLeerlingenById(id:number){
+getLeerlingenById(id:number)
+    {
         return this
             .http
             .get(this.getStudent+id);

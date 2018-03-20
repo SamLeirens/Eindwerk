@@ -9,7 +9,7 @@ import {HomeModule} from "./homepage/home.module";
 import {HeaderModule} from "./header/header.module";
 import { DocentComponent } from './docent/docent.component';
 import {DocentService} from "./docent/docent.service";
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { AangemaaktProjectComponent } from './aangemaakt-project/aangemaakt-project.component';
 import { GroepComponent } from './groep/groep.component';
@@ -39,7 +39,12 @@ import { Vraag4Component } from './profiel/vraag-4/vraag-4.component';
 import { Vraag5Component } from './profiel/vraag-5/vraag-5.component';
 import { Vraag6Component } from './profiel/vraag-6/vraag-6.component';
 import { Vraag7Component } from './profiel/vraag-7/vraag-7.component';
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,7 +88,14 @@ import { Vraag7Component } from './profiel/vraag-7/vraag-7.component';
     TabViewModule,
     CalendarModule,
     SpinnerModule,
-    StepsModule
+    StepsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    }),
   ],
   providers: [DocentService,AuthGuard,LoginServiceApi,LoggedInGuard,MessageService],
   bootstrap: [AppComponent],

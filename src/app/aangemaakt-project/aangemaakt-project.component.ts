@@ -27,10 +27,7 @@ export class AangemaaktProjectComponent implements OnInit{
   updateStudent(student:Student){
 
       this._leerlingService.updateInGroep(student).subscribe(
-          () => {
-
-          }
-
+          () => {}
       );
 
   }
@@ -38,11 +35,7 @@ export class AangemaaktProjectComponent implements OnInit{
     createGroep(groep:Groep)
     {
         this._groepService.addGroep(groep).subscribe(
-            data => {
-
-
-            }
-
+            () => {}
         );
 
     }
@@ -69,9 +62,6 @@ export class AangemaaktProjectComponent implements OnInit{
                       this.maakGroep(groep);
                   }
              );
-
-
-
           this.groepenArray.push(groep);
 
       }
@@ -80,8 +70,6 @@ export class AangemaaktProjectComponent implements OnInit{
   }
 
     maakGroep(groep:Groep) {
-
-
         let doneCheck1 = false;
         let doneCheck2 = false;
 
@@ -89,17 +77,15 @@ export class AangemaaktProjectComponent implements OnInit{
 
             let student = <Student> this.myData[i];
 
-            if (student.rol == "architect" && !student.inGroep && !doneCheck1 && !this.studentIdLijst.includes(i)) {
-
+            if (student.rol == "architect" && !student.inGroep && !doneCheck1 && !this.studentIdLijst.includes(i))
+            {
                 doneCheck1 = true;
                 this.studentIdLijst += i;
                 student.inGroep = true;
                 student.groep = groep.naam;
                 groep.students.push(student);
                 this.updateStudent(student)
-
             } else if (student.rol == "database manager" && !student.inGroep && !doneCheck2 && !this.studentIdLijst.includes(i)) {
-
                 doneCheck2 = true;
                 this.studentIdLijst += i;
                 student.inGroep = true;
@@ -107,9 +93,7 @@ export class AangemaaktProjectComponent implements OnInit{
                 groep.students.push(student);
                 this.updateStudent(student)
             }
-
         }
-
         this.createGroep(groep);
     }
 

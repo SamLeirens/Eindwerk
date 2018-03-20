@@ -25,7 +25,6 @@ export class GroepComponent implements OnInit {
 
     constructor(private route: ActivatedRoute,private _groepservice: GroepService,public dialog: MatDialog) { }
 
-
     openDialog()
     {
         this.fileNameDialogRef = this.dialog.open(DialogComponent, {
@@ -44,12 +43,7 @@ export class GroepComponent implements OnInit {
     {
         this.newAgendaItem = new AgendaItem(date,time,event,this.groepNaam);
 
-        this._groepservice.addAgendaItem(this.newAgendaItem).subscribe(
-            data => {
-
-            }
-
-        );
+        this._groepservice.addAgendaItem(this.newAgendaItem).subscribe(() => {});
         if(this.newAgendaItem.tijd != null)
         {
             this.myAgendaItems.push(this.newAgendaItem);
@@ -59,19 +53,15 @@ export class GroepComponent implements OnInit {
   show()
   {
       var div = document.getElementById('content');
-      if (div.style.display !== 'none') {
+      if (div.style.display !== 'none')
+      {
           div.style.display = 'none';
       }
-      else {
+      else
+      {
           div.style.display = 'block';
       }
   }
-
-
-    getDate(){
-    return new Date('yyyy-mm-dd')
-    }
-
 
     deleteAgendaItem(id:number)
         {
@@ -89,13 +79,9 @@ export class GroepComponent implements OnInit {
             }
         }
     }
-    ngOnInit() {
-
-
-
-
+    ngOnInit()
+    {
         this.sub = this.route.params.subscribe(params => {this.groepNaam = params['naam']; });
-
         this
             ._groepservice
             .getStudentsByGroep(this.groepNaam)
@@ -105,8 +91,6 @@ export class GroepComponent implements OnInit {
                     this.myData2 = data;
                 }
             );
-
-
         this
             ._groepservice
             .getAgendaByGroep(this.groepNaam)

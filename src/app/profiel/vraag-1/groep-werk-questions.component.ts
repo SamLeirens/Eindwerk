@@ -16,21 +16,21 @@ export class GroepWerkQuestionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.vraag1Form = this.formBuilder.group({
-      "A1": [null, Validators.compose([
+      "A1": ['1', Validators.compose([
         Validators.required])],
-      "A2": [null, Validators.compose([
+      "A2": ['1', Validators.compose([
         Validators.required])],
-      "A3": [null, Validators.compose([
+      "A3": ['1', Validators.compose([
         Validators.required])],
-      "A4": [null, Validators.compose([
+      "A4": ['1', Validators.compose([
         Validators.required])],
-      "A5": [null, Validators.compose([
+      "A5": ['1', Validators.compose([
         Validators.required])],
-      "A6": [null, Validators.compose([
+      "A6": ['1', Validators.compose([
         Validators.required])],
-      "A7": [null, Validators.compose([
+      "A7": ['1', Validators.compose([
         Validators.required])],
-      "A8": [null, Validators.compose([
+      "A8": ['1', Validators.compose([
         Validators.required])],
     });
 

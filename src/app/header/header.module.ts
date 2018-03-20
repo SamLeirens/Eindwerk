@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import {HeaderComponent} from "./header.component";
 import {AppRoutingModule} from "../app-routing.module";
 import {FormsModule} from "@angular/forms";
-
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -15,10 +15,12 @@ import {FormsModule} from "@angular/forms";
     imports: [
         BrowserModule,
         AppRoutingModule,
-        FormsModule
+        FormsModule,
+      TranslateModule
     ],
     exports:[
-        HeaderComponent
+        HeaderComponent,
+      TranslateModule
     ],
     providers: [],
     bootstrap: [HeaderComponent]

@@ -3,6 +3,7 @@ import {GroepWerkQuestionsComponent} from "./vraag-1/groep-werk-questions.compon
 import {QuizComponent} from "./quiz/quiz.component";
 import {MenuItem} from "primeng/api";
 import {LoginServiceApi} from "../login/loginApi.service";
+import {MessageService} from "../common/service/MessageService";
 
 @Component({
   selector: 'profiel',
@@ -12,10 +13,21 @@ import {LoginServiceApi} from "../login/loginApi.service";
 })
 export class ProfielComponent implements OnInit {
 
-  constructor() { }
+  constructor(private messageService:MessageService) { }
 
+  /*TODO:TRANSLATE GANS PROFIEL*/
   ngOnInit() {
 
+  }
+  changePw(pw,nieuwpw,herhaaldpw){
+    if(nieuwpw.value !== herhaaldpw.value)
+    {
+      this.messageService.add({severity: 'error', summary: 'wachtwoorden komen niet overeen'})
+    }
+    else
+    {
+      /*TODO:check of ingevuld wachtwoord gelijk is aan wachtwoord van login met login_id van de ingelogde gebruiker*/
+    }
   }
 
   loggedInAsNewStudent()

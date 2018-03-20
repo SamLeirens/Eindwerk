@@ -8,12 +8,12 @@
         <div class="form-area">
             <form role="form">
                 <br style="clear:both">
-                <h3 style="margin-bottom: 25px; text-align: center;">Maak nieuw project aan</h3>
+                <h3 style="margin-bottom: 25px; text-align: center;">  {{'PROJECT.NEW' | translate}} </h3>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="voornaam" name="name" placeholder="naam van het project" required #projectNaam>
-                   <input type="number" class="form-control" name="aantal" min="1" #aantalGroepen placeholder="aantal groepen">
+                    <input type="text" class="form-control" id="voornaam" name="name" placeholder="{{'PROJECT.NAME' | translate}} " required #projectNaam>
+                   <input type="number" class="form-control" name="aantal" min="1" #aantalGroepen placeholder=" {{'PROJECT.NUMGROUPS' | translate}} ">
                 </div>
-                <button type="button" id="submit" name="submit" class="btn btn-primary pull-right" (click)="maakProject(projectNaam,aantalGroepen)">aanmaken</button>
+                <button type="button" id="submit" name="submit" class="btn btn-primary pull-right" (click)="maakProject(projectNaam,aantalGroepen)">{{'CREATE' | translate}} </button>
             </form>
         </div>
     </div>

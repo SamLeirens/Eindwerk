@@ -1,0 +1,64 @@
+{
+  "APP_TITLE": "Final Work Sam Leirens",
+  "ADD": "Add",
+  "CANCEL": "Cancel",
+  "CREATE": "Create",
+  "DELETE": "Delete",
+  "NAME":"Name",
+  "FIRSTNAME": "First name",
+  "LASTNAME": "Last name",
+  "ROLE": "Role",
+  "HOME": {
+    "INTRO": "an english text here"
+  },
+  "HEADER": {
+    "LOGIN": "Login",
+    "GROUP": "Group",
+    "TEACHER": "Teacher",
+    "HOME": "Home",
+    "PROFILE": "Profile",
+    "PROJECT": "Project",
+    "LOGOUT": "Logout",
+    "NOTINGROUP":"Not in a group yet"
+  },
+  "LOGIN": {
+    "USERNAME": "Username",
+    "PASSWORD": "Password",
+    "LOGGEDIN": "Login",
+    "ERROR": "Username or password is incorrect"
+  },
+  "DIALOG": {
+    "DATE": "Date",
+    "TIME": "Time",
+    "EVENT": "Event",
+    "MEETING": "Meeting"
+  },
+  "GROUP": {
+    "AGENDAADD": "Add a new agenda item",
+    "UPLOAD": "Upload",
+    "OVERVIEW":"Overview",
+    "FILES":"Files"
+  },
+  "GROUPDETAIL": {
+    "GROUP": "Course of the group",
+    "MEMBERS": "Course of the members",
+    "GRADES": "Give grades for ",
+    "GRADECHANGED": "Grades have been modified",
+    "GIVEGRADES":"Give grades"
+  },
+  "PROJECT": {
+    "GROUPS": "Number of groups in this project",
+    "NEW": "Start a new project",
+    "NUMGROUPS": "Number of groups",
+    "NAME": "Name of the project"
+  },
+  "SECURITY":
+  {
+    "NOTLOGGEDIN":"Not logged in yet",
+    "ALREADYLOGGEDIN":"Already logged in"
+  },
+  "TEACHER":
+  {
+    "INFOOF":"Details of: "
+  }
+}

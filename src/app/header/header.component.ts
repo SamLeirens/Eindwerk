@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {LeerlingService} from "../aangemaakt-project/leerling.service";
 import {Student} from "../models/Student";
 import {MessageService} from "../common/service/MessageService";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
     selector: 'HeaderComponent',
@@ -14,7 +15,7 @@ import {MessageService} from "../common/service/MessageService";
 })
 export class HeaderComponent implements OnInit{
 
-    constructor(private router:Router,private leerlingService:LeerlingService,private messageService:MessageService){
+    constructor(private translate:TranslateService,private router:Router,private leerlingService:LeerlingService,private messageService:MessageService){
     };
 
     ngOnInit()
@@ -26,21 +27,20 @@ export class HeaderComponent implements OnInit{
     getStudentGroep(){
         if(LoginServiceApi.rol === 'student')
         {
-
            this.sub = this.leerlingService.getLeerlingenById(LoginServiceApi.user_id).subscribe(res =>
            {
                this.loggedInUser = res;
-               if(this.loggedInUser.inGroep) {
-                   this.router.navigate(['/groep/' + this.loggedInUser.groep])
-               }else
+               if(this.loggedInUser.inGroep)
                {
-                   this.messageService.add({
-                       severity: 'error', summary: 'nog niet in een groep'
-                   })
+                   this.router.navigate(['/groep/' + this.loggedInUser.groep])
+               }
+               else
+               {
+                   this.messageService.add({severity: 'error', summary: this.translate.instant("HEADER.NOTINGROUP")})
                }
            });
-
-        }else{this.messageService.add({severity: 'error', summary: 'nog niet in een groep'})}
+        }
+        else{this.messageService.add({severity: 'error', summary: this.translate.instant("HEADER.NOTINGROUP")})}
 
     }
 
@@ -59,4 +59,11 @@ export class HeaderComponent implements OnInit{
 
         this.router.navigate(["/login"]);
     }
+
+  changeLanguage(event: any, language: string): boolean {
+    event.preventDefault();
+    this.translate.use(language);
+
+    return false;
+  }
 }

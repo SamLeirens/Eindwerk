@@ -15,6 +15,7 @@ import {Router} from "@angular/router";
 import {MessageService} from "../common/service/MessageService";
 import {Login} from "../models/Login";
 import {HeaderComponent} from "../header/header.component";
+import {TranslateService} from "@ngx-translate/core";
 
 
 
@@ -31,12 +32,12 @@ export class LoginServiceApi {
     public static loginId: number;
 
     loggedInUser:Login;
-    constructor(private http:HttpClient,private router:Router,private messageService:MessageService) {
+    constructor(private http:HttpClient,private router:Router,private messageService:MessageService,private translate:TranslateService) {
 
     }
 
     private postURL = 'http://localhost:8080/login/';  // URL to web api
-  private postRolURL = 'http://localhost:8080/loginRole/';  // URL to web api
+    private postRolURL = 'http://localhost:8080/loginRole/';  // URL to web api
 
 
     getUser(username:String,password:String) {
@@ -53,22 +54,20 @@ export class LoginServiceApi {
             LoginServiceApi.username = this.loggedInUser.username;
             LoginServiceApi.user_id = this.loggedInUser.userId;
             this.messageService.add({
-                severity: 'success', summary: 'Logged in'
+                severity: 'success', summary: this.translate.instant('LOGIN.LOGGEDIN')
               }
             );
             this.router.navigate(['/']);
           }
           else {
             this.messageService.add({
-                severity: 'error', summary: 'gebruikersnaam of wachtwoord is fout'
+                severity: 'error', summary: this.translate.instant('LOGIN.ERROR')
               }
             );
           }
         },
         err => {
-          this.messageService.add({
-              severity: 'error', summary: 'gebruikersnaam of wachtwoord is fout'
-            }
+          this.messageService.add({severity: 'error', summary: this.translate.instant('LOGIN.ERROR')}
           );
         });
     }
@@ -76,9 +75,7 @@ export class LoginServiceApi {
         return this.http.post(this.postRolURL,{
           id:id}).subscribe(
           res => {
-
              console.log(res);
-
           },
           err => {
             console.log(err);

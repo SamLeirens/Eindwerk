@@ -1,0 +1,64 @@
+{
+  "APP_TITLE": "Eindwerk Sam Leirens",
+  "ADD": "Toevoegen",
+  "CANCEL": "Annuleren",
+  "CREATE": "Aanmaken",
+  "DELETE": "Verwijderen",
+  "NAME":"Naam",
+  "FIRSTNAME": "Voornaam",
+  "LASTNAME": "Achternaam",
+  "ROLE": "Rol",
+  "HOME": {
+    "INTRO": "tekstje over eindwerk komt hier"
+  },
+  "HEADER": {
+    "LOGIN": "Aanmelden",
+    "GROUP": "Groep",
+    "TEACHER": "Docent",
+    "HOME": "Home",
+    "PROFILE": "Profiel",
+    "PROJECT": "Project",
+    "LOGOUT": "Afmelden",
+    "NOTINGROUP":"Nog niet in een groep"
+  },
+  "LOGIN": {
+    "USERNAME": "Gebruikersnaam",
+    "PASSWORD": "Wachtwoord",
+    "LOGGEDIN": "Aangemeld",
+    "ERROR": "Gebruikersnaam of wachtwoord is fout"
+  },
+  "DIALOG": {
+    "DATE": "Datum",
+    "TIME": "Tijd",
+    "EVENT": "Event",
+    "MEETING": "Vergadering"
+  },
+  "GROUP": {
+    "AGENDAADD": "Nieuwe agenda item toevoegen",
+    "UPLOAD": "Uploaden",
+    "OVERVIEW":"Overzicht",
+    "FILES":"Bestanden"
+  },
+  "GROUPDETAIL": {
+    "GROUP": "Verloop van de groep",
+    "MEMBERS": "Verloop van de leden",
+    "GRADES": "Nieuwe resultaten ingeven voor ",
+    "GRADECHANGED": "Punten zijn aangepast",
+    "GIVEGRADES":"Punten geven"
+  },
+  "PROJECT": {
+    "GROUPS": "Aantal groepen in dit project",
+    "NEW": "Maak een nieuw project aan",
+    "NUMGROUPS": "Aantal groepen",
+    "NAME": "Naam van het project"
+  },
+  "SECURITY":
+  {
+    "NOTLOGGEDIN":"Nog niet aangemeld",
+    "ALREADYLOGGEDIN":"Al reeds aangemeld"
+  },
+  "TEACHER":
+  {
+    "INFOOF":"Informatie over: "
+  }
+}

@@ -10,6 +10,7 @@ import {Project} from "../models/Project";
 import {Student} from "../models/Student";
 import {MessageService} from "../common/service/MessageService";
 import {Router} from "@angular/router";
+import {TranslateService} from "@ngx-translate/core";
 @Component({
   selector: 'app-docent',
   templateUrl: 'docent.component.html',
@@ -20,66 +21,38 @@ import {Router} from "@angular/router";
 
 
 export class DocentComponent implements AfterViewInit,OnInit {
-    ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
-    public docs;
+  public docs;
 
-    msgs: Message[];
-    cols: any[];
-    selectedGroep: Groep;
-    groepen: Array<{id:number,naam:string,projectEntity:Project,students:Array<Student>}>;
-    studenten:Student[];
+  msgs: Message[];
+  cols: any[];
+  selectedGroep: Groep;
+  groepen: Array<{ id: number, naam: string, projectEntity: Project, students: Array<Student> }>;
+  studenten: Student[];
 
 
   ngAfterViewInit() {
 
-      this.groepService.getGroepen().subscribe(data => {this.groepen = data as Groep[]});
-/*
-      this.groepen = [
-        {"id": 1, "naam": "Software project groep 1","projectEntity":new Project(1),"students":this.studenten},
-        {"id": 22, "naam": "Software project groep 2","projectEntity":new Project(2),"students":this.studenten},
-        {"id": 3, "naam": "Software project groep 3","projectEntity":new Project(2),"students":this.studenten},
-        {"id": 4, "naam": "Software project groep 4","projectEntity":new Project(3),"students":this.studenten},
-
-      ];*/
-
+    this.groepService.getGroepen().subscribe(data => {
+      this.groepen = data as Groep[]
+    });
 
     this.cols = [
-        { field: 'id', header: 'Id' },
-        { field: 'naam', header: 'Naam' },
-        {field:'projectEntity',header: 'Project'}
+      {field: 'id', header: 'Id'},
+      {field: 'naam', header: this.tranlate.instant("NAME")},
+      {field: 'projectEntity', header: 'Project'}
     ];
-
-
-
-
-    //grafiek aanmaken en data insteken
-
   }
 
-constructor(private router: Router,private _docentService: DocentService, private groepService: GroepService,private messageService: MessageService)
-{
+  constructor(private tranlate:TranslateService,private router: Router, private _docentService: DocentService, private groepService: GroepService, private messageService: MessageService) {
+  }
 
-}
-    onRowSelect(event) {
-        this.messageService.add({severity:'info', summary:' details van ' + event.data.naam});
-      this.router.navigate(['/detailGroepen',event.data.naam]);
-    }
+  onRowSelect(event) {
+    this.messageService.add({severity: 'info', summary: this.tranlate.instant("TEACHER.INFOOF") + event.data.naam});
+    this.router.navigate(['/detailGroepen', event.data.naam]);
+  }
 
-    onRowUnselect(event) {
-
-    }
-
-    getDocents(voornaam,achternaam) {
-        this._docentService.getDocent(voornaam.value,achternaam.value).subscribe(
-            data => {
-                this.docs = data[0]
-            }
-        );
-    }
-
-
-
-
-
+  onRowUnselect(event) {}
 }

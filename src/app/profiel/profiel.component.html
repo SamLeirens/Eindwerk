@@ -6,7 +6,31 @@
     Rollen
   </p-tabPanel>
   <p-tabPanel header="Wachtwoord aanpassen">
-    Wachtwoord aanpassen
+    <div class="container" id="formProjectAanmaken">
+      <div class="col-md-5">
+        <div class="form-area">
+          <form role="form">
+            <br style="clear:both">
+            <h3 style="margin-bottom: 25px; text-align: center;">nieuw wachtwoord instellen</h3>
+            <div class="form-group">
+              <label>Oud wachtwoord</label>
+              <show-hide-password   icon="fontawesome">
+                <input type="password"  id="wachtwoord"  placeholder="wachtwoord" #wachtwoord>
+              </show-hide-password>
+              <label>Nieuw wachtwoord</label>
+              <show-hide-password   icon="fontawesome">
+                <input type="password"  id="nieuwWachtwoord"  placeholder="wachtwoord" #nieuwWachtwoord>
+              </show-hide-password>
+              <label>Herhalen nieuw wachtwoord</label>
+              <show-hide-password   icon="fontawesome">
+                <input type="password"  id="herhalenNieuwWachtwoord"  placeholder="wachtwoord" #herhalenNieuwWachtwoord>
+              </show-hide-password>
+            </div>
+            <button type="button" id="submit" name="submit" class="btn btn-primary pull-right" (click)="changePw(wachtwoord,nieuwWachtwoord,herhalenNieuwWachtwoord)">Veranderen</button>
+          </form>
+        </div>
+      </div>
+    </div>
   </p-tabPanel>
   <p-tabPanel header="Quiz" *ngIf="loggedInAsNewStudent()">
     <quiz></quiz>

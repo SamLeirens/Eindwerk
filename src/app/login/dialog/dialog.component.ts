@@ -24,7 +24,6 @@ export class DialogComponent implements OnInit {
   }
 
   submit(form) {
-
     this.array.push(form.value.date);
     this.array.push(form.value.time);
     this.array.push(form.value.event);

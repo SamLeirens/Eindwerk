@@ -7,6 +7,7 @@ import {Punten} from "../models/Punten";
 import {UIChart} from "primeng/chart";
 import {Student} from "../models/Student";
 import {MessageService} from "../common/service/MessageService";
+import {TranslateService} from "@ngx-translate/core";
 @Component({
   selector: 'app-detail-groepen',
   templateUrl: './detail-groepen.component.html',
@@ -30,7 +31,7 @@ export class DetailGroepenComponent implements OnInit,AfterViewInit {
   datasets:Array<String>;
   graphData:any;
   result:any;
-  constructor(private route: ActivatedRoute,private detailGroepenService:DetailGroepenService,private messageService:MessageService) { }
+  constructor(private route: ActivatedRoute,private detailGroepenService:DetailGroepenService,private messageService:MessageService,private translate:TranslateService) { }
 
 
   ngOnInit() {
@@ -41,14 +42,12 @@ export class DetailGroepenComponent implements OnInit,AfterViewInit {
     this.detailGroepenService.getPuntenFromGroep(this.groepId)
       .subscribe(
         data  => {
-
           let gegevens:any = data as Punten[];
           let punt1 = gegevens.map(res=> res.puntSprint1);
           let punt2 = gegevens.map(res=> res.puntSprint2);
           let punt3 = gegevens.map(res=> res.puntSprint3);
           let namen = gegevens.map(res=> res.student.voornaam);
           this.leden = gegevens.map(res=> res.student);
-
             this.studChart = new Chart('canvas',
               {
                 type: 'bar',
@@ -83,18 +82,11 @@ export class DetailGroepenComponent implements OnInit,AfterViewInit {
               }
             )
         });
-
-
-
-
   }
 
   ngAfterViewInit()
   {
-
-
     //Groep chart
-
     this.canvas = document.getElementById('myChart');
     this.ctx = this.canvas.getContext('2d');
 
@@ -120,12 +112,8 @@ export class DetailGroepenComponent implements OnInit,AfterViewInit {
       });
   }
 
-
   puntenIngeven(studentId,sprint,punt)
   {
-
-   this.result = this.detailGroepenService.addPunten(studentId.value,sprint.value,punt.value).subscribe(() => this.messageService.add({severity:'success', summary:'Cijfer gewijzigd'}));
-
-
+   this.result = this.detailGroepenService.addPunten(studentId.value,sprint.value,punt.value).subscribe(() => this.messageService.add({severity:'success', summary:this.translate.instant('GROUPDETAIL.GRADECHANGED')}));
   }
 }

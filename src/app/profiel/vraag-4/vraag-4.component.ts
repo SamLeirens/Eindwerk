@@ -14,21 +14,21 @@ export class Vraag4Component implements OnInit {
 
   ngOnInit(): void {
     this.vraag4Form = this.formBuilder.group({
-      "A25": [null, Validators.compose([
+      "A25": ['1', Validators.compose([
         Validators.required])],
-      "A26": [null, Validators.compose([
+      "A26": ['1', Validators.compose([
         Validators.required])],
-      "A27": [null, Validators.compose([
+      "A27": ['1', Validators.compose([
         Validators.required])],
-      "A28": [null, Validators.compose([
+      "A28": ['1', Validators.compose([
         Validators.required])],
-      "A29": [null, Validators.compose([
+      "A29": ['1', Validators.compose([
         Validators.required])],
-      "A30": [null, Validators.compose([
+      "A30": ['1', Validators.compose([
         Validators.required])],
-      "A31": [null, Validators.compose([
+      "A31": ['1', Validators.compose([
         Validators.required])],
-      "A32": [null, Validators.compose([
+      "A32": ['1', Validators.compose([
         Validators.required])],
     });
 

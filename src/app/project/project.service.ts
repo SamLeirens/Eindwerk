@@ -9,6 +9,7 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 import {Project} from '../models/Project'
 import {Router} from "@angular/router";
+import {LoginServiceApi} from "../login/loginApi.service";
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -24,14 +25,11 @@ export class ProjectService {
     p:Project;
 
     add(naam:String,aantal:number) {
-
-        //TODO:project hardcoded met docentID 1 aangemaakt moet via ingelogde docent
-
-        this.http.post(this.postURL,{"naam":naam,"docent":{"id":1}}).subscribe(
+         let id = LoginServiceApi.user_id;
+        this.http.post(this.postURL,{"naam":naam,"docent":{"id":id}}).subscribe(
             res => {
                 this.p = <Project>res;
                 this.p.aantalGroepen = aantal;
-
                 this.router.navigate(['/aangemaaktProject',aantal,this.p]);
 
             },

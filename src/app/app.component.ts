@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   constructor(private messageService : MessageService,private translateService:TranslateService)
   {
     this.translateService.setDefaultLang('nl');
+    this.translateService.use('nl');
     this.translateService.addLangs(['en']);
   }
 

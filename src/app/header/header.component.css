@@ -95,16 +95,20 @@ header .navbar {
 }
 
 .navbar-link > a {
-  color: #076988;
+  color: #aaa;
   font-weight: bold;
   font-size: 14px;
   text-decoration: underline;
+}
+.navbar-link>a:hover {
+  color: white;;
 }
 
 .active-language > a,
 .active-language > a:focus {
   color: #54d400
 }
+
 
 .waves-effect {
     position: relative;

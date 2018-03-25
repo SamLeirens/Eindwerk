@@ -13,41 +13,41 @@
     <canvas id="canvas">{{roleChart}}</canvas>
   <hr>
     <div class="row">
-    Uit deze test blijkt dat u een  {{chosenRole}} bent. De rol die hier het beste bij past is {{roleInProject}}.
+      {{'QUIZ.FROMTHIS' | translate}} {{chosenRole}} {{'QUIZ.QUIZRESULTS' | translate}} {{roleInProject}}.
     </div>
   <br>
     <div class="row">
-    Je kan echter een andere rol kiezen als je denkt dat deze beter bij je past. Maak hieronder je keuze:
+      {{'QUIZ.DIFFROLE' | translate}}
     </div>
   <br>
     <div class="funkyradio">
         <form [formGroup]="rolForm">
             <div class="funkyradio-primary">
-                <input formControlName="rol" type="radio" id="radio1" value="developer">
+                <input formControlName="rol" type="radio" id="radio1" value="developer" [checked]="roleInProject == 'developer'" >
                 <label for="radio1" class="radio">developer</label>
             </div>
 
             <div class="funkyradio-warning">
-                <input formControlName="rol" type="radio" id="radio2" value="database manager">
+                <input formControlName="rol" type="radio" id="radio2" value="database manager" [checked]="roleInProject == 'database manager'">
                 <label for="radio2" class="radio">database manager</label>
             </div>
             <div class="funkyradio-info">
-                <input formControlName="rol" type="radio" id="radio3" value="test manager">
+                <input formControlName="rol" type="radio" id="radio3" value="test manager" [checked]="roleInProject == 'test manager'">
                 <label for="radio3" class="radio">test manager</label>
             </div>
             <div class="funkyradio-danger">
-                <input formControlName="rol" type="radio" id="radio4" value="architect">
+                <input formControlName="rol" type="radio" id="radio4" value="architect" [checked]="roleInProject == 'architect'">
                 <label for="radio4" class="radio">architect</label>
             </div>
-            <button type="button" class="btn btn-primary" (click)="sendRole()">Kiezen</button>
+            <button type="button" class="btn btn-dark" (click)="sendRole()">{{'CHOOSE' | translate}}</button>
         </form>
     </div>
 </div>
 
 <div class="btn-toolbar" [hidden]="activeIndex ==7">
-    <button ngif="activeIndex > 0" type="button" class="btn btn-primary" (click)="previous()">Terug</button>
+    <button ngif="activeIndex > 0" type="button" class="btn btn-dark" (click)="previous()">{{'BACK' | translate}}</button>
     &nbsp;
-    <button type="button" [ngClass]="{'btn btn-primary': activeIndex !== 6,'btn btn-danger':activeIndex === 6}" (click)="next()">
-        {{activeIndex === 6 ? 'Indienen' : 'Volgende'}}
+    <button type="button" [ngClass]="{'btn btn-dark': activeIndex !== 6,'btn btn-danger':activeIndex === 6}" (click)="next()">
+        {{activeIndex === 6 ? ('SUBMIT' | translate) : ('NEXT' | translate)}}
     </button>
 </div>

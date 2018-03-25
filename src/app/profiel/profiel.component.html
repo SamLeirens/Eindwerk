@@ -1,37 +1,36 @@
 <p-tabView>
-  <p-tabPanel header="Algemeen">
-    Algemeen
+  <p-tabPanel header="{{'GENERAL' | translate}}">
+<!--TODO:algemene info kunnen toevoegen zoals telefoon en email-->
   </p-tabPanel>
-  <p-tabPanel header="Rollen">
-    Rollen
-  </p-tabPanel>
-  <p-tabPanel header="Wachtwoord aanpassen">
+
+  <p-tabPanel header="{{'NEWPW' | translate}}">
     <div class="container" id="formProjectAanmaken">
       <div class="col-md-5">
         <div class="form-area">
           <form role="form">
             <br style="clear:both">
-            <h3 style="margin-bottom: 25px; text-align: center;">nieuw wachtwoord instellen</h3>
+            <h3 style="margin-bottom: 25px; text-align: center;">{{'NEWPASSWORD' | translate}}</h3>
             <div class="form-group">
-              <label>Oud wachtwoord</label>
+              <label>{{'OLDPW' | translate}}</label>
               <show-hide-password   icon="fontawesome">
-                <input type="password"  id="wachtwoord"  placeholder="wachtwoord" #wachtwoord>
+                <input type="password"  id="wachtwoord"  placeholder="{{'PLACEHOLDERPW' | translate}}" #wachtwoord>
               </show-hide-password>
-              <label>Nieuw wachtwoord</label>
+              <label>{{'NEWPW' | translate}}</label>
               <show-hide-password   icon="fontawesome">
-                <input type="password"  id="nieuwWachtwoord"  placeholder="wachtwoord" #nieuwWachtwoord>
+                <input type="password"  id="nieuwWachtwoord"  placeholder="{{'PLACEHOLDERPW' | translate}}" #nieuwWachtwoord>
               </show-hide-password>
-              <label>Herhalen nieuw wachtwoord</label>
+              <label>{{'REPEATPW' | translate}}</label>
               <show-hide-password   icon="fontawesome">
-                <input type="password"  id="herhalenNieuwWachtwoord"  placeholder="wachtwoord" #herhalenNieuwWachtwoord>
+                <input type="password"  id="herhalenNieuwWachtwoord"  placeholder="{{'PLACEHOLDERPW' | translate}}" #herhalenNieuwWachtwoord>
               </show-hide-password>
             </div>
-            <button type="button" id="submit" name="submit" class="btn btn-primary pull-right" (click)="changePw(wachtwoord,nieuwWachtwoord,herhalenNieuwWachtwoord)">Veranderen</button>
+            <button type="button" id="submit" name="submit" class="btn btn-dark pull-right" (click)="changePw(wachtwoord,nieuwWachtwoord,herhalenNieuwWachtwoord)">{{'SUBMIT' | translate}}</button>
           </form>
         </div>
       </div>
     </div>
   </p-tabPanel>
+
   <p-tabPanel header="Quiz" *ngIf="loggedInAsNewStudent()">
     <quiz></quiz>
   </p-tabPanel>

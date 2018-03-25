@@ -5,6 +5,7 @@ import {FormsModule} from "@angular/forms";
 import {GroepComponent} from "./groep.component";
 import {GroepService} from "./groep.service";
 import {MatDialogModule} from "@angular/material";
+import {FileUploadModule} from "primeng/primeng";
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {MatDialogModule} from "@angular/material";
         HeaderModule,
         FormsModule,
         MatDialogModule
+
     ],
 
     exports:[

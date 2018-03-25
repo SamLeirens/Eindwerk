@@ -15,7 +15,6 @@ export class ProfielComponent implements OnInit {
 
   constructor(private messageService:MessageService) { }
 
-  /*TODO:TRANSLATE GANS PROFIEL*/
   ngOnInit() {
 
   }

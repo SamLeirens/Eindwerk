@@ -1,20 +1,25 @@
 <form [formGroup]="form" (ngSubmit)="submit(form)">
-  <h1 mat-dialog-title>Agenda item toevoegen</h1>
+  <h1 mat-dialog-title>{{'GROUP.AGENDAADD' | translate}}</h1>
   <mat-dialog-content>
-
-      <p>{{'DIALOG.DATE' | translate}}</p>
-      <input formControlName="date" matInput [matDatepicker]="myDatepicker" placeholder="12/06/1996">
+    <div class="row">
+      <label class="control-label col-sm-4">{{'DIALOG.DATE' | translate}}</label>
+      <input formControlName="date" matInput class="form-control col-md-6" [matDatepicker]="myDatepicker" placeholder="12/06/1996">
       <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
       <mat-datepicker #myDatepicker></mat-datepicker>
-      <p>{{'DIALOG.TIME' | translate}}</p>
-      <input matInput formControlName="time" placeholder="14:00">
-      <p>{{'DIALOG.EVENT' | translate}}</p>
-      <input matInput formControlName="event" placeholder="{{'DIALOG.MEETING' | translate}}">
-
-
+    </div>
+    <div class="row">
+    <label class="control-label col-sm-4">{{'DIALOG.TIME' | translate}}</label>
+      <input matInput formControlName="time" class="form-control col-md-6" placeholder="14:00">
+    </div>
+    <div class="row">
+    <label class="control-label col-sm-4">{{'DIALOG.EVENT' | translate}}</label>
+      <input matInput formControlName="event" class="form-control col-md-6" placeholder="{{'DIALOG.MEETING' | translate}}">
+    </div>
+<br>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-button type="submit">{{'ADD' | translate}}</button>
-    <button mat-button type="button" mat-dialog-close>{{'CANCEL' | translate}}</button>
+    <button mat-button class="btn btn-dark" type="submit">{{'ADD' | translate}}</button>
+    &nbsp;
+    <button mat-button class="btn btn-dark" type="button" mat-dialog-close>{{'CANCEL' | translate}}</button>
   </mat-dialog-actions>
 </form>

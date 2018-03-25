@@ -9,12 +9,12 @@
         <br style="clear:both">
         <h3 style="margin-bottom: 25px; text-align: center;">{{'HEADER.LOGIN' | translate}}</h3>
         <div class="form-group">
-          <input type="text" class="form-control" id="gebruikersnaam" name="name" placeholder="{{'LOGIN.USERNAME' | translate}}" required #gebruikersnaam>
+          <input type="text" class="form-control" id="gebruikersnaam" name="name" placeholder="{{'PLACEHOLDERUSERNAME' | translate}}" required #gebruikersnaam>
           <show-hide-password   icon="fontawesome">
-            <input type="password"  id="wachtwoord"  placeholder="{{'LOGIN.PASSWORD' | translate}}" #wachtwoord>
+            <input type="password"  id="wachtwoord"  placeholder="{{'PLACEHOLDERPW' | translate}}" #wachtwoord>
           </show-hide-password>
         </div>
-        <button type="button" id="submit" name="submit" class="btn btn-primary pull-right" (click)="login(gebruikersnaam,wachtwoord)">{{'HEADER.LOGIN' | translate}}</button>
+        <button type="button" id="submit" name="submit" class="btn btn-dark pull-right" (click)="login(gebruikersnaam,wachtwoord)">{{'HEADER.LOGIN' | translate}}</button>
       </form>
     </div>
   </div>

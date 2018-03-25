@@ -8,8 +8,14 @@
 }
 
 .agenda {  }
+.ui-fileupload .ui-widget-header{
+  background:#54d400;
+}
+ .ui-button, .ui-widget-content .ui-button, .ui-widget.ui-button, .ui-button{
+  background: black;
+}
 
-/* Dates */
+  /* Dates */
 .agenda .agenda-date { width: 170px; }
 .agenda .agenda-date .dayofmonth {
     width: 40px;

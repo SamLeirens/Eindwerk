@@ -1,10 +1,17 @@
-import {Component, OnInit, TemplateRef, ElementRef, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, TemplateRef, ElementRef, ViewChild, ViewEncapsulation, AfterViewInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {GroepService} from "./groep.service";
 
 import {AgendaItem} from "../models/AgendaItem";
 import {DialogComponent} from "../login/dialog/dialog.component";
 import {MatDialog, MatDialogRef} from "@angular/material";
+import { saveAs } from 'file-saver';
+import {isNullOrUndefined} from "util";
+import {Groep} from "../models/Groep";
+import {Student} from "../models/Student";
+import {Project} from "../models/Project";
+import {TranslateService} from "@ngx-translate/core";
+import {Files} from "../models/Files";
 
 @Component({
   selector: 'app-groep',
@@ -13,7 +20,7 @@ import {MatDialog, MatDialogRef} from "@angular/material";
   providers: [GroepService],
   encapsulation:ViewEncapsulation.None
 })
-export class GroepComponent implements OnInit {
+export class GroepComponent implements AfterViewInit,OnInit {
 
     groepNaam: string;
     sub:any ;
@@ -21,10 +28,36 @@ export class GroepComponent implements OnInit {
     myAgendaItems:AgendaItem[];
     fileNameDialogRef: MatDialogRef<DialogComponent>;
     newAgendaItem: AgendaItem;
+    uploadedFiles: Files[] = [];
+    groepen: Array<{ id: number, naam: string, projectEntity: Project, students: Array<Student> }>;
+
+    constructor(private route: ActivatedRoute,private _groepservice: GroepService,public dialog: MatDialog,private translate:TranslateService) { }
+
+  ngAfterViewInit() {
+
+    this._groepservice.getGroepen().subscribe(data => {
+      this.groepen = data as Groep[]
+    });
+
+      this._groepservice.getFilesByGroep(this.groepNaam).subscribe(res => this.uploadedFiles = res as Files[]);
+
+  }
+
+  onUpload(event) {
+
+    //Lelijke code want het werkte niet anders
+    let file = new Files(0,event.files[0].name,event.files[0].lastModified,
+        event.files[0].lastModifiedDate,event.files[0].size,event.files[0].type
+        ,event.files[0].webkitRelativePath,this.groepNaam);
+
+      this._groepservice.uploadFile(file).subscribe(() => this.uploadedFiles.push(file));
 
 
-    constructor(private route: ActivatedRoute,private _groepservice: GroepService,public dialog: MatDialog) { }
+    }
 
+  onRowSelect(event) {
+    console.log(event.data.name);
+  }
     openDialog()
     {
         this.fileNameDialogRef = this.dialog.open(DialogComponent, {
@@ -34,9 +67,9 @@ export class GroepComponent implements OnInit {
 
         this.fileNameDialogRef
             .afterClosed()
-            .subscribe(event => this.addAgenda(event[0],event[1],event[2]));
+            .subscribe(event =>{if(!isNullOrUndefined(event[0])){this.addAgenda(event[0],event[1],event[2])}});
 
-    }
+    };
 
 
     addAgenda(date,time,event)
@@ -44,6 +77,7 @@ export class GroepComponent implements OnInit {
         this.newAgendaItem = new AgendaItem(date,time,event,this.groepNaam);
 
         this._groepservice.addAgendaItem(this.newAgendaItem).subscribe(() => {});
+
         if(this.newAgendaItem.tijd != null)
         {
             this.myAgendaItems.push(this.newAgendaItem);

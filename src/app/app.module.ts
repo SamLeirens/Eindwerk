@@ -24,7 +24,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {GrowlModule} from 'primeng/growl';
 import {MessageService} from "./common/service/MessageService";
 import {ChartModule} from "primeng/components/chart/chart";
-import {DataTableModule, SpinnerModule, TabMenuModule, TabViewModule} from "primeng/primeng";
+import {DataTableModule, FileUploadModule, SpinnerModule, TabMenuModule, TabViewModule} from "primeng/primeng";
 import {TableModule} from "primeng/table";
 import {CalendarModule} from "primeng/components/calendar/calendar";
 import { DetailGroepenComponent } from './detail-groepen/detail-groepen.component';
@@ -89,6 +89,7 @@ export function createTranslateLoader(http: HttpClient) {
     CalendarModule,
     SpinnerModule,
     StepsModule,
+    FileUploadModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -3,6 +3,7 @@ import {Groep} from "../models/Groep";
 import {HttpClient} from "@angular/common/http";
 import {HttpHeaders} from "@angular/common/http";
 import {AgendaItem} from "../models/AgendaItem";
+import {Files} from "../models/Files";
 
 
 
@@ -23,12 +24,25 @@ export class GroepService {
     private getStudentsUrl ='http://localhost:8080/students/';
     private agenda='http://localhost:8080/agenda/';
     private deleteAgenda='http://localhost:8080/deleteAgenda/';
+    private fileUrl = 'http://localhost:8080/file/';
+    private filesUrl = 'http://localhost:8080/files/';
 
-
+    uploadFile(file:any)
+    {
+        console.log(file);
+        console.log(JSON.stringify(file));
+        this.http.post(this.fileUrl,JSON.stringify(file),httpOptions).subscribe(
+            res => {
+                console.log("file geupload");
+            },
+            err => {
+                console.log("Error occured");
+            });
+        return this.getFilesByGroep(file.groep);
+    }
 
     addAgendaItem(agendaItem: AgendaItem)
     {
-
         this.http.post(this.agenda,agendaItem,httpOptions).subscribe(
         res => {
             console.log("agenda geupdate");
@@ -37,6 +51,12 @@ export class GroepService {
             console.log("Error occured");
         });
         return this.getAgendaByGroep(agendaItem.groep);
+    }
+
+    getFilesByGroep(naam:String) {
+        return this
+            .http
+            .get(this.filesUrl+naam);
 
     }
 

@@ -57,6 +57,11 @@ export class GroepComponent implements AfterViewInit,OnInit {
 
   onRowSelect(event) {
     console.log(event.data.name);
+      window.location.href = "http://localhost:8080/download/"+event.data.name+"/"+this.groepNaam;
+/*
+      this._groepservice.download(event.data.name,this.groepNaam).subscribe(() => {});
+*/
+
   }
     openDialog()
     {

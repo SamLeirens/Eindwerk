@@ -26,6 +26,7 @@ export class GroepService {
     private deleteAgenda='http://localhost:8080/deleteAgenda/';
     private fileUrl = 'http://localhost:8080/file/';
     private filesUrl = 'http://localhost:8080/files/';
+    private downloadUrl = 'http://localhost:8080/download/';
 
     uploadFile(file:any)
     {
@@ -57,6 +58,13 @@ export class GroepService {
         return this
             .http
             .get(this.filesUrl+naam);
+
+    }
+    download(fileNaam:String,groepsNaam:String) {
+            return this
+            .http
+            .get(this.downloadUrl+fileNaam+"/"+groepsNaam);
+
 
     }
 

@@ -41,7 +41,9 @@
     "DATE": "Date",
     "TIME": "Time",
     "EVENT": "Event",
-    "MEETING": "Meeting"
+    "MEETING": "Meeting",
+    "TIMESHEET":"Add new timesheet",
+    "PDF":"Export to pdf"
   },
   "GROUP": {
     "AGENDAADD": "Add a new agenda item",

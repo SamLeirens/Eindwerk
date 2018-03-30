@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {GroepService} from "./groep.service";
 
 import {AgendaItem} from "../models/AgendaItem";
+import {Timesheet} from "../models/Timesheet";
 import {DialogComponent} from "../login/dialog/dialog.component";
 import {MatDialog, MatDialogRef} from "@angular/material";
 import { saveAs } from 'file-saver';
@@ -12,6 +13,9 @@ import {Student} from "../models/Student";
 import {Project} from "../models/Project";
 import {TranslateService} from "@ngx-translate/core";
 import {Files} from "../models/Files";
+import {TimesheetsComponent} from "./timesheets/timesheets.component";
+import * as jsPDF from 'jspdf'
+import * as jpt from 'jspdf-autotable';
 
 @Component({
   selector: 'app-groep',
@@ -26,12 +30,43 @@ export class GroepComponent implements AfterViewInit,OnInit {
     sub:any ;
     myData2: any = [];
     myAgendaItems:AgendaItem[];
+    myTimesheetsItems:Timesheet[];
     fileNameDialogRef: MatDialogRef<DialogComponent>;
+    fileNameDialogRefTimesheets: MatDialogRef<TimesheetsComponent>;
     newAgendaItem: AgendaItem;
+    newTimesheet:Timesheet;
     uploadedFiles: Files[] = [];
     groepen: Array<{ id: number, naam: string, projectEntity: Project, students: Array<Student> }>;
 
     constructor(private route: ActivatedRoute,private _groepservice: GroepService,public dialog: MatDialog,private translate:TranslateService) { }
+
+
+  exportToPdf()
+  {
+    let doc = new jsPDF('p', 'pt');    jpt;
+
+    doc.setFontType('bold');
+    doc.text('Timesheet ' + this.groepNaam, 10, 35);
+
+    doc.setDrawColor(0, 153, 255);
+    doc.setLineWidth(1);
+    doc.line(10, 40, 300, 40);
+    doc.setFontSize(11);
+    if (this.myTimesheetsItems.length > 0) {
+      let columnsExtra = ["Datum", "Begin","Einde","Onderwerp"];
+      let rowsExtra = [];
+      for (let i = 0; i < this.myTimesheetsItems.length; i++) {
+        rowsExtra.push([this.myTimesheetsItems[i].datum,this.myTimesheetsItems[i].beginTijd,this.myTimesheetsItems[i].eindTijd,this.myTimesheetsItems[i].onderwerp])
+      }
+      doc.autoTable(columnsExtra, rowsExtra, {
+        startY: 50,
+        pageBreak: 'avoid',
+        theme: 'grid',
+        styles: { overflow: 'linebreak' }
+      });
+    }
+    doc.save("timesheet.pdf");
+  }
 
   ngAfterViewInit() {
 
@@ -54,14 +89,30 @@ export class GroepComponent implements AfterViewInit,OnInit {
 
 
     }
+  openTimesheets()
+  {
+    this.fileNameDialogRefTimesheets = this.dialog.open(TimesheetsComponent, {
+      height: '400px',
+      width: '600px',
+    });
+
+    this.fileNameDialogRefTimesheets
+      .afterClosed()
+      .subscribe(event =>{if(!isNullOrUndefined(event)){{if(!isNullOrUndefined(event[0])){this.addTimesheet(event[0],event[1],event[2],event[3])}}}});
+
+  };
+  addTimesheet(date,begin,einde,event)
+  {
+    this.newTimesheet = new Timesheet(date,begin,einde,event,this.groepNaam);
+
+    this._groepservice.addTimesheetItem(this.newTimesheet).subscribe(() => {});
+
+    if(this.newTimesheet.eindTijd != null) {this.myTimesheetsItems.push(this.newTimesheet);}
+  }
 
   onRowSelect(event) {
     console.log(event.data.name);
       window.location.href = "http://localhost:8080/download/"+event.data.name+"/"+this.groepNaam;
-/*
-      this._groepservice.download(event.data.name,this.groepNaam).subscribe(() => {});
-*/
-
   }
     openDialog()
     {
@@ -72,7 +123,7 @@ export class GroepComponent implements AfterViewInit,OnInit {
 
         this.fileNameDialogRef
             .afterClosed()
-            .subscribe(event =>{if(!isNullOrUndefined(event[0])){this.addAgenda(event[0],event[1],event[2])}});
+            .subscribe(event =>{if(!isNullOrUndefined(event)){if(!isNullOrUndefined(event[0])){this.addAgenda(event[0],event[1],event[2])}}});
 
     };
 
@@ -109,7 +160,11 @@ export class GroepComponent implements AfterViewInit,OnInit {
                 .subscribe();
 
         }
-
+  deleteTimesheetItem(id:number)
+  {
+    this.removeTimesheet(id);
+    this._groepservice.deleteTs(id).subscribe();
+  }
     removeAgenda(id:number) {
         for (let i = 0 ; i < this.myAgendaItems.length; i++) {
             if (this.myAgendaItems[i].id == id) {
@@ -118,6 +173,14 @@ export class GroepComponent implements AfterViewInit,OnInit {
             }
         }
     }
+  removeTimesheet(id:number) {
+    for (let i = 0 ; i < this.myTimesheetsItems.length; i++) {
+      if (this.myTimesheetsItems[i].id == id) {
+        this.myTimesheetsItems.splice(i, 1);
+        break;
+      }
+    }
+  }
     ngOnInit()
     {
         this.sub = this.route.params.subscribe(params => {this.groepNaam = params['naam']; });
@@ -139,7 +202,15 @@ export class GroepComponent implements AfterViewInit,OnInit {
                     this.myAgendaItems = data as AgendaItem[];
                 }
             );
-
+      this
+        ._groepservice
+        .getTimesheetByGroep(this.groepNaam)
+        .subscribe
+        (data =>
+          {
+            this.myTimesheetsItems = data as Timesheet[];
+          }
+        );
     }
 
 }

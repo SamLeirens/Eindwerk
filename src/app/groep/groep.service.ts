@@ -4,6 +4,8 @@ import {HttpClient} from "@angular/common/http";
 import {HttpHeaders} from "@angular/common/http";
 import {AgendaItem} from "../models/AgendaItem";
 import {Files} from "../models/Files";
+import {TimesheetsComponent} from "./timesheets/timesheets.component";
+import {Timesheet} from "../models/Timesheet";
 
 
 
@@ -26,7 +28,8 @@ export class GroepService {
     private deleteAgenda='http://localhost:8080/deleteAgenda/';
     private fileUrl = 'http://localhost:8080/file/';
     private filesUrl = 'http://localhost:8080/files/';
-    private downloadUrl = 'http://localhost:8080/download/';
+    private timesheetUrl = 'http://localhost:8080/timesheet/';
+  private deleteTimesheet='http://localhost:8080/deleteTimesheet/';
 
     uploadFile(file:any)
     {
@@ -54,19 +57,24 @@ export class GroepService {
         return this.getAgendaByGroep(agendaItem.groep);
     }
 
+  addTimesheetItem(ts: Timesheet)
+  {
+    this.http.post(this.timesheetUrl,ts,httpOptions).subscribe(
+      res => {
+        console.log("timesheet geupdate");
+      },
+      err => {
+        console.log("Error occured");
+      });
+    return this.getTimesheetByGroep(ts.groep);
+  }
     getFilesByGroep(naam:String) {
         return this
             .http
             .get(this.filesUrl+naam);
 
     }
-    download(fileNaam:String,groepsNaam:String) {
-            return this
-            .http
-            .get(this.downloadUrl+fileNaam+"/"+groepsNaam);
 
-
-    }
 
     getAgendaByGroep(naam:String) {
         return this
@@ -75,12 +83,24 @@ export class GroepService {
 
     }
 
+  getTimesheetByGroep(naam:String) {
+    return this
+      .http
+      .get(this.timesheetUrl+naam);
+
+  }
+
     deleteAgendaItem(id:number) {
         return this
             .http
             .get(this.deleteAgenda+id);
     }
 
+  deleteTs(id:number) {
+    return this
+      .http
+      .get(this.deleteTimesheet+id);
+  }
 
 
 

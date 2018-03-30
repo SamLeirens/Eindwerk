@@ -1,7 +1,8 @@
 
 <!-- https://bootsnipp.com/snippets/Q04ZX -->
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.2/jspdf.plugin.autotable.js"></script>
 
 <div class="container content">
     <h3>
@@ -17,7 +18,7 @@
                   <div><h2>Agenda</h2>
                     <button mat-button class="btn btn-dark" (click)="openDialog()">{{'GROUP.AGENDAADD' | translate}}</button>
                   </div>
-      <br>
+                  <br>
                   <div class="agenda">
                     <div class="table-responsive">
                       <table class="table table-condensed table-bordered">
@@ -32,7 +33,6 @@
                         <tbody>
                         <!-- Single event in a single day -->
                         <ng-container *ngFor="let item of myAgendaItems">
-
                           <tr>
                             <td class="agenda-date" class="active" rowspan="1">
                               {{item.datum}}
@@ -49,24 +49,66 @@
                               <div class="agenda-event">
                                 <form>
                                   <input type="hidden" value="{{item.id}}" #itemId>
-                                  <button type="submit" (click)="deleteAgendaItem(itemId.value)">{{'DELETE' | translate}}</button>
-
+                                  <button type="submit" class="btn btn-dark" (click)="deleteAgendaItem(itemId.value)">X</button>
                                 </form>
-
                               </div>
                             </td>
                           </tr>
-
                         </ng-container>
                         </tbody>
                       </table>
                     </div>
                   </div>
-
-
     </p-tabPanel>
     <p-tabPanel header="Timesheets" rightIcon="fa-blind">
-      Content 2
+      <div><h2>Timesheet</h2></div>
+      <button mat-button class="btn btn-dark" (click)="openTimesheets()">{{'DIALOG.TIMESHEET' | translate}}</button>
+      <button mat-button class="btn btn-dark" (click)="exportToPdf()">{{'DIALOG.PDF' | translate}}</button>
+      <br><br>
+      <div class="agenda">
+        <div class="table-responsive">
+          <table class="table table-condensed table-bordered">
+            <thead>
+            <tr>
+              <th>{{'DIALOG.DATE' | translate}}</th>
+              <th>{{'DIALOG.TIME' | translate}}</th>
+              <th>{{'DIALOG.TIME' | translate}}</th>
+              <th>{{'DIALOG.EVENT' | translate}}</th>
+              <th>{{'DELETE' | translate}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Single event in a single day -->
+            <ng-container *ngFor="let i of myTimesheetsItems">
+              <tr>
+                <td class="agenda-date" class="active" rowspan="1">
+                  {{i.datum}}
+                </td>
+                <td class="agenda-time">
+                  {{i.beginTijd}}
+                </td>
+                <td class="agenda-time">
+                  {{i.eindTijd}}
+                </td>
+                <td class="agenda-events">
+                  <div class="agenda-event">
+                    {{i.onderwerp}}
+                  </div>
+                </td>
+                <td class="agenda-events">
+                  <div class="agenda-event">
+                    <form>
+                      <input type="hidden" value="{{i.id}}" #iId>
+                      <button type="submit" class="btn btn-dark" (click)="deleteTimesheetItem(iId.value)">X</button>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+            </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </p-tabPanel>
     <p-tabPanel header="Github" rightIcon="fa-github-square">
                   <form>

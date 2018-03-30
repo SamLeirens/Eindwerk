@@ -41,6 +41,7 @@ import { Vraag6Component } from './profiel/vraag-6/vraag-6.component';
 import { Vraag7Component } from './profiel/vraag-7/vraag-7.component';
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {TimesheetsComponent} from "./groep/timesheets/timesheets.component";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -63,7 +64,8 @@ export function createTranslateLoader(http: HttpClient) {
     Vraag4Component,
     Vraag5Component,
     Vraag6Component,
-    Vraag7Component
+    Vraag7Component,
+    TimesheetsComponent
 
   ],
   imports: [
@@ -100,6 +102,6 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   providers: [DocentService,AuthGuard,LoginServiceApi,LoggedInGuard,MessageService],
   bootstrap: [AppComponent],
-  entryComponents: [DialogComponent]
+  entryComponents: [DialogComponent,TimesheetsComponent]
 })
 export class AppModule { }

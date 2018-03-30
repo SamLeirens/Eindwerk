@@ -42,7 +42,9 @@
     "DATE": "Datum",
     "TIME": "Tijd",
     "EVENT": "Event",
-    "MEETING": "Vergadering"
+    "MEETING": "Vergadering",
+    "TIMESHEET":"Een nieuwe timesheet toevoegen",
+    "PDF":"Exporteren naar PDF"
   },
   "GROUP": {
     "AGENDAADD": "Nieuwe agenda item toevoegen",

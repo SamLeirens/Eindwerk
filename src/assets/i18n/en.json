@@ -7,6 +7,7 @@
   "NAME":"Name",
   "CHOOSE":"Choose",
   "NEXT":"Next",
+  "CHANGE":"Change",
   "BACK":"Back",
   "GENERAL":"General",
   "FIRSTNAME": "First name",
@@ -18,6 +19,7 @@
   "PLACEHOLDERPW":"catsanddogs123",
   "PLACEHOLDERUSERNAME":"reckful",
   "ROLE": "Role",
+  "CHANGED":"Changed",
   "HOME": {
     "INTRO": "an english text here"
   },

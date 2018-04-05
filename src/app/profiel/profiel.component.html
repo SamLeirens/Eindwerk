@@ -1,6 +1,27 @@
 <p-tabView>
   <p-tabPanel header="{{'GENERAL' | translate}}">
-<!--TODO:algemene info kunnen toevoegen zoals telefoon en email-->
+    <div class="container" id="formChangeEmail">
+      <div class="col-md-5">
+        <div class="form-area">
+          <form role="form">
+            <br style="clear:both">
+            <h3 style="margin-bottom: 25px; text-align: center;">{{'NEWPASSWORD' | translate}}</h3>
+            <div class="form-group">
+              <label>E-mail:</label>
+              {{emailOutput}}<br>
+                <input type="text"  id="email"  placeholder="{{'PLACEHOLDERPW' | translate}}" #email>
+              <button type="button"  name="submit" class="btn btn-dark pull-right" (click)="changeEmail(email)">{{'CHANGE' | translate}}</button>
+            </div>
+            <div class="form-group">
+              <label>Gsm:</label>
+              {{gsmOutput}} <br>
+              <input type="text"  id="gsm"  placeholder="{{'PLACEHOLDERPW' | translate}}" #gsm>
+              <button type="button"  name="submit" class="btn btn-dark pull-right" (click)="changeGsm(gsm)">{{'CHANGE' | translate}}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </p-tabPanel>
 
   <p-tabPanel header="{{'NEWPW' | translate}}">

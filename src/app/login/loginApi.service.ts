@@ -87,7 +87,7 @@ export class LoginServiceApi {
   changePw(id:number,oldpw:string,pw:string) {
 
 
-    return this.http.post(this.postPwURL+id+"/"+oldpw+"/"+pw).subscribe(
+    return this.http.post(this.postPwURL+id+"/"+oldpw+"/"+pw,{}).subscribe(
       res => {
         if(isNull(res)){this.messageService.add({severity: 'error', summary: this.translate.instant('CHANGEPW.ERROR')})}
         else{

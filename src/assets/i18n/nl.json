@@ -8,6 +8,7 @@
   "NEXT":"Volgende",
   "BACK":"Terug",
   "GENERAL":"Algemeen",
+  "CHANGE":"Verander",
   "CHOOSE":"Kiezen",
   "SUBMIT":"Indienen",
   "FIRSTNAME": "Voornaam",
@@ -19,6 +20,7 @@
   "REPEATPW":"Herhaal nieuw wachtwoord",
   "PLACEHOLDERPW":"catsanddogs123",
   "PLACEHOLDERUSERNAME":"samleirens",
+  "CHANGED":"Aangepast",
   "HOME": {
     "INTRO": "tekstje over eindwerk komt hier"
   },

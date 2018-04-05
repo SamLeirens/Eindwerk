@@ -18,11 +18,11 @@ export class LeerlingService {
 
   constructor(private http:HttpClient ){ }
 
-  private postURL = 'http://localhost:8080/student';  // URL to web api
-  private getURL = 'http://localhost:8080/students';  // URL to web api
-    private getStudent = 'http://localhost:8080/student/';  // URL to web api
-    private updateRolUrl = 'http://localhost:8080/student/rol/';  // URL to web api
-
+    private postURL = 'http://localhost:8080/student';
+    private getURL = 'http://localhost:8080/students';
+    private getStudent = 'http://localhost:8080/student/';
+    private updateRolUrl = 'http://localhost:8080/student/rol/';
+    private gsmUrl = 'http://localhost:8080/studentGsm/';
 
 updateRol(student:Student) {
         this.http.post(this.updateRolUrl,JSON.stringify(student),httpOptions).subscribe(
@@ -59,4 +59,26 @@ getLeerlingenById(id:number)
             .http
             .get(this.getStudent+id);
     }
+
+  changeEmail(id:number,email:string) {
+
+    this.http.post(this.postURL+"/"+id+"/"+email,{}).subscribe
+    (
+      () => {
+      },
+      err => {
+        console.log("Error occured");
+      });
+
+  }
+
+  changeGsm(id:number,gsm:string  ){
+    this.http.post(this.gsmUrl+"/"+id+"/"+gsm,{}).subscribe
+    (
+      res => {
+      },
+      err => {
+        console.log("Error occured");
+      });
+  }
 }

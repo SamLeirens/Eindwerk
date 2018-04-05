@@ -8,6 +8,8 @@ export class Student {
     rol: string;
     inGroep: boolean;
     groep: string;
+    email:string;
+    gsm:string;
 
     constructor(x?:string,id?:number)
     {

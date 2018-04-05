@@ -32,6 +32,11 @@
     "LOGOUT": "Afmelden",
     "NOTINGROUP":"Nog niet in een groep"
   },
+  "CHANGEPW":
+  {
+    "ERROR":"Fout wachtwoord",
+    "GOOD":"Wachtwoord aangepast"
+  },
   "LOGIN": {
     "USERNAME": "Gebruikersnaam",
     "PASSWORD": "Wachtwoord",

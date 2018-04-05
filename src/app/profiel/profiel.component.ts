@@ -9,11 +9,12 @@ import {MessageService} from "../common/service/MessageService";
   selector: 'profiel',
   templateUrl: 'profiel.component.html',
   styleUrls: ['profiel.component.css'],
+  providers:[LoginServiceApi],
     encapsulation:ViewEncapsulation.None
 })
 export class ProfielComponent implements OnInit {
 
-  constructor(private messageService:MessageService) { }
+  constructor(private messageService:MessageService,private loginService:LoginServiceApi) { }
 
   ngOnInit() {
 
@@ -21,11 +22,11 @@ export class ProfielComponent implements OnInit {
   changePw(pw,nieuwpw,herhaaldpw){
     if(nieuwpw.value !== herhaaldpw.value)
     {
-      this.messageService.add({severity: 'error', summary: 'wachtwoorden komen niet overeen'})
+      this.messageService.add({severity: 'error', summary: this.messageService.add({severity: 'error', summary: this.translate.instant('CHANGEPW.ERROR')})})
     }
     else
     {
-      /*TODO:check of ingevuld wachtwoord gelijk is aan wachtwoord van login met login_id van de ingelogde gebruiker*/
+      this.loginService.changePw(LoginServiceApi.loginId,pw.value,nieuwpw.value);
     }
   }
 

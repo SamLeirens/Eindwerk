@@ -30,7 +30,11 @@
     "PROJECT": "Project",
     "LOGOUT": "Logout",
     "NOTINGROUP":"Not in a group yet"
-  },
+  },"CHANGEPW":
+    {
+      "ERROR":"Wrong password",
+      "GOOD":"Password changed"
+    },
   "LOGIN": {
     "USERNAME": "Username",
     "PASSWORD": "Password",

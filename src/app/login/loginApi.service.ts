@@ -16,6 +16,7 @@ import {MessageService} from "../common/service/MessageService";
 import {Login} from "../models/Login";
 import {HeaderComponent} from "../header/header.component";
 import {TranslateService} from "@ngx-translate/core";
+import {isNull} from "util";
 
 
 
@@ -38,6 +39,7 @@ export class LoginServiceApi {
 
     private postURL = 'http://localhost:8080/login/';  // URL to web api
     private postRolURL = 'http://localhost:8080/loginRole/';  // URL to web api
+    private postPwURL = 'http://localhost:8080/loginpw/';  // URL to web api
 
 
     getUser(username:String,password:String) {
@@ -82,7 +84,20 @@ export class LoginServiceApi {
           });
     }
 
+  changePw(id:number,oldpw:string,pw:string) {
 
+
+    return this.http.post(this.postPwURL+id+"/"+oldpw+"/"+pw).subscribe(
+      res => {
+        if(isNull(res)){this.messageService.add({severity: 'error', summary: this.translate.instant('CHANGEPW.ERROR')})}
+        else{
+          this.messageService.add({severity: 'success', summary: this.translate.instant('CHANGEPW.GOOD')})
+        }
+      },
+      err => {
+        console.log(err);
+      });
+  }
 
 
 }

@@ -74,7 +74,8 @@ export class GroepComponent implements AfterViewInit,OnInit {
       this.groepen = data as Groep[]
     });
 
-      this._groepservice.getFilesByGroep(this.groepNaam).subscribe(res => this.uploadedFiles = res as Files[]);
+      this._groepservice.getFilesByGroep(this.groepNaam).subscribe(res => this.uploadedFiles = res as Files[]
+      );
 
   }
 
@@ -211,6 +212,7 @@ export class GroepComponent implements AfterViewInit,OnInit {
             this.myTimesheetsItems = data as Timesheet[];
           }
         );
+
     }
 
 }

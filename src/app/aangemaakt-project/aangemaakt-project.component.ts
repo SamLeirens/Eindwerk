@@ -14,7 +14,8 @@ import {GroepService} from "../groep/groep.service";
 })
 export class AangemaaktProjectComponent implements OnInit{
 
-    studentIdLijst: any = [];
+  studentIdLijst: any = [];
+  studentenRandomised: any = [];
     aantalGroepen:number;
     myData: any = [];
     groepenArray:Groep[] = [];
@@ -45,40 +46,44 @@ export class AangemaaktProjectComponent implements OnInit{
       this.projId = +this.route.snapshot.paramMap.get('id');
       this.projNaam = this.route.snapshot.paramMap.get('naam');
 
+    //alle leerlingen ophalen
+    this
+      ._leerlingService
+      .getLeerlingen()
+      .subscribe
+      (data =>
+        {
+          this.myData = data;
+          //Array randomisen zodat de groepen niet elke keer hetzelfde zijn
+          this.studentenRandomised = this.shuffle(this.myData);
 
-      for(let x = 1;x<=this.aantalGroepen;x++) {
-
-          //gevraagd aantal groepen maken
-         let groep = new Groep(x,this.projNaam+" groep "+x+" ",this.projId);
-
-         //alle leerlingen ophalen
-          this
-              ._leerlingService
-              .getLeerlingen()
-              .subscribe
-              (data =>
-                  {
-                      this.myData = data;
-                      this.maakGroep(groep);
-                  }
-             );
-          this.groepenArray.push(groep);
-
-      }
-
-
+          for(let x = 1;x<=this.aantalGroepen;x++) {
+            //gevraagd aantal groepen maken
+            let groep = new Groep(x,this.projNaam+" groep "+x+" ",this.projId);
+            this.maakGroep(groep);
+            this.groepenArray.push(groep);
+          }
+        }
+      );
   }
+  //array randomisen https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
+    shuffle(a) {
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
 
     maakGroep(groep:Groep) {
         let doneCheck1 = false;
         let doneCheck2 = false;
+        let doneCheck3 = false;
+        let doneCheck4 = false;
 
-        for (let i = 0; i < this.myData.length; i++) {
-
-            let student = <Student> this.myData[i];
-
-            if (student.rol == "architect" && !student.inGroep && !doneCheck1 && !this.studentIdLijst.includes(i))
-            {
+        for (let i = 0; i < this.studentenRandomised.length; i++) {
+            let student = <Student> this.studentenRandomised[i];
+          if (student.rol == "architect" && !student.inGroep && !doneCheck1 && !this.studentIdLijst.includes(i)) {
                 doneCheck1 = true;
                 this.studentIdLijst += i;
                 student.inGroep = true;
@@ -92,6 +97,22 @@ export class AangemaaktProjectComponent implements OnInit{
                 student.groep = groep.naam;
                 groep.students.push(student);
                 this.updateStudent(student)
+            }
+            else if (student.rol == "test manager" && !student.inGroep && !doneCheck3 && !this.studentIdLijst.includes(i)) {
+              doneCheck3 = true;
+              this.studentIdLijst += i;
+              student.inGroep = true;
+              student.groep = groep.naam;
+              groep.students.push(student);
+              this.updateStudent(student)
+            }
+            else if (student.rol == "developer" && !student.inGroep && !doneCheck4 && !this.studentIdLijst.includes(i)) {
+              doneCheck4 = true;
+              this.studentIdLijst += i;
+              student.inGroep = true;
+              student.groep = groep.naam;
+              groep.students.push(student);
+              this.updateStudent(student)
             }
         }
         this.createGroep(groep);

@@ -51,7 +51,9 @@
     "EVENT": "Event",
     "MEETING": "Vergadering",
     "TIMESHEET":"Een nieuwe timesheet toevoegen",
-    "PDF":"Exporteren naar PDF"
+    "PDF":"Exporteren naar PDF",
+    "BEGINTIME":"Van",
+    "ENDTIME":"Tot"
   },
   "GROUP": {
     "AGENDAADD": "Nieuwe agenda item toevoegen",

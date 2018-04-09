@@ -25,7 +25,7 @@ export class DetailGroepenService {
 
   constructor(private http:HttpClient) { }
 
-  private getURL = 'http://localhost:8080/punten/';  // URL to web api
+  private getURL = 'http://46.101.57.64:1337/punten/';  // URL to web api
 
   getPuntenFromGroep(naam:String) {
     return this

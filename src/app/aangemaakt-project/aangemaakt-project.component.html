@@ -12,9 +12,6 @@
   {{'PROJECT.GROUPS' | translate}} : {{aantalGroepen}}
 </div>
 
-
-
-
 <ng-container *ngFor="let i of groepenArray">
 <div class="container">
     <div class="row">
@@ -23,8 +20,6 @@
                 <div class="panel-heading">
                         <h2 [routerLink]="['/groep', i.naam]" class="panel-title">{{i.naam}}</h2>
                 </div>
-
-
                 <table class="table" id="dev-table">
                     <thead>
                     <tr>

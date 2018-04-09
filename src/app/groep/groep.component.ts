@@ -16,6 +16,8 @@ import {Files} from "../models/Files";
 import {TimesheetsComponent} from "./timesheets/timesheets.component";
 import * as jsPDF from 'jspdf'
 import * as jpt from 'jspdf-autotable';
+import * as io from 'socket.io-client';
+import {LoginServiceApi} from "../login/loginApi.service";
 
 @Component({
   selector: 'app-groep',
@@ -25,7 +27,10 @@ import * as jpt from 'jspdf-autotable';
   encapsulation:ViewEncapsulation.None
 })
 export class GroepComponent implements AfterViewInit,OnInit {
-
+    messageText: string;
+    messages: Array<any>;
+    socket: SocketIOClient.Socket;
+    users:any=[];
     groepNaam: string;
     sub:any ;
     myData2: any = [];
@@ -38,7 +43,10 @@ export class GroepComponent implements AfterViewInit,OnInit {
     uploadedFiles: Files[] = [];
     groepen: Array<{ id: number, naam: string, projectEntity: Project, students: Array<Student> }>;
 
-    constructor(private route: ActivatedRoute,private _groepservice: GroepService,public dialog: MatDialog,private translate:TranslateService) { }
+    constructor(private route: ActivatedRoute,private _groepservice: GroepService,public dialog: MatDialog,private translate:TranslateService) {
+      this.socket = io.connect('http://localhost:3001');
+      this.socket.emit('new user', LoginServiceApi.username);
+    }
 
 
   exportToPdf()
@@ -112,8 +120,8 @@ export class GroepComponent implements AfterViewInit,OnInit {
   }
 
   onRowSelect(event) {
-    console.log(event.data.name);
-      window.location.href = "http://localhost:8080/download/"+event.data.name+"/"+this.groepNaam;
+    console.log(event);
+      window.location.href = "http://46.101.57.64:1337/download/"+event+"/"+this.groepNaam;
   }
     openDialog()
     {
@@ -182,8 +190,37 @@ export class GroepComponent implements AfterViewInit,OnInit {
       }
     }
   }
+
+
+  sendMessage(message) {
+    this.socket.emit('send message',{msg:message.value},{user:LoginServiceApi.username},{room:this.groepNaam});
+  }
     ngOnInit()
     {
+
+      this.messages = new Array();
+
+      //connectie maken met de room van hun groep
+      this.socket.on('connect', ()=> {
+        console.log("connect to " + this.groepNaam);
+        this.socket.emit('room',this.groepNaam);
+      });
+
+      //kijken wanneer er een bericht ontvagen wordt
+      this.socket.on('new message',(data:any)=>{
+        console.log(data);
+        this.messages.push(data);
+      });
+
+      //kijken welke gebruikers er in de chatroom zitten
+      this.socket.on('get users',(data:any)=>{
+        this.users = [];
+        for(let i=0;i<data.length;i++)
+        {
+         this.users.push(data[i]);
+        }
+      });
+
         this.sub = this.route.params.subscribe(params => {this.groepNaam = params['naam']; });
         this
             ._groepservice

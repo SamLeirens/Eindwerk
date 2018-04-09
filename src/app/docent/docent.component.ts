@@ -42,7 +42,6 @@ export class DocentComponent implements AfterViewInit,OnInit {
     this.cols = [
       {field: 'id', header: 'Id'},
       {field: 'naam', header: this.tranlate.instant("NAME")},
-      {field: 'projectEntity', header: 'Project'}
     ];
   }
 
@@ -50,8 +49,8 @@ export class DocentComponent implements AfterViewInit,OnInit {
   }
 
   onRowSelect(event) {
-    this.messageService.add({severity: 'info', summary: this.tranlate.instant("TEACHER.INFOOF") + event.data.naam});
-    this.router.navigate(['/detailGroepen', event.data.naam]);
+    this.messageService.add({severity: 'info', summary: this.tranlate.instant("TEACHER.INFOOF") + event});
+    this.router.navigate(['/detailGroepen', event]);
   }
 
   onRowUnselect(event) {}

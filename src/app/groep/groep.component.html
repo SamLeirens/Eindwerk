@@ -13,15 +13,14 @@
 
   <p-tabView>
     <p-tabPanel header="Agenda" rightIcon="fa-calendar">
-
-                <!-- AGENDA -->
+      <!-- AGENDA -->
                   <div><h2>Agenda</h2>
                     <button mat-button class="btn btn-dark" (click)="openDialog()">{{'GROUP.AGENDAADD' | translate}}</button>
                   </div>
                   <br>
                   <div class="agenda">
                     <div class="table-responsive">
-                      <table class="table table-condensed table-bordered">
+                      <table class="table table-striped">
                         <thead>
                         <tr>
                           <th>{{'DIALOG.DATE' | translate}}</th>
@@ -31,27 +30,20 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <!-- Single event in a single day -->
                         <ng-container *ngFor="let item of myAgendaItems">
                           <tr>
-                            <td class="agenda-date" class="active" rowspan="1">
+                            <td>
                               {{item.datum}}
                             </td>
-                            <td class="agenda-time">
+                            <td>
                               {{item.tijd}}
                             </td>
-                            <td class="agenda-events">
-                              <div class="agenda-event">
+                            <td>
                                 {{item.onderwerp}}
-                              </div>
                             </td>
-                            <td class="agenda-events">
-                              <div class="agenda-event">
-                                <form>
+                            <td>
                                   <input type="hidden" value="{{item.id}}" #itemId>
                                   <button type="submit" class="btn btn-dark" (click)="deleteAgendaItem(itemId.value)">X</button>
-                                </form>
-                              </div>
                             </td>
                           </tr>
                         </ng-container>
@@ -61,116 +53,132 @@
                   </div>
     </p-tabPanel>
     <p-tabPanel header="Timesheets" rightIcon="fa-blind">
-      <div><h2>Timesheet</h2></div>
-      <button mat-button class="btn btn-dark" (click)="openTimesheets()">{{'DIALOG.TIMESHEET' | translate}}</button>
-      <button mat-button class="btn btn-dark" (click)="exportToPdf()">{{'DIALOG.PDF' | translate}}</button>
-      <br><br>
-      <div class="agenda">
-        <div class="table-responsive">
-          <table class="table table-condensed table-bordered">
-            <thead>
-            <tr>
-              <th>{{'DIALOG.DATE' | translate}}</th>
-              <th>{{'DIALOG.TIME' | translate}}</th>
-              <th>{{'DIALOG.TIME' | translate}}</th>
-              <th>{{'DIALOG.EVENT' | translate}}</th>
-              <th>{{'DELETE' | translate}}</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!-- Single event in a single day -->
-            <ng-container *ngFor="let i of myTimesheetsItems">
-              <tr>
-                <td class="agenda-date" class="active" rowspan="1">
-                  {{i.datum}}
-                </td>
-                <td class="agenda-time">
-                  {{i.beginTijd}}
-                </td>
-                <td class="agenda-time">
-                  {{i.eindTijd}}
-                </td>
-                <td class="agenda-events">
-                  <div class="agenda-event">
-                    {{i.onderwerp}}
+      <!-- TIMESHEETS -->
+                  <div><h2>Timesheet</h2></div>
+                  <button mat-button class="btn btn-dark" (click)="openTimesheets()">{{'DIALOG.TIMESHEET' | translate}}</button>
+                  <button mat-button class="btn btn-dark" (click)="exportToPdf()">{{'DIALOG.PDF' | translate}}</button>
+                  <br><br>
+                  <div class="agenda">
+                    <div class="table-responsive">
+                      <table class="table table-striped">
+                        <thead>
+                        <tr>
+                          <th>{{'DIALOG.DATE' | translate}}</th>
+                          <th>{{'DIALOG.BEGINTIME' | translate}}</th>
+                          <th>{{'DIALOG.ENDTIME' | translate}}</th>
+                          <th>{{'DIALOG.EVENT' | translate}}</th>
+                          <th>{{'DELETE' | translate}}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <ng-container *ngFor="let i of myTimesheetsItems">
+                          <tr>
+                            <td>
+                              {{i.datum}}
+                            </td>
+                            <td>
+                              {{i.beginTijd}}
+                            </td>
+                            <td>
+                              {{i.eindTijd}}
+                            </td>
+                            <td>
+                                {{i.onderwerp}}
+                            </td>
+                            <td>
+                                  <input type="hidden" value="{{i.id}}" #iId>
+                                  <button type="submit" class="btn btn-dark" (click)="deleteTimesheetItem(iId.value)">X</button>
+                            </td>
+                          </tr>
+                        </ng-container>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
-                </td>
-                <td class="agenda-events">
-                  <div class="agenda-event">
-                    <form>
-                      <input type="hidden" value="{{i.id}}" #iId>
-                      <button type="submit" class="btn btn-dark" (click)="deleteTimesheetItem(iId.value)">X</button>
-                    </form>
-                  </div>
-                </td>
-              </tr>
-            </ng-container>
-            </tbody>
-          </table>
-        </div>
-      </div>
     </p-tabPanel>
     <p-tabPanel header="Github" rightIcon="fa-github-square">
-                  <form>
+      <!-- GITHUB -->
+                 <form>
                     <img src="" id="foto" height="100px" width="200px">
                     <input type="text">
                     <button class="btn btn-dark">{{'GROUP.UPLOAD' | translate}}</button>
                   </form>
-
-
     </p-tabPanel>
     <p-tabPanel header="{{'GROUP.OVERVIEW' | translate}}" >
-      <!--TODO:algemene info kunnen tonen zoals telefoon en email-->
-
-      <table>
-                    <th>{{'FIRSTNAME' | translate}}</th>
-                    <th>{{'LASTNAME' | translate}}</th>
-                    <th>{{'ROLE' | translate}}</th>
-
-                    <ng-container *ngFor="let d of myData2">
-
-                      <tr>
-                        <td>{{d.voornaam}}</td>
-                        <td>{{d.achternaam}}</td>
-                        <td>{{d.rol}}</td>
-                      </tr>
-                    </ng-container>
-                  </table>
+      <!-- OVERZICHT -->
+            <table class="table table-striped">
+                  <thead>
+                              <th>{{'FIRSTNAME' | translate}}</th>
+                              <th>{{'LASTNAME' | translate}}</th>
+                              <th>{{'ROLE' | translate}}</th>
+                              <th>Gsm</th>
+                              <th>E-mail</th>
+                  </thead>
+                  <tbody>
+                              <ng-container *ngFor="let d of myData2">
+                                <tr>
+                                  <td>{{d.voornaam}}</td>
+                                  <td>{{d.achternaam}}</td>
+                                  <td>{{d.rol}}</td>
+                                  <td>{{d.gsm}}</td>
+                                  <td>{{d.email}}</td>
+                                </tr>
+                              </ng-container>
+                  </tbody>
+            </table>
 
     </p-tabPanel>
 
     <p-tabPanel header="{{'GROUP.FILES' | translate}}">
-      <div class="row">
-      <p-fileUpload name="myfile" url="http://localhost:8080/upload/{{groepNaam}}"  (onUpload)="onUpload($event)"
-                     accept=".xlsx,.xls,image/*,.doc,.docx,.ppt,.pptx,.txt,.pdf,.rtf,application/msword,
-                     application/vnd.openxmlformats-officedocument.wordprocessingml.document,
-                     application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.slideshow,
-                     application/vnd.openxmlformats-officedocument.presentationml.presentation,application/pdf,
-                     application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
-                    maxFileSize="1000000">
-      </p-fileUpload>
+      <!-- FILES -->
+                  <div class="row">
+                  <p-fileUpload name="myfile" url="http://46.101.57.64:1337/upload/{{groepNaam}}"  (onUpload)="onUpload($event)"
+                                 accept=".xlsx,.xls,image/*,.doc,.docx,.ppt,.pptx,.txt,.pdf,.rtf,application/msword,
+                                 application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+                                 application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.slideshow,
+                                 application/vnd.openxmlformats-officedocument.presentationml.presentation,application/pdf,
+                                 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
+                                maxFileSize="1000000">
+                  </p-fileUpload>
+                  </div>
+
+               <br>
+                <div class="row">
+                  <p-table [columns]="cols" selectionMode="single" [value]="uploadedFiles" [paginator]="true" [rows]="10" [(selection)]="selectedGroep" (onRowSelect)="onRowSelect($event)">
+                    <ng-template pTemplate="header" let-columns>
+                      <tr>
+                        <th style="width: 3em">
+                        </th>
+                      <th></th>
+                      </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-groep>
+                      <tr>
+                        <td> <button pButton icon="fa-download" (click)="onRowSelect(groep.name)" [value]="rowData"></button></td>
+                        <td>{{groep.name}}</td>
+                      </tr>
+                    </ng-template>
+                  </p-table>
+                </div>
+    </p-tabPanel>
+    <p-tabPanel header="Chat">
+      <div *ngFor="let item of users">
+        <ul>
+          <li>
+          {{item}}
+          </li>
+        </ul>
       </div>
+       <br>
+      <input type="text" #msg>
+      <button (click)="sendMessage(msg)">xxx</button>
 
-<br>
-    <div class="row">
-      <p-table [columns]="cols" selectionMode="single" [value]="uploadedFiles" [paginator]="true" [rows]="10" [(selection)]="selectedGroep" (onRowSelect)="onRowSelect($event)">
+      <div *ngFor="let item of messages">
+        <ul>
+          <li>{{item.user.user}} : {{item.msg.msg}}</li>
+        </ul>
 
-        <ng-template pTemplate="header" let-columns>
-          <tr>
-            <th style="width: 2.25em">
-              <i class="fa fa-file"></i>
-            </th>
-          <th></th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-rowData let-groep>
-          <tr>
-            <td><p-tableRadioButton [value]="rowData"></p-tableRadioButton></td>
-            <td>{{groep.name}}</td>
-          </tr>
-        </ng-template>
-      </p-table>
-    </div>
+      </div>
     </p-tabPanel>
   </p-tabView>
 

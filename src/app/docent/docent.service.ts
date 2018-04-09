@@ -24,8 +24,8 @@ export class DocentService {
 
     constructor(private http:HttpClient) { }
 
-    private postURL = 'http://localhost:8080/docent';  // URL to web api
-    private getURL = 'http://localhost:8080/docents';  // URL to web api
+    private postURL = 'http://46.101.57.64:1337/docent';  // URL to web api
+    private getURL = 'http://46.101.57.64:1337/docents';  // URL to web api
 
     getDocent(voornaam:String,achternaam:String) {
         this.http.post(this.postURL,{

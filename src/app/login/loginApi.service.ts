@@ -37,9 +37,9 @@ export class LoginServiceApi {
 
     }
 
-    private postURL = 'http://localhost:8080/login/';  // URL to web api
-    private postRolURL = 'http://localhost:8080/loginRole/';  // URL to web api
-    private postPwURL = 'http://localhost:8080/loginpw/';  // URL to web api
+    private postURL = 'http://46.101.57.64:1337/login/';  // URL to web api
+    private postRolURL = 'http://46.101.57.64:1337/loginRole/';  // URL to web api
+    private postPwURL = 'http://46.101.57.64:1337/loginpw/';  // URL to web api
 
 
     getUser(username:String,password:String) {

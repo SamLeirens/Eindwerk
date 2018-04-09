@@ -20,8 +20,8 @@ export class ProjectService {
 
     constructor(private http:HttpClient,private router: Router) { }
 
-    private postURL = 'http://localhost:8080/project';  // URL to web api
-    private getURL = 'http://localhost:8080/projects';  // URL to web api
+    private postURL = 'http://46.101.57.64:1337/project';  // URL to web api
+    private getURL = 'http://46.101.57.64:1337/projects';  // URL to web api
     p:Project;
 
     add(naam:String,aantal:number) {

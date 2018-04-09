@@ -13,20 +13,18 @@
 <p-table [columns]="cols" selectionMode="single" [value]="groepen" [paginator]="true" [rows]="10" [(selection)]="selectedGroep" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)">
   <ng-template pTemplate="header" let-columns>
     <tr>
-      <th style="width: 2.25em">
-        <i class="fa fa-file"></i>
+      <th style="width: 3em">
       </th>
       <th *ngFor="let col of columns" [pSortableColumn]="col.field">
         {{col.header}}
         <p-sortIcon [field]="col.field"></p-sortIcon>
       </th>
+      <th>Project</th>
     </tr>
   </ng-template>
-
-
   <ng-template pTemplate="body" let-rowData let-groep>
     <tr>
-      <td><p-tableRadioButton [value]="rowData"></p-tableRadioButton></td>
+      <td><button pButton icon="fa-search" (click)="onRowSelect(groep.naam)" [value]="rowData"></button></td>
       <td>{{groep.id}}</td>
       <td>{{groep.naam}}</td>
       <td>{{groep.projectEntity.naam}}</td>

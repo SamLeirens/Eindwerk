@@ -30,6 +30,7 @@ export class HeaderComponent implements OnInit{
            this.sub = this.leerlingService.getLeerlingenById(LoginServiceApi.user_id).subscribe(res =>
            {
                this.loggedInUser = res;
+
                if(this.loggedInUser.inGroep)
                {
                    this.router.navigate(['/groep/' + this.loggedInUser.groep])
@@ -40,7 +41,10 @@ export class HeaderComponent implements OnInit{
                }
            });
         }
-        else{this.messageService.add({severity: 'error', summary: this.translate.instant("HEADER.NOTINGROUP")})}
+        else{
+          if(LoginServiceApi.user_id == 1337){this.router.navigate(['/groep/devGroep'])}
+          this.messageService.add({severity: 'error', summary: this.translate.instant("HEADER.NOTINGROUP")})
+        }
 
     }
 

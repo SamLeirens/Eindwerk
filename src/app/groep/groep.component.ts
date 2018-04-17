@@ -44,7 +44,7 @@ export class GroepComponent implements AfterViewInit,OnInit {
     groepen: Array<{ id: number, naam: string, projectEntity: Project, students: Array<Student> }>;
 
     constructor(private route: ActivatedRoute,private _groepservice: GroepService,public dialog: MatDialog,private translate:TranslateService) {
-      this.socket = io.connect('http://localhost:3001');
+      this.socket = io.connect('http://46.101.57.64:3001/');
       this.socket.emit('new user', LoginServiceApi.username);
     }
 
@@ -194,6 +194,7 @@ export class GroepComponent implements AfterViewInit,OnInit {
 
   sendMessage(message) {
     this.socket.emit('send message',{msg:message.value},{user:LoginServiceApi.username},{room:this.groepNaam});
+    (<HTMLInputElement>document.getElementById("btn-chat")).value = "";
   }
     ngOnInit()
     {

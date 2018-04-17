@@ -162,23 +162,48 @@
                 </div>
     </p-tabPanel>
     <p-tabPanel header="Chat">
-      <div *ngFor="let item of users">
-        <ul>
+        <ul id="chatLijst">
+          <ng-container *ngFor="let item of users">
           <li>
           {{item}}
           </li>
+            <li> - </li>
+            </ng-container>
         </ul>
-      </div>
+      <hr>
        <br>
-      <input type="text" #msg>
-      <button (click)="sendMessage(msg)">xxx</button>
 
-      <div *ngFor="let item of messages">
-        <ul>
-          <li>{{item.user.user}} : {{item.msg.msg}}</li>
-        </ul>
 
-      </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-body">
+                            <ul class="chat">
+                                <div *ngFor="let item of messages">
+                                                    <div class="chat-body clearfix">
+                                                        <div class="header">
+                                                            <strong class="primary-font">{{item.user.user}}</strong>
+                                                        </div>
+                                                        <p>
+                                                            {{item.msg.msg}}
+                                                        </p>
+                                                    </div>
+                                </div>
+                            </ul>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="input-group">
+                                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." #msg />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-dark" id="btn-chat" (click)="sendMessage(msg)">Send</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </p-tabPanel>
   </p-tabView>
 

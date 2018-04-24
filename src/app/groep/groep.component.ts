@@ -27,6 +27,7 @@ import {LoginServiceApi} from "../login/loginApi.service";
   encapsulation:ViewEncapsulation.None
 })
 export class GroepComponent implements AfterViewInit,OnInit {
+    selectedTab:number;
     messageText: string;
     messages: Array<any>;
     socket: SocketIOClient.Socket;
@@ -193,18 +194,26 @@ export class GroepComponent implements AfterViewInit,OnInit {
   }
 
 
+    focusChatInput()
+    {
+        if(document.getElementById("btn-input") != null)
+        {
+            document.getElementById("btn-input").focus();
+        }
+    }
+
   sendMessage(message) {
     this.socket.emit('send message',{msg:message.value},{user:LoginServiceApi.username},{room:this.groepNaam});
     (<HTMLInputElement>document.getElementById("btn-input")).value = "";
+    this.focusChatInput()
   }
 
     updateScroll(){
-        var element = document.getElementById("chat-body");
+        const element = document.getElementById("chat-body");
         element.scrollTop = element.scrollHeight;
     }
     ngOnInit()
     {
-
       this.messages = new Array();
 
       //connectie maken met de room van hun groep

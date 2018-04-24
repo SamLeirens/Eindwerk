@@ -162,11 +162,13 @@
                 </div>
     </p-tabPanel>
     <!-- GROUPCHAT -->
-    <p-tabPanel header="Chat">
+    <p-tabPanel header="Chat" [selected]="focusChatInput()">
         <ul id="chatLijst">
           <ng-container *ngFor="let item of users">
           <li>
+              [
           {{item}}
+              ]
           </li>
             <li> - </li>
             </ng-container>
@@ -193,9 +195,9 @@
                         </div>
                         <div class="panel-footer">
                             <div class="input-group">
-                                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." #msg />
+                                <input id="btn-input" (keyup.enter)="sendMessage(msg)" type="text" class="form-control input-sm" placeholder="Type your message here..." #msg />
                                 <span class="input-group-btn">
-                                    <button class="btn btn-dark" id="btn-chat" (click)="sendMessage(msg)">Send</button>
+                                    <button class="btn btn-dark" id="btn-chat" (keyup.enter)="test($event)" (click)="sendMessage(msg)">Send</button>
                                 </span>
                             </div>
                         </div>

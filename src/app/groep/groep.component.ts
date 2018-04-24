@@ -120,8 +120,7 @@ export class GroepComponent implements AfterViewInit,OnInit {
   }
 
   onRowSelect(event) {
-    console.log(event);
-      window.location.href = "http://46.101.57.64:1337/download/"+event+"/"+this.groepNaam;
+    window.location.href = "http://46.101.57.64:1337/download/"+event+"/"+this.groepNaam;
   }
     openDialog()
     {
@@ -174,14 +173,16 @@ export class GroepComponent implements AfterViewInit,OnInit {
     this.removeTimesheet(id);
     this._groepservice.deleteTs(id).subscribe();
   }
-    removeAgenda(id:number) {
-        for (let i = 0 ; i < this.myAgendaItems.length; i++) {
-            if (this.myAgendaItems[i].id == id) {
-                this.myAgendaItems.splice(i, 1);
-                break;
-            }
-        }
-    }
+
+  removeAgenda(id:number) {
+      for (let i = 0 ; i < this.myAgendaItems.length; i++)
+      {
+          if (this.myAgendaItems[i].id == id) {
+              this.myAgendaItems.splice(i, 1);
+              break;
+          }
+      }
+  }
   removeTimesheet(id:number) {
     for (let i = 0 ; i < this.myTimesheetsItems.length; i++) {
       if (this.myTimesheetsItems[i].id == id) {
@@ -194,8 +195,13 @@ export class GroepComponent implements AfterViewInit,OnInit {
 
   sendMessage(message) {
     this.socket.emit('send message',{msg:message.value},{user:LoginServiceApi.username},{room:this.groepNaam});
-    (<HTMLInputElement>document.getElementById("btn-chat")).value = "";
+    (<HTMLInputElement>document.getElementById("btn-input")).value = "";
   }
+
+    updateScroll(){
+        var element = document.getElementById("chat-body");
+        element.scrollTop = element.scrollHeight;
+    }
     ngOnInit()
     {
 
@@ -211,6 +217,7 @@ export class GroepComponent implements AfterViewInit,OnInit {
       this.socket.on('new message',(data:any)=>{
         console.log(data);
         this.messages.push(data);
+        setTimeout(this.updateScroll,100);
       });
 
       //kijken welke gebruikers er in de chatroom zitten

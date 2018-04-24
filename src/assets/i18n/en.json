@@ -19,10 +19,12 @@
   "REPEATPW":"Repeat new password",
   "PLACEHOLDERPW":"catsanddogs123",
   "PLACEHOLDERUSERNAME":"reckful",
+  "PLACEHOLDEREMAIL":"sam.leirens@student.ehb.be",
+  "PLACEHOLDERGSM":"0499186883",
   "ROLE": "Role",
   "CHANGED":"Changed",
   "HOME": {
-    "INTRO": "an english text here"
+    "INTRO": "Welcome to the Projectmanagement platform created by Sam Leirens. To continue please login at the upper right corner"
   },
   "HEADER": {
     "LOGIN": "Login",

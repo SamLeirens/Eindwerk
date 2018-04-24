@@ -18,9 +18,7 @@ export class HeaderComponent implements OnInit{
     constructor(private translate:TranslateService,private router:Router,private leerlingService:LeerlingService,private messageService:MessageService){
     };
 
-    ngOnInit()
-    {
-    }
+    ngOnInit(){}
     loggedInUser:any;
     sub:any;
 
@@ -30,7 +28,6 @@ export class HeaderComponent implements OnInit{
            this.sub = this.leerlingService.getLeerlingenById(LoginServiceApi.user_id).subscribe(res =>
            {
                this.loggedInUser = res;
-
                if(this.loggedInUser.inGroep)
                {
                    this.router.navigate(['/groep/' + this.loggedInUser.groep])

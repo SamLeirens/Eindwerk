@@ -9,13 +9,13 @@
             <div class="form-group">
               <label>E-mail:</label>
               {{emailOutput}}<br>
-                <input type="text"  id="email"  placeholder="{{'PLACEHOLDERPW' | translate}}" #email>
+                <input type="text" class="form-control" id="email"  placeholder="{{'PLACEHOLDEREMAIL' | translate}}" #email>
               <button type="button"  name="submit" class="btn btn-dark pull-right" (click)="changeEmail(email)">{{'CHANGE' | translate}}</button>
             </div>
             <div class="form-group">
               <label>Gsm:</label>
               {{gsmOutput}} <br>
-              <input type="text"  id="gsm"  placeholder="{{'PLACEHOLDERPW' | translate}}" #gsm>
+              <input type="text" class="form-control"  id="gsm"  placeholder="{{'PLACEHOLDERGSM' | translate}}" #gsm>
               <button type="button"  name="submit" class="btn btn-dark pull-right" (click)="changeGsm(gsm)">{{'CHANGE' | translate}}</button>
             </div>
           </form>

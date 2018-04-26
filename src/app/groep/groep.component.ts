@@ -1,4 +1,7 @@
-import {Component, OnInit, TemplateRef, ElementRef, ViewChild, ViewEncapsulation, AfterViewInit} from '@angular/core';
+import {
+  Component, OnInit, TemplateRef, ElementRef, ViewChild, ViewEncapsulation, AfterViewInit,
+  OnDestroy
+} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {GroepService} from "./groep.service";
 
@@ -26,7 +29,7 @@ import {LoginServiceApi} from "../login/loginApi.service";
   providers: [GroepService],
   encapsulation:ViewEncapsulation.None
 })
-export class GroepComponent implements AfterViewInit,OnInit {
+export class GroepComponent implements AfterViewInit,OnInit,OnDestroy {
     selectedTab:number;
     messageText: string;
     messages: Array<any>;
@@ -49,7 +52,9 @@ export class GroepComponent implements AfterViewInit,OnInit {
       this.socket.emit('new user', LoginServiceApi.username);
     }
 
-
+    ngOnDestroy(){
+          this.socket.disconnect();
+    }
   exportToPdf()
   {
     let doc = new jsPDF('p', 'pt');    jpt;
@@ -218,13 +223,11 @@ export class GroepComponent implements AfterViewInit,OnInit {
 
       //connectie maken met de room van hun groep
       this.socket.on('connect', ()=> {
-        console.log("connect to " + this.groepNaam);
         this.socket.emit('room',this.groepNaam);
       });
 
       //kijken wanneer er een bericht ontvagen wordt
       this.socket.on('new message',(data:any)=>{
-        console.log(data);
         this.messages.push(data);
         setTimeout(this.updateScroll,100);
       });

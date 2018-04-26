@@ -6,6 +6,7 @@ import {AgendaItem} from "../models/AgendaItem";
 import {Files} from "../models/Files";
 import {TimesheetsComponent} from "./timesheets/timesheets.component";
 import {Timesheet} from "../models/Timesheet";
+import {NotificationService} from "../common/service/notification.service";
 
 
 
@@ -18,7 +19,7 @@ const httpOptions = {
 export class GroepService {
 
 
-  constructor(private http:HttpClient ){ }
+  constructor(private http:HttpClient , private notificationService:NotificationService){ }
 
     private postURL = 'http://46.101.57.64:1337/groep';  // URL to web api
     private getURL = 'http://46.101.57.64:1337/groeps';  // URL to web api
@@ -29,10 +30,11 @@ export class GroepService {
     private fileUrl = 'http://46.101.57.64:1337/file/';
     private filesUrl = 'http://46.101.57.64:1337/files/';
     private timesheetUrl = 'http://46.101.57.64:1337/timesheet/';
-  private deleteTimesheet='http://46.101.57.64:1337/deleteTimesheet/';
+    private deleteTimesheet='http://46.101.57.64:1337/deleteTimesheet/';
 
     uploadFile(file:any)
     {
+      this.notificationService.start();
         console.log(file);
         console.log(JSON.stringify(file));
         this.http.post(this.fileUrl,JSON.stringify(file),httpOptions).subscribe(
@@ -42,23 +44,29 @@ export class GroepService {
             err => {
                 console.log("Error occured");
             });
-        return this.getFilesByGroep(file.groep);
+      this.notificationService.stop();
+
+      return this.getFilesByGroep(file.groep);
     }
 
     addAgendaItem(agendaItem: AgendaItem)
     {
-        this.http.post(this.agenda,agendaItem,httpOptions).subscribe(
+      this.notificationService.start();
+      this.http.post(this.agenda,agendaItem,httpOptions).subscribe(
         res => {
             console.log("agenda geupdate");
         },
         err => {
             console.log("Error occured");
         });
-        return this.getAgendaByGroep(agendaItem.groep);
+      this.notificationService.stop();
+
+      return this.getAgendaByGroep(agendaItem.groep);
     }
 
   addTimesheetItem(ts: Timesheet)
   {
+    this.notificationService.start();
     this.http.post(this.timesheetUrl,ts,httpOptions).subscribe(
       res => {
         console.log("timesheet geupdate");
@@ -66,6 +74,8 @@ export class GroepService {
       err => {
         console.log("Error occured");
       });
+
+    this.notificationService.stop();
     return this.getTimesheetByGroep(ts.groep);
   }
     getFilesByGroep(naam:String) {
@@ -105,14 +115,15 @@ export class GroepService {
 
 
     addGroep(groep:Groep) {
-
-    this.http.post(this.postURL,JSON.stringify(groep),httpOptions).subscribe(
+      this.notificationService.start();
+      this.http.post(this.postURL,JSON.stringify(groep),httpOptions).subscribe(
         res => {
           console.log("groep geupdate");
         },
         err => {
           console.log("Error occured");
         });
+      this.notificationService.stop();
 
     return this.http.get(this.getURL,httpOptions);
 

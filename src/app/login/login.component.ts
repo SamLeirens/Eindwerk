@@ -4,6 +4,7 @@ import {DialogComponent} from "./dialog/dialog.component";
 import {LoginServiceApi} from "./loginApi.service";
 import {Router} from "@angular/router";
 import {TranslateModule} from "@ngx-translate/core";
+import {NotificationService} from "../common/service/notification.service";
 
 
 @Component({
@@ -28,7 +29,10 @@ export class LoginComponent implements OnInit {
         LoginServiceApi.user_id = 1337;
         this.router.navigate(['/']);
       }
-      else{this.loginServiceApi.getUser(gebruikersnaam.value,wachtwoord.value);}
+      else{
+
+        this.loginServiceApi.getUser(gebruikersnaam.value,wachtwoord.value);
+      }
 
     }
 

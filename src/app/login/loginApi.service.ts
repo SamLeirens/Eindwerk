@@ -17,6 +17,7 @@ import {Login} from "../models/Login";
 import {HeaderComponent} from "../header/header.component";
 import {TranslateService} from "@ngx-translate/core";
 import {isNull} from "util";
+import {NotificationService} from "../common/service/notification.service";
 
 
 
@@ -33,7 +34,7 @@ export class LoginServiceApi {
     public static loginId: number;
 
     loggedInUser:Login;
-    constructor(private http:HttpClient,private router:Router,private messageService:MessageService,private translate:TranslateService) {
+    constructor(private http:HttpClient,private router:Router,private messageService:MessageService,private translate:TranslateService,private notificationService:NotificationService) {
 
     }
 
@@ -42,7 +43,8 @@ export class LoginServiceApi {
     private postPwURL = 'http://46.101.57.64:1337/loginpw/';  // URL to web api
 
 
-    getUser(username:String,password:String) {
+    getUser(username:String,password:String){
+      this.notificationService.start();
       return this.http.post(this.postURL, {
         username: username,
         password: password
@@ -59,9 +61,11 @@ export class LoginServiceApi {
                 severity: 'success', summary: this.translate.instant('LOGIN.LOGGEDIN')
               }
             );
+            this.notificationService.stop();
             this.router.navigate(['/']);
           }
           else {
+            this.notificationService.stop();
             this.messageService.add({
                 severity: 'error', summary: this.translate.instant('LOGIN.ERROR')
               }
@@ -69,6 +73,7 @@ export class LoginServiceApi {
           }
         },
         err => {
+          this.notificationService.stop();
           this.messageService.add({severity: 'error', summary: this.translate.instant('LOGIN.ERROR')}
           );
         });

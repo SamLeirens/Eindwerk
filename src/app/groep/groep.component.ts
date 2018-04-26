@@ -21,6 +21,7 @@ import * as jsPDF from 'jspdf'
 import * as jpt from 'jspdf-autotable';
 import * as io from 'socket.io-client';
 import {LoginServiceApi} from "../login/loginApi.service";
+import {NotificationService} from "../common/service/notification.service";
 
 @Component({
   selector: 'app-groep',
@@ -47,7 +48,7 @@ export class GroepComponent implements AfterViewInit,OnInit,OnDestroy {
     uploadedFiles: Files[] = [];
     groepen: Array<{ id: number, naam: string, projectEntity: Project, students: Array<Student> }>;
 
-    constructor(private route: ActivatedRoute,private _groepservice: GroepService,public dialog: MatDialog,private translate:TranslateService) {
+    constructor(private route: ActivatedRoute,private _groepservice: GroepService,public dialog: MatDialog,private translate:TranslateService,private notificationService:NotificationService) {
       this.socket = io.connect('http://46.101.57.64:3001/');
       this.socket.emit('new user', LoginServiceApi.username);
     }
@@ -57,6 +58,7 @@ export class GroepComponent implements AfterViewInit,OnInit,OnDestroy {
     }
   exportToPdf()
   {
+    this.notificationService.start();
     let doc = new jsPDF('p', 'pt');    jpt;
 
     doc.setFontType('bold');
@@ -80,6 +82,8 @@ export class GroepComponent implements AfterViewInit,OnInit,OnDestroy {
       });
     }
     doc.save("timesheet.pdf");
+    this.notificationService.stop();
+
   }
 
   ngAfterViewInit() {

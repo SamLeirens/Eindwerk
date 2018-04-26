@@ -11,6 +11,7 @@ import {Student} from "../models/Student";
 import {MessageService} from "../common/service/MessageService";
 import {Router} from "@angular/router";
 import {TranslateService} from "@ngx-translate/core";
+import {NotificationService} from "../common/service/notification.service";
 @Component({
   selector: 'app-docent',
   templateUrl: 'docent.component.html',
@@ -35,8 +36,10 @@ export class DocentComponent implements AfterViewInit,OnInit {
 
   ngAfterViewInit() {
 
+    this.notificationService.start();
     this.groepService.getGroepen().subscribe(data => {
-      this.groepen = data as Groep[]
+      this.groepen = data as Groep[];
+      this.notificationService.stop();
     });
 
     this.cols = [
@@ -45,7 +48,7 @@ export class DocentComponent implements AfterViewInit,OnInit {
     ];
   }
 
-  constructor(private tranlate:TranslateService,private router: Router, private _docentService: DocentService, private groepService: GroepService, private messageService: MessageService) {
+  constructor(private tranlate:TranslateService,private notificationService:NotificationService,private router: Router, private _docentService: DocentService, private groepService: GroepService, private messageService: MessageService) {
   }
 
   onRowSelect(event) {

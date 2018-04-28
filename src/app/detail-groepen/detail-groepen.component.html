@@ -29,13 +29,15 @@
                 <h3 style="margin-bottom: 25px; text-align: center;">{{'GROUPDETAIL.GRADES' | translate}} {{lid.voornaam}} {{lid.achternaam}}</h3>
                 <div class="form-group">
                   <input type="hidden" value="{{lid.id}}" #studentId>
-                  <select name="sprint" class="form-control col-md-5 " required #sprint>
+                  <select name="sprint" class="form-control col-md-16 " required #sprint>
                     <option value="sprint1">Sprint 1</option>
                     <option value="sprint2">Sprint 2</option>
                     <option value="sprint3">Sprint 3</option>
                   </select>
                   <!--<input type="text" class="form-control" id="punt" name="name" placeholder="punt" required #punt>-->
+                  <div class="ui-fluid">
                   <p-spinner name="punt" [(ngModel)]="val" [min]="0" [max]="20" [step]="0.5" #punt></p-spinner>
+                </div>
                 </div>
                 <button type="button" id="submit" name="submit" class="btn btn-dark pull-right" (click)="puntenIngeven(studentId,sprint,punt)">{{'ADD' | translate}}</button>
               </form>

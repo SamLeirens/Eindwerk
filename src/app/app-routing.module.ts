@@ -12,16 +12,17 @@ import {LoginComponent} from "./login/login.component";
 import {LoggedInGuard} from "./security/loggedIn.guard";
 import {DetailGroepenComponent} from "./detail-groepen/detail-groepen.component";
 import {ProfielComponent} from "./profiel/profiel.component";
+import {LoginGuard} from "./security/login.guard";
 
 const appRoutes: Routes = [
-    {path: 'project', component: ProjectComponent},
+    {path: 'project', component: ProjectComponent,canActivate:[AuthGuard]},
     {path: 'index', component: HomeComponent},
-    {path: 'profiel', component: ProfielComponent},
+    {path: 'profiel', component: ProfielComponent,canActivate:[LoginGuard]},
     {path: 'login', component: LoginComponent,canActivate:[LoggedInGuard]},
-    {path: 'docent', component: DocentComponent,/*TODO:terug aanzetten canActivate:[AuthGuard]*/},
-    {path: 'aangemaaktProject/:aantal;:projId', component: AangemaaktProjectComponent},
-    {path: 'detailGroepen/:id', component: DetailGroepenComponent},
-    {path: 'groep/:naam', component: GroepComponent},
+    {path: 'docent', component: DocentComponent, canActivate:[AuthGuard]},
+    {path: 'aangemaaktProject/:aantal;:projId', component: AangemaaktProjectComponent,canActivate:[LoginGuard]},
+    {path: 'detailGroepen/:id', component: DetailGroepenComponent,canActivate:[LoginGuard]},
+    {path: 'groep/:naam', component: GroepComponent,canActivate:[LoginGuard]},
     {path: '**', redirectTo: 'index'},
 ];
 

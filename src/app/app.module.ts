@@ -44,6 +44,7 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {TimesheetsComponent} from "./groep/timesheets/timesheets.component";
 import {BusyIndicatorComponent} from "./common/service/busy-indicator.component";
 import {NotificationService} from "./common/service/notification.service";
+import {LoginGuard} from "./security/login.guard";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -103,7 +104,7 @@ export function createTranslateLoader(http: HttpClient) {
       }
     }),
   ],
-  providers: [DocentService,AuthGuard,LoginServiceApi,LoggedInGuard,MessageService,NotificationService],
+  providers: [DocentService,AuthGuard,LoginServiceApi,LoggedInGuard,MessageService,NotificationService,LoginGuard],
   bootstrap: [AppComponent],
   entryComponents: [DialogComponent,TimesheetsComponent]
 })

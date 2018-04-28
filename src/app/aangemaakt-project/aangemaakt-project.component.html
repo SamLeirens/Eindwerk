@@ -1,47 +1,49 @@
-
 <!-- https://bootsnipp.com/snippets/Q04ZX -->
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
+    crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
+    crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
 
 
 <div> Project: {{projId}}</div>
 <div>
-  {{'PROJECT.GROUPS' | translate}} : {{aantalGroepen}}
+    {{'PROJECT.GROUPS' | translate}} : {{aantalGroepen}}
 </div>
-
 <ng-container *ngFor="let i of groepenArray">
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
                         <h2 [routerLink]="['/groep', i.naam]" class="panel-title">{{i.naam}}</h2>
+                    </div>
+                    <table class="table" id="dev-table">
+                        <thead>
+                            <tr>
+                                <th>{{'FIRSTNAME' | translate}}</th>
+                                <th>{{'LASTNAME' | translate}}</th>
+                                <th>{{'ROLE' | translate}}</th>
+                            </tr>
+                        </thead>
+
+                        <ng-container *ngFor="let d of i.students">
+                            <tr>
+                                <td>{{d.voornaam}}</td>
+                                <td>{{d.achternaam}}</td>
+                                <td>{{d.rol}}</td>
+                            </tr>
+                        </ng-container>
+
+                    </table>
                 </div>
-                <table class="table" id="dev-table">
-                    <thead>
-                    <tr>
-                        <th>{{'FIRSTNAME' | translate}}</th>
-                        <th>{{'LASTNAME' | translate}}</th>
-                        <th>{{'ROLE' | translate}}</th>
-                    </tr>
-                    </thead>
 
-                    <ng-container *ngFor="let d of i.students">
-                        <tr>
-                            <td>{{d.voornaam}}</td>
-                            <td>{{d.achternaam}}</td>
-                            <td>{{d.rol}}</td>
-                        </tr>
-                    </ng-container>
-
-                </table>
             </div>
-
-        </div>
         </div>
 
-</div>
+    </div>
 </ng-container>

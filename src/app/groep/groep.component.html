@@ -181,6 +181,16 @@
                     <div class="panel panel-primary">
                         <div id="chat-body" class="panel-body1">
                             <ul class="chat">
+                                <div *ngFor="let item of chatHistory">
+                                    <div class="chat-body clearfix">
+                                        <div class="header">
+                                            <strong class="primary-font">{{item.user}}</strong>
+                                        </div>
+                                        <p>
+                                            {{item.message}}
+                                        </p>
+                                    </div>
+                </div>
                                 <div *ngFor="let item of messages">
                                                     <div class="chat-body clearfix">
                                                         <div class="header">

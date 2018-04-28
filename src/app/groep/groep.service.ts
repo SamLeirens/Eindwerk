@@ -30,8 +30,30 @@ export class GroepService {
     private fileUrl = 'http://46.101.57.64:1337/file/';
     private filesUrl = 'http://46.101.57.64:1337/files/';
     private timesheetUrl = 'http://46.101.57.64:1337/timesheet/';
-    private deleteTimesheet='http://46.101.57.64:1337/deleteTimesheet/';
+    private chatURL = "http://localhost:1337/chat/";
+    private deleteTimesheet="http://46.101.57.64:1337/deleteTimesheet/";
 
+
+    getChatByGroup(groep:String) {
+      return this
+          .http
+          .get(this.chatURL+"/"+groep);
+  }
+
+  saveChatMsg(chatBericht:any)
+  {
+    this.notificationService.start();
+      console.log(chatBericht);
+      console.log(JSON.stringify(chatBericht));
+      this.http.post(this.chatURL,JSON.stringify(chatBericht),httpOptions).subscribe(
+          res => {
+          },
+          err => {
+              console.log("Error occured");
+          });
+    this.notificationService.stop();
+  }
+    
     uploadFile(file:any)
     {
       this.notificationService.start();

@@ -9,7 +9,7 @@
         <br style="clear:both">
         <h3 style="margin-bottom: 25px; text-align: center;">{{'HEADER.LOGIN' | translate}}</h3>
         <div class="form-group">
-          <input type="text" class="form-control" id="gebruikersnaam" name="name" placeholder="{{'PLACEHOLDERUSERNAME' | translate}}" required #gebruikersnaam>
+          <input type="text" class="form-control" id="gebruikersnaam" name="name" placeholder="{{'PLACEHOLDERUSERNAME' | translate}}" (keyup.enter)="login(gebruikersnaam,wachtwoord)" required #gebruikersnaam>
           <show-hide-password icon="fontawesome">
             <input type="password"  id="wachtwoord"  placeholder="{{'PLACEHOLDERPW' | translate}}" (keyup.enter)="login(gebruikersnaam,wachtwoord)" #wachtwoord>
           </show-hide-password>

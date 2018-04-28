@@ -30,7 +30,7 @@ export class GroepService {
     private fileUrl = 'http://46.101.57.64:1337/file/';
     private filesUrl = 'http://46.101.57.64:1337/files/';
     private timesheetUrl = 'http://46.101.57.64:1337/timesheet/';
-    private chatURL = "http://localhost:1337/chat/";
+    private chatURL = "http://46.101.57.64:1337/chat";
     private deleteTimesheet="http://46.101.57.64:1337/deleteTimesheet/";
 
 

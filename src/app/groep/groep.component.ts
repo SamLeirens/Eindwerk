@@ -48,7 +48,7 @@ export class GroepComponent implements AfterViewInit, OnInit, OnDestroy {
   newTimesheet: Timesheet;
   uploadedFiles: Files[] = [];
   groepen: Array<{ id: number, naam: string, projectEntity: Project, students: Array<Student> }>;
- chatHistory:Array<ChatBericht>;
+  chatHistory: Array<ChatBericht>;
 
   constructor(private route: ActivatedRoute, private _groepservice: GroepService, public dialog: MatDialog, private translate: TranslateService, private notificationService: NotificationService) {
     this.socket = io.connect('http://46.101.57.64:3001/');
@@ -91,6 +91,7 @@ export class GroepComponent implements AfterViewInit, OnInit, OnDestroy {
     this._groepservice.getGroepen().subscribe(data => {
       this.groepen = data as Groep[]
     });
+
 
     this._groepservice.getFilesByGroep(this.groepNaam).subscribe(res => this.uploadedFiles = res as Files[]
     );
@@ -195,18 +196,19 @@ export class GroepComponent implements AfterViewInit, OnInit, OnDestroy {
     if (document.getElementById("btn-input") != null) {
       document.getElementById("btn-input").focus();
     }
+    if(this.chatHistory)
+    {
+      this.updateScroll(); 
+    }
   }
 
   sendMessage(message) {
-    console.log(message.value);
 
     let msg = new ChatBericht();
     msg.groep = this.groepNaam;
     msg.message = message.value;
-    msg.user =  LoginServiceApi.username;
-    console.log(msg);
+    msg.user = LoginServiceApi.username;
     this._groepservice.saveChatMsg(msg);
-    
     this.socket.emit('send message', { msg: message.value }, { user: LoginServiceApi.username }, { room: this.groepNaam });
     (<HTMLInputElement>document.getElementById("btn-input")).value = "";
     this.focusChatInput()
@@ -228,7 +230,7 @@ export class GroepComponent implements AfterViewInit, OnInit, OnDestroy {
     //kijken wanneer er een bericht ontvagen wordt
     this.socket.on('new message', (data: any) => {
       this.messages.push(data);
-      setTimeout(this.updateScroll, 100);
+ /*      setTimeout(this.updateScroll, 100); */
     });
 
     //kijken welke gebruikers er in de chatroom zitten
@@ -264,13 +266,12 @@ export class GroepComponent implements AfterViewInit, OnInit, OnDestroy {
         this.myTimesheetsItems = data as Timesheet[];
       }
       );
-      this
+    this
       ._groepservice
       .getChatByGroup(this.groepNaam)
       .subscribe
       (data => {
         this.chatHistory = data as ChatBericht[];
-        console.log(this.chatHistory);
       }
       );
   }

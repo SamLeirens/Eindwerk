@@ -26,6 +26,7 @@
     "@ngx-translate/core": "9.1.1",
     "@ngx-translate/http-loader": "2.0.1",
     "@types/socket.io-client": "1.4.32",
+    "@webcomponents/custom-elements": "^1.0.0",
     "angular-font-awesome": "3.1.2",
     "angular2-modal": "3.0.3",
     "bootstrap": "4.0.0",

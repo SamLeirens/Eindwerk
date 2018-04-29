@@ -6,11 +6,13 @@ import {GroepComponent} from "./groep.component";
 import {GroepService} from "./groep.service";
 import {MatDialogModule} from "@angular/material";
 import {FileUploadModule} from "primeng/primeng";
+import { BoardComponent } from './board/board.component';
 
 
 @NgModule({
     declarations: [
-        GroepComponent
+        GroepComponent,
+        BoardComponent
 
 
     ],

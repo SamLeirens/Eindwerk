@@ -1,0 +1,8 @@
+<p-pickList [source]="timesheets" [target]="list2" [responsive]="true" dragdrop="true" sourceHeader="Coding" targetHeader="Coding Done"
+    dragdropScope="x" (onMoveToTarget)="sourceToTarget($event)" (onMoveToSource)="targetToSource($event)">
+    <ng-template let-car pTemplate="item">
+        <div class="ui-helper-clearfix">
+            <div style="font-size:14px;float:right;margin:15px 5px 0 0">{{car.onderwerp}} - {{car.datum}} - {{car.beginTijd}}- {{car.eindTijd}}</div>
+        </div>
+    </ng-template>
+</p-pickList>

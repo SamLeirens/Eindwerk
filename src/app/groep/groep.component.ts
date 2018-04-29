@@ -99,7 +99,7 @@ export class GroepComponent implements AfterViewInit, OnInit, OnDestroy {
           this.myTimesheetsItems[i].eindTijd,
           this.myTimesheetsItems[i].onderwerp
         ]);
-      }
+      } 
       doc.autoTable(columnsExtra, rowsExtra, {
         startY: 50,
         pageBreak: "avoid",
@@ -279,7 +279,6 @@ export class GroepComponent implements AfterViewInit, OnInit, OnDestroy {
     //kijken wanneer er een bericht ontvagen wordt
     this.socket.on("new message", (data: any) => {
       this.messages.push(data);
-      console.log(this.inChatTab);
 
       if (data.user.user != LoginServiceApi.username)
         this.pushNotification.show(

@@ -1,7 +1,7 @@
+import { map } from 'rxjs/operators';
+import { BoardComponent } from './groep/board/board.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-
 import { AppComponent } from './app.component';
 import {ProjectComponent} from "./project/project.component";
 import {AppRoutingModule} from "./app-routing.module";
@@ -24,7 +24,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {GrowlModule} from 'primeng/growl';
 import {MessageService} from "./common/service/MessageService";
 import {ChartModule} from "primeng/components/chart/chart";
-import {DataTableModule, FileUploadModule, SpinnerModule, TabMenuModule, TabViewModule} from "primeng/primeng";
+import {DataTableModule, FileUploadModule, SpinnerModule, TabMenuModule, TabViewModule, PickListModule} from "primeng/primeng";
 import {TableModule} from "primeng/table";
 import {CalendarModule} from "primeng/components/calendar/calendar";
 import { DetailGroepenComponent } from './detail-groepen/detail-groepen.component';
@@ -46,7 +46,6 @@ import {BusyIndicatorComponent} from "./common/service/busy-indicator.component"
 import {NotificationService} from "./common/service/notification.service";
 import {LoginGuard} from "./security/login.guard";
 import { PushNotificationModule } from 'ng-push-notification';
-
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -70,7 +69,8 @@ export function createTranslateLoader(http: HttpClient) {
     Vraag6Component,
     Vraag7Component,
     TimesheetsComponent,
-    BusyIndicatorComponent
+    BusyIndicatorComponent,
+    BoardComponent
 
   ],
   imports: [
@@ -96,6 +96,7 @@ export function createTranslateLoader(http: HttpClient) {
     TabViewModule,
     CalendarModule,
     SpinnerModule,
+    PickListModule,
     StepsModule,
     FileUploadModule,
     TranslateModule.forRoot({

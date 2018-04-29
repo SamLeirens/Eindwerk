@@ -45,6 +45,7 @@ import {TimesheetsComponent} from "./groep/timesheets/timesheets.component";
 import {BusyIndicatorComponent} from "./common/service/busy-indicator.component";
 import {NotificationService} from "./common/service/notification.service";
 import {LoginGuard} from "./security/login.guard";
+import { PushNotificationModule } from 'ng-push-notification';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -80,6 +81,7 @@ export function createTranslateLoader(http: HttpClient) {
     HttpClientModule,
     FormsModule,
     ShowHidePasswordModule.forRoot(),
+    PushNotificationModule.forRoot(),
     AngularFontAwesomeModule,
     MatDialogModule,
     BrowserAnimationsModule,

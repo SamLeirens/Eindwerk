@@ -7,6 +7,8 @@ import {GroepService} from "./groep.service";
 import {MatDialogModule} from "@angular/material";
 import {FileUploadModule} from "primeng/primeng";
 import { BoardComponent } from './board/board.component';
+import { AddBoardStoryComponent } from './board/add-board-story/add-board-story.component';
+import {BoardModule} from "./board/board.module";
 
 
 @NgModule({
@@ -14,13 +16,13 @@ import { BoardComponent } from './board/board.component';
         GroepComponent,
         BoardComponent
 
-
     ],
     imports: [
         BrowserModule,
         HeaderModule,
         FormsModule,
-        MatDialogModule
+        MatDialogModule,
+        BoardModule
 
     ],
 

@@ -24,7 +24,10 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {GrowlModule} from 'primeng/growl';
 import {MessageService} from "./common/service/MessageService";
 import {ChartModule} from "primeng/components/chart/chart";
-import {DataTableModule, FileUploadModule, SpinnerModule, TabMenuModule, TabViewModule, PickListModule} from "primeng/primeng";
+import {
+  DataTableModule, FileUploadModule, SpinnerModule, TabMenuModule, TabViewModule, PickListModule,
+  PasswordModule, CodeHighlighterModule
+} from "primeng/primeng";
 import {TableModule} from "primeng/table";
 import {CalendarModule} from "primeng/components/calendar/calendar";
 import { DetailGroepenComponent } from './detail-groepen/detail-groepen.component';
@@ -46,6 +49,7 @@ import {BusyIndicatorComponent} from "./common/service/busy-indicator.component"
 import {NotificationService} from "./common/service/notification.service";
 import {LoginGuard} from "./security/login.guard";
 import { PushNotificationModule } from 'ng-push-notification';
+import {AddBoardStoryComponent} from "./groep/board/add-board-story/add-board-story.component";
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -70,7 +74,8 @@ export function createTranslateLoader(http: HttpClient) {
     Vraag7Component,
     TimesheetsComponent,
     BusyIndicatorComponent,
-    BoardComponent
+    BoardComponent,
+    AddBoardStoryComponent
 
   ],
   imports: [
@@ -98,6 +103,7 @@ export function createTranslateLoader(http: HttpClient) {
     SpinnerModule,
     PickListModule,
     StepsModule,
+    PasswordModule,
     FileUploadModule,
     TranslateModule.forRoot({
       loader: {
@@ -109,6 +115,6 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   providers: [DocentService,AuthGuard,LoginServiceApi,LoggedInGuard,MessageService,NotificationService,LoginGuard],
   bootstrap: [AppComponent],
-  entryComponents: [DialogComponent,TimesheetsComponent]
+  entryComponents: [DialogComponent,TimesheetsComponent,AddBoardStoryComponent]
 })
 export class AppModule { }

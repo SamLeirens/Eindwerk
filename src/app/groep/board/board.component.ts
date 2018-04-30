@@ -38,14 +38,12 @@ export class BoardComponent implements OnInit {
 
   sourceToTarget(event:any)
   {
-    console.log(event);
     console.log(this.list2);
   }
 
   targetToSource(event:any)
   {
-    console.log(event);
-d    console.log(this.list2);
+    console.log(this.list2);
   }
 
   addKanbanStory(user,subject) {

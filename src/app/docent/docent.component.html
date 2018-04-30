@@ -8,7 +8,6 @@
 
 <br><br><br><br><br>
 <div *ngIf="groepen">
-
 <!--tabel voor groepen-->
 <p-table [columns]="cols" selectionMode="single" [value]="groepen" [paginator]="true" [rows]="10" [(selection)]="selectedGroep" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)">
   <ng-template pTemplate="header" let-columns>

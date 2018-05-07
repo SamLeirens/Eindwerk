@@ -26,6 +26,14 @@ export class DetailGroepenService {
   constructor(private http:HttpClient) { }
 
   private getURL = 'http://46.101.57.64:1337/punten/';  // URL to web api
+  private groepenPunten="http://46.101.57.64:1337/puntenGroep/";
+
+  getPuntenByGroup(groep:String) {
+    console.log(groep);
+    return this
+        .http
+        .get(this.groepenPunten+groep);
+}
 
   getPuntenFromGroep(naam:String) {
     return this
@@ -38,7 +46,10 @@ export class DetailGroepenService {
   {
     return this.http.get(this.getURL+studentId+"/"+sprint+"/"+punt)
   }
-
+  addPuntenGroep(groep:string,sprint:String,punt:number)
+  {
+    return this.http.get(this.groepenPunten+groep+"/"+sprint+"/"+punt)
+  }
 
 }
 

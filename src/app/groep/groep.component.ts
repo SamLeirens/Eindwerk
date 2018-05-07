@@ -126,6 +126,7 @@ export class GroepComponent implements AfterViewInit, OnInit, OnDestroy {
     let file = new Files(
       0,
       event.files[0].name,
+      
       event.files[0].lastModified,
       event.files[0].lastModifiedDate,
       event.files[0].size,

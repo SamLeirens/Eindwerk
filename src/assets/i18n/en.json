@@ -67,7 +67,8 @@
     "MEMBERS": "Course of the members",
     "GRADES": "Give grades for ",
     "GRADECHANGED": "Grades have been modified",
-    "GIVEGRADES":"Give grades"
+    "GIVEGRADES":"Give grades",
+    "GIVEGRADESGROUP":"Give grades to the group"    
   },
   "PROJECT": {
     "GROUPS": "Number of groups in this project",

@@ -69,7 +69,9 @@
     "MEMBERS": "Verloop van de leden",
     "GRADES": "Nieuwe resultaten ingeven voor ",
     "GRADECHANGED": "Punten zijn aangepast",
-    "GIVEGRADES":"Punten geven"
+    "GIVEGRADES":"Punten geven",
+    "GIVEGRADESGROUP":"Punten geven aan de groep"    
+    
   },
   "PROJECT": {
     "GROUPS": "Aantal groepen in dit project",

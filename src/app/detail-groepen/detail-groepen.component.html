@@ -7,11 +7,9 @@
 
 <p-tabView orientation="left">
   <p-tabPanel header="{{'GROUPDETAIL.GROUP' | translate}}">
-        <h2>{{'GROUPDETAIL.GROUP' | translate}}</h2>
         <canvas id="myChart">{{ chart }}</canvas>
   </p-tabPanel>
   <p-tabPanel header="{{'GROUPDETAIL.MEMBERS' | translate}}">
-        <h2>{{'GROUPDETAIL.MEMBERS' | translate}}</h2>
         <div *ngIf="studChart">
           <canvas id="canvas">{{studChart}}</canvas>
         </div>
@@ -49,6 +47,28 @@
       </div>
     </p-tabView>
   </p-tabPanel>
+  <p-tabPanel header="{{'GROUPDETAIL.GIVEGRADESGROUP' | translate}}">
+    <div class="col-md-10">
+      <div class="form-area">
+        <form role="form">
+          <br style="clear:both">
+          <h3 style="margin-bottom: 25px; text-align: center;">{{'GROUPDETAIL.GIVEGRADESGROUP' | translate}} </h3>
+          <div class="form-group">
+            <select name="sprint" class="form-control col-md-16 " required #sprintGroep>
+              <option value="sprint1">Sprint 1</option>
+              <option value="sprint2">Sprint 2</option>
+              <option value="sprint3">Sprint 3</option>
+            </select>
+            <div class="ui-fluid">
+            <p-spinner name="puntGroep" [(ngModel)]="value" [min]="0" [max]="20" [step]="0.5" #puntGroep></p-spinner>
+          </div>
+          </div>
+          <button type="button" id="submit" name="submit" class="btn btn-dark pull-right" (click)="groepPuntenGeven(sprintGroep,puntGroep)">{{'ADD' | translate}}</button>
+        </form>
+      </div>
+    </div>
+</p-tabPanel>
+
 </p-tabView>
 
 

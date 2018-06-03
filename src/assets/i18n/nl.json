@@ -14,6 +14,7 @@
   "SUBMIT":"Indienen",
   "FIRSTNAME": "Voornaam",
   "LASTNAME": "Achternaam",
+  "NOLOG":"Nog niet aangemeld",  
   "ROLE": "Rol",
   "NEWPASSWORD":"Nieuw wachtwoord instellen",
   "NEWPW":"Nieuw wachtwoord",
@@ -81,7 +82,7 @@
   },
   "SECURITY":
   {
-    "NOTLOGGEDIN":"Nog niet aangemeld",
+    "NOLOG":"Nog niet aangemeld",
     "ALREADYLOGGEDIN":"Al reeds aangemeld"
   },
   "TEACHER":

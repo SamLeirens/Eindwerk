@@ -23,7 +23,7 @@ export class LoginGuard implements CanActivate {
     else
     {
       this.messageService.add({
-        severity: 'error', summary:this.translate.instant('SECURITY.NOTLOGGEDIN')}
+        severity: 'error', summary:this.translate.instant('NOLOG')}
       );
       this.router.navigate(['/login']);
     }

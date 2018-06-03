@@ -22,15 +22,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(gebruikersnaam, wachtwoord) {
-    if (gebruikersnaam.value == "dev" && wachtwoord.value == "dev") {
-      LoginServiceApi.loggedIn = true;
-      LoginServiceApi.rol = "nieuweStudent";
-      LoginServiceApi.username = "dev";
-      LoginServiceApi.user_id = 1337;
-      this.router.navigate(["/"]);
-    } else {
       this.loginServiceApi.getUser(gebruikersnaam.value, wachtwoord.value);
-    }
   }
 
 

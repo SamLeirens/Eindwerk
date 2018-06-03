@@ -13,6 +13,7 @@
   "GENERAL":"General",
   "FIRSTNAME": "First name",
   "LASTNAME": "Last name",
+  "NOLOG":"Not logged in yet",  
   "NEWPASSWORD":"Change password",
   "NEWPW":"New password",
   "OLDPW":"Old password",
@@ -78,7 +79,7 @@
   },
   "SECURITY":
   {
-    "NOTLOGGEDIN":"Not logged in yet",
+    "NOLOG":"Not logged in yet",
     "ALREADYLOGGEDIN":"Already logged in"
   },
   "TEACHER":
